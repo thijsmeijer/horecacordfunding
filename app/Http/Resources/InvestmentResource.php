@@ -17,7 +17,7 @@ class InvestmentResource extends JsonResource
     {
         return [
             'amount' => $this->amount,
-            'project' => new ProjectResource($this->project),
+            'project' => new InvestmentProjectResource($this->project),
             'created_at' => Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('Y-m-d H:i:s'),
         ];
     }
