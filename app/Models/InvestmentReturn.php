@@ -13,7 +13,7 @@ class InvestmentReturn extends Model
         'investment_id',
         'amount',
         'due_date',
-        'status'
+        'status',
     ];
 
     public function investment()
