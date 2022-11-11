@@ -17,9 +17,7 @@ return new class extends Migration
         Schema::create('investment_returns', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Investment::class);
-            $table->bigInteger('before_amount');
-            $table->bigInteger('amount_paid');
-            $table->bigInteger('after_amount');
+            $table->bigInteger('amount');
             $table->date('due_date');
             $table->enum('status', ['pending', 'paid']);
             $table->timestamps();

@@ -11,9 +11,7 @@ class InvestmentReturn extends Model
 
     protected $fillable = [
         'investment_id',
-        'before_amount',
-        'amount_paid',
-        'after_amount',
+        'amount',
         'due_date',
         'status'
     ];

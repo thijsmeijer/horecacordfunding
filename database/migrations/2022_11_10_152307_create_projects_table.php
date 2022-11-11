@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('description');
             $table->bigInteger('total_amount');
             $table->integer('interest_rate');
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->string('iban')->nullable();
+            $table->string('iban_name')->nullable();
+            $table->integer('duration');
             $table->enum('status', ['private', 'public']);
             $table->timestamps();
         });

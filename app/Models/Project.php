@@ -16,15 +16,11 @@ class Project extends Model
         'description',
         'total_amount',
         'interest_rate',
-        'start_date',
-        'end_date',
         'status',
+        'iban',
+        'iban_name',
+        'duration'
     ];
-
-    public function images()
-    {
-        return $this->hasMany(ProjectImage::class);
-    }
 
     public function user()
     {
