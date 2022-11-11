@@ -21,7 +21,7 @@ class InvestmentSeeder extends Seeder
 
         foreach ($users as $user) {
             foreach ($projects as $project) {
-                Investment::factory(10)->create([
+                Investment::factory(1)->create([
                     'user_id' => $user->id,
                     'project_id' => $project->id,
                 ]);

@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Investment::class);
     }
+
+    public function getTotalInvestedAttribute()
+    {
+        return $this->investments->sum('amount');
+    }
 }

@@ -15,6 +15,8 @@ class Investment extends Model
         'amount',
     ];
 
+    protected $with = ['project'];
+
     public function returns()
     {
         return $this->hasMany(InvestmentReturn::class);

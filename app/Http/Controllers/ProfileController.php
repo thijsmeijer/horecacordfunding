@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangeUserRequest;
+use App\Http\Resources\UserProfileResource;
 use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -12,7 +13,7 @@ class ProfileController extends Controller
     public function index(): Response
     {
         return Inertia::render('Profile/Information', [
-            'user' => auth()->user(),
+            'user' => new UserProfileResource(request()->user()),
         ]);
     }
 
