@@ -29,5 +29,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profile');
 
+Route::resource('projects', \App\Http\Controllers\ProjectsController::class);
+
 
 require __DIR__.'/auth.php';
