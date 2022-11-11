@@ -19,7 +19,7 @@ class ProjectResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'location' => $this->location,
-            'amount' => number_format($this->total_amount, 2, ',', '.'),
+            'amount' => number_format($this->total_amount, 0, ',', '.'),
             'duration' => $this->duration,
             'interest_rate' => $this->interest_rate . '%',
             'user' => $this->user->name,
