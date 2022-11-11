@@ -20,7 +20,7 @@ import {Link} from '@inertiajs/inertia-vue3';
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <div class="ml-3 relative space-x-4">
-                                <Link :href="route('login')" class="text-blue-400 font-semibold">Registreer</Link>
+                                <Link :href="route('register')" class="text-blue-400 font-semibold">Registreer</Link>
                                 <Link :href="route('login')" class="text-blue-400 font-semibold">Login</Link>
                             </div>
                         </div>

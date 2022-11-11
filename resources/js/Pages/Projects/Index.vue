@@ -13,6 +13,12 @@ defineProps({
     <Head title="Projecten"/>
 
     <GuestLayout>
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Projecten
+            </h2>
+        </template>
+
         <div class="max-w-6xl mx-auto mt-10">
             <div class="grid grid-cols-4">
                 <div v-for="project in projects.data" class="overflow-hidden rounded-md shadow-xl m-2">
@@ -67,7 +73,7 @@ defineProps({
                             </dd>
                         </dl>
                         <div class="pt-4">
-                            <a href="#"
+                            <a :href="route('projects.show', project.id)"
                                class="w-full block rounded py-2 text-center text-white bg-blue-400">Bekijken</a>
                         </div>
                     </div>
