@@ -19,7 +19,7 @@ class Project extends Model
         'status',
         'iban',
         'iban_name',
-        'duration'
+        'duration',
     ];
 
     public function user()
