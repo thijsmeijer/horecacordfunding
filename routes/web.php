@@ -31,5 +31,4 @@ Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index']
 
 Route::resource('projects', \App\Http\Controllers\ProjectsController::class);
 
-
 require __DIR__.'/auth.php';

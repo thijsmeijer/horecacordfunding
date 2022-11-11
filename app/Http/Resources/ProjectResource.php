@@ -9,7 +9,7 @@ class ProjectResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
@@ -21,7 +21,7 @@ class ProjectResource extends JsonResource
             'location' => $this->location,
             'amount' => number_format($this->total_amount, 0, ',', '.'),
             'duration' => $this->duration,
-            'interest_rate' => $this->interest_rate . '%',
+            'interest_rate' => $this->interest_rate.'%',
             'user' => $this->user->name,
         ];
     }
