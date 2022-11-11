@@ -31,5 +31,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profile');
 
 Route::post('/profile/update', [ProfileController::class, 'update'])->middleware(['auth', 'verified'])->name('profile.update');
+Route::resource('projects', \App\Http\Controllers\ProjectsController::class);
 
 require __DIR__.'/auth.php';
