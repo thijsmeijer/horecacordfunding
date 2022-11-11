@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('iban')->nullable();
             $table->string('iban_name')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
     }

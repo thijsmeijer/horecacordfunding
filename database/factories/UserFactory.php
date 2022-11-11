@@ -20,10 +20,9 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => hash('sha256', 'password'),
+            'password' => bcrypt('password'),
             'iban' => fake()->iban(),
             'iban_name' => fake()->name(),
-            'remember_token' => Str::random(10),
         ];
     }
 
