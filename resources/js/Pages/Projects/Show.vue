@@ -57,7 +57,7 @@
                                                     <span class="sr-only">duur</span>
                                                 </dt>
                                                 <dd>
-                                                    <span>{{ project.data.duration }} dagen</span>
+                                                    <span>{{ project.data.duration }} maanden</span>
                                                 </dd>
                                             </dl>
                                             <dl class="flex items-center space-x-2 text-lg">

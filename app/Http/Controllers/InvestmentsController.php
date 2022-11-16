@@ -20,6 +20,7 @@ class InvestmentsController extends Controller
     {
         return Inertia::render('Profile/Investments/Create', [
             'project' => new ProjectShowResource($project),
+            'user' => request()->user(),
         ]);
     }
 }
