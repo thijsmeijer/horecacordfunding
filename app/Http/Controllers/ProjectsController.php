@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProjectIndexResource;
+use App\Http\Resources\ProjectShowResource;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -51,7 +52,7 @@ class ProjectsController extends Controller
     public function show(int $id): \Inertia\Response
     {
         return Inertia::render('Projects/Show', [
-            'project' => new ProjectIndexResource(Project::find($id)),
+            'project' => new ProjectShowResource(Project::find($id)),
         ]);
     }
 

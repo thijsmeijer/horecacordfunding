@@ -20,7 +20,7 @@ class ProjectFactory extends Factory
             'user_id' => fake()->numberBetween(1, 10),
             'name' => fake()->company(),
             'location' => fake()->city(),
-            'description' => fake()->text(),
+            'description' => fake()->text(255),
             'total_amount' => fake()->numberBetween(1000, 100000),
             'interest_rate' => fake()->numberBetween(1, 10),
             'status' => fake()->randomElement(['private', 'public']),
