@@ -64,7 +64,7 @@
                                     </dt>
                                     <dd>
                                     <span>
-                                        {{ project.interest_rate }} rente
+                                        {{ project.interest_rate }}% rente
                                     </span>
                                     </dd>
                                 </dl>
@@ -98,7 +98,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head} from '@inertiajs/inertia-vue3';
 
 export default {
-    name: "Information",
+    name: "Index",
     components: {
         AuthenticatedLayout,
         Head,

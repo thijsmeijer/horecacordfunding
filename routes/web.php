@@ -40,6 +40,6 @@ Route::get('/profile/investments', [InvestmentsController::class, 'index'])->mid
 
 Route::get('/profile/projects', [ProfileController::class, 'projects'])->middleware(['auth', 'verified'])->name('profile.projects');
 
-Route::post('/profile/projects/{project}/edit', [ProjectsController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.projects.edit');
+Route::any('/profile/projects/{project}/edit', [ProjectsController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.projects.edit');
 
 require __DIR__.'/auth.php';

@@ -19,10 +19,13 @@ class ProjectResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'location' => $this->location,
-            'amount' => number_format($this->total_amount, 0, ',', '.'),
+            'amount' => $this->total_amount,
             'duration' => $this->duration,
-            'interest_rate' => $this->interest_rate.'%',
+            'interest_rate' => $this->interest_rate,
+            'iban' => $this->iban,
+            'iban_name' => $this->iban_name,
             'user' => $this->user->name,
+            'status' => $this->status,
         ];
     }
 }
