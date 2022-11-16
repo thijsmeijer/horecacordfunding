@@ -32,6 +32,10 @@ Route::get('/profile/investments', [InvestmentsController::class, 'index'])->mid
 
 Route::get('/profile/projects', [ProfileController::class, 'projects'])->middleware(['auth', 'verified'])->name('profile.projects');
 
+Route::get('/projects/{project}/investments/create', [InvestmentsController::class, 'create'])->middleware(['auth', 'verified'])->name('investments.create');
+
+Route::resource('projects', ProjectsController::class)->except(['index']);
+
 Route::get('/profile/projects/{project}/edit', [ProjectsController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.projects.edit');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
