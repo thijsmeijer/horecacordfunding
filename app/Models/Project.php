@@ -29,6 +29,6 @@ class Project extends Model
 
     public function investments()
     {
-        return $this->hasMany(Investment::class);
+        return $this->hasMany(Investment::class)->orderBy('created_at', 'desc');
     }
 }
