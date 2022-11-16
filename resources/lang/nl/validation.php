@@ -144,6 +144,11 @@ return [
     */
 
     'attributes' => [
+        'total_amount' => 'Gevraagd bedrag',
+        'iban_name' => 'IBAN Tenaamstelling',
+        'iban' => 'IBAN',
+        'location' => 'Locatie',
+        'description' => 'Omschrijving',
         'address' => 'adres',
         'age' => 'leeftijd',
         'available' => 'beschikbaar',

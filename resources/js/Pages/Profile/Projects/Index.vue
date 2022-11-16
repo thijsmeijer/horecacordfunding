@@ -11,6 +11,19 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="grid grid-cols-4">
+                    <button
+                        class="overflow-hidden rounded-md m-2 flex  border-dashed border-2 border-gray-300 items-center text-gray-300"
+                        type="submit"
+                        @click.prevent="createProject"
+                    >
+
+                        <span class="block w-full flex flex-wrap justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        <span class="font-bold block w-full">Start een nieuw project</span>
+                        </span>
+                    </button>
                     <div v-for="project in user.data.projects" class="overflow-hidden rounded-md shadow-xl m-2 flex flex-col justify-between">
                         <div>
                             <img
@@ -109,6 +122,9 @@ export default {
     methods: {
         editProject(project) {
             this.$inertia.get(`/profile/projects/${project.id}/edit`);
+        },
+        createProject() {
+            this.$inertia.get(route('projects.create'));
         }
     }
 }

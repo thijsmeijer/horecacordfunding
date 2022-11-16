@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectIndexResource;
 use App\Http\Resources\ProjectShowResource;
 use App\Models\Project;
@@ -24,12 +25,27 @@ class ProjectsController extends Controller
 
     public function create()
     {
-
+        return Inertia::render('Profile/Projects/New',
+        [
+            'user' => auth()->user(),
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        //
+        Project::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'location' => $request->location,
+            'total_amount' => $request->total_amount,
+            'duration' => $request->duration,
+            'interest_rate' => $request->interest_rate,
+            'iban' => $request->iban,
+            'iban_name' => $request->iban_name,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return redirect()->route('profile.projects');
     }
 
     public function show(Project $project): \Inertia\Response
