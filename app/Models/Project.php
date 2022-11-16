@@ -14,7 +14,7 @@ class Project extends Model
         'name',
         'location',
         'description',
-        'total_amount',
+        'amount',
         'interest_rate',
         'status',
         'iban',

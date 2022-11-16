@@ -2,7 +2,6 @@
 
     <GuestLayout>
         <form @submit.prevent="submit" class="max-w-md mx-auto mt-36 p-6 shadow-md rounded-lg border space-y-8">
-
             <div class="space-y-4">
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700">Naam</label>
@@ -11,6 +10,7 @@
                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                placeholder="John Doe" v-model="form.name">
                     </div>
+                    <InputError class="mt-2" :message="form.errors.name"/>
                 </div>
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
@@ -28,8 +28,8 @@
                                class="block w-full rounded-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                placeholder="johndoe@voorbeeld.nl" v-model="form.email">
                     </div>
+                    <InputError class="mt-2" :message="form.errors.email"/>
                 </div>
-
             </div>
             <div class="space-y-4">
                 <div>
@@ -39,6 +39,7 @@
                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                placeholder="NL99 BANK 0123 4567 89" v-model="form.iban">
                     </div>
+                    <InputError class="mt-2" :message="form.errors.iban"/>
                 </div>
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700">Te naam gestelde</label>
@@ -47,6 +48,7 @@
                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                placeholder="John Doe" v-model="form.iban_name">
                     </div>
+                    <InputError class="mt-2" :message="form.errors.iban_name"/>
                 </div>
             </div>
             <div>
@@ -63,6 +65,7 @@
                             <span class="text-gray-500 sm:text-sm" id="price-currency">EUR</span>
                         </div>
                     </div>
+                    <InputError class="mt-2" :message="form.errors.amount"/>
                 </div>
             </div>
             <div>
@@ -85,11 +88,13 @@
 import GuestLayout from '@/Layouts/GuestLayout.vue'
 import {Inertia} from '@inertiajs/inertia'
 import {useForm} from '@inertiajs/inertia-vue3'
+import InputError from '@/Components/InputError.vue';
 
 export default {
     name: "CreateInvestment",
     components: {
-        GuestLayout
+        GuestLayout,
+        InputError
     },
     props: {
         project: Object,

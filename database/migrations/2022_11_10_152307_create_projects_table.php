@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('location');
             $table->text('description');
-            $table->bigInteger('total_amount');
+            $table->bigInteger('amount');
             $table->integer('interest_rate');
             $table->string('iban')->nullable();
             $table->string('iban_name')->nullable();
