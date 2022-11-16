@@ -176,5 +176,7 @@ return [
         'title' => 'titel',
         'username' => 'gebruikersnaam',
         'year' => 'jaar',
+        'amount' => 'bedrag',
+        'iban_name' => 'te naam gestelde',
     ],
 ];

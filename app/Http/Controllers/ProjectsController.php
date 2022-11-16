@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProjectRequest;
 use App\Http\Resources\ProjectIndexResource;
 use App\Http\Resources\ProjectShowResource;
 use App\Models\Project;
@@ -39,7 +40,7 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function edit(Project $project): \Illuminate\Http\RedirectResponse | \Inertia\Response
+    public function edit(Project $project): \Illuminate\Http\RedirectResponse|\Inertia\Response
     {
         if ($project->user_id !== auth()->user()->id) {
             return redirect()->route('profile.projects');
@@ -50,13 +51,13 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function update(Request $request, Project $project)
+    public function update(EditProjectRequest $request, Project $project)
     {
         $project->update([
             'name' => $request->name,
             'description' => $request->description,
             'location' => $request->location,
-            'total_amount' => $request->amount,
+            'amount' => $request->amount,
             'duration' => $request->duration,
             'interest_rate' => $request->interest_rate,
             'iban' => $request->iban,
