@@ -98,23 +98,8 @@
                                 <div
                                     class="mt-8 space-y-10">
                                     <div class="space-y-4">
-                                        <p>
-                                            {{ project.data.description }}
-                                        </p>
-                                        <p>
-                                            Donec auctor urna id velit molestie, eu porttitor justo pharetra. Morbi
-                                            suscipit ante at enim mollis semper. Etiam ut tortor tristique, faucibus
-                                            augue sed, mattis ipsum. Morbi porttitor erat mi. Aenean felis nibh, cursus
-                                            ut porttitor non, commodo et erat. Morbi sodales nunc mi, in tincidunt nibh
-                                            suscipit fringilla. Integer mollis neque at vestibulum faucibus. Nunc quis
-                                            pulvinar nibh. Duis lacus sem, feugiat non bibendum vitae, faucibus sit amet
-                                            lacus. Morbi auctor, diam eu scelerisque ornare, ex justo consectetur risus,
-                                            non bibendum ligula quam id sapien. Cras ullamcorper aliquam finibus. Duis
-                                            nisl nisi, convallis quis tempus vel, fermentum non urna. Praesent eu sem
-                                            placerat leo mollis placerat. Nullam ultricies purus sodales neque dictum
-                                            volutpat. Proin semper elementum posuere. Donec viverra sapien et metus
-                                            hendrerit, vel tempus tellus venenatis. Nulla facilisi. Nulla facilisi.
-                                        </p>
+                                        <div class="prose prose-slate" v-html="project.data.description">
+                                        </div>
                                     </div>
                                     <ul role="list"
                                         class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">

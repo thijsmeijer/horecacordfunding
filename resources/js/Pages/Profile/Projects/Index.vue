@@ -69,7 +69,7 @@
                                     </dd>
                                 </dl>
                                 <div class="pt-4 mb-4">
-                                    <a href="#"
+                                    <a :href="route('projects.show', project.id)"
                                        class="w-full block rounded py-2 text-center text-white bg-blue-400">Bekijken</a>
                                 </div>
                                 <div class="flex justify-end">
@@ -108,7 +108,7 @@ export default {
     },
     methods: {
         editProject(project) {
-            this.$inertia.post(`/profile/projects/${project.id}/edit`, project);
+            this.$inertia.get(`/profile/projects/${project.id}/edit`);
         }
     }
 }

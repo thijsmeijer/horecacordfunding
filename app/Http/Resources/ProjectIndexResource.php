@@ -14,10 +14,12 @@ class ProjectIndexResource extends JsonResource
      */
     public function toArray($request)
     {
+        $parse = new \Parsedown();
+
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->description,
+            'description' => $parse->text($this->description),
             'location' => $this->location,
             'amount' => $this->total_amount,
             'duration' => $this->duration,

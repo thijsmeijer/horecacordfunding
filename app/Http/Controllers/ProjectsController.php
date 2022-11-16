@@ -22,37 +22,20 @@ class ProjectsController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Inertia\Response
-     */
-    public function show(int $id): \Inertia\Response
+    public function show(Project $project): \Inertia\Response
     {
         return Inertia::render('Projects/Show', [
-            'project' => new ProjectShowResource(Project::find($id)),
+            'project' => new ProjectShowResource($project),
         ]);
     }
 
@@ -63,16 +46,15 @@ class ProjectsController extends Controller
         }
 
         return Inertia::render('Profile/Projects/Edit', [
-            'project' => new ProjectResource($project),
+            'project' => new ProjectIndexResource($project),
         ]);
     }
 
     public function update(Request $request, Project $project)
     {
-        $parse = new \Parsedown();
         $project->update([
             'name' => $request->name,
-            'description' => $parse->text($request->description),
+            'description' => $request->description,
             'location' => $request->location,
             'total_amount' => $request->amount,
             'duration' => $request->duration,
@@ -84,12 +66,6 @@ class ProjectsController extends Controller
         return redirect()->route('profile.projects.edit', $project);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
