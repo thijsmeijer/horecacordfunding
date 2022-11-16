@@ -29,7 +29,7 @@ class StoreInvestmentRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
             'iban' => ['required', 'string', 'max:255'],
             'iban_name' => ['required', 'string', 'max:255'],
-            'amount' => ['required', 'numeric', 'min:1'],
+            'amount' => ['required', 'numeric', 'min:100'],
         ];
     }
 }
