@@ -21,7 +21,7 @@ class ProjectFactory extends Factory
             'name' => fake()->company(),
             'location' => fake()->city(),
             'description' => fake()->text(255),
-            'amount' => fake()->numberBetween(1000, 100000),
+            'amount' => round(fake()->numberBetween(20000, 100000), -2),
             'interest_rate' => fake()->numberBetween(5, 10),
             'status' => fake()->randomElement(['private', 'public']),
             'iban' => fake()->iban(),

@@ -65,6 +65,8 @@
                             <span class="text-gray-500 sm:text-sm" id="price-currency">EUR</span>
                         </div>
                     </div>
+                    <p class="mt-2 text-sm text-gray-500">Graag het bedrag invullen zonder punten en
+                        komma's. Het bedrag moet een honderdtal zijn.</p>
                     <InputError class="mt-2" :message="form.errors.amount"/>
                 </div>
             </div>

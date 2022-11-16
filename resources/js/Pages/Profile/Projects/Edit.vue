@@ -55,7 +55,7 @@
                                         />
                                     </div>
                                     <p class="mt-2 text-sm text-gray-500">Graag het bedrag invullen zonder punten en
-                                        komma's.</p>
+                                        komma's. Het bedrag moet een honderdtal zijn.</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-3 gap-6">

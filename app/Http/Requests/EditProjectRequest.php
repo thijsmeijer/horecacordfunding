@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Round;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -28,7 +29,7 @@ class EditProjectRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'location' => ['required', 'string', 'max:255'],
-            'amount' => ['required', 'integer', 'min:5000'],
+            'amount' => ['required', 'integer', 'min:5000', new Round],
             'interest_rate' => ['required', 'integer', 'min:5', 'max:10'],
             'duration' => ['required', 'integer', 'min:12', 'max:60'],
             'iban' => [Rule::requiredIf($this->status === 'public'), 'nullable', 'string', 'max:255'],

@@ -17,7 +17,7 @@ class InvestmentFactory extends Factory
     public function definition()
     {
         return [
-            'amount' => fake()->numberBetween(1000, 100000),
+            'amount' => round(fake()->numberBetween(1000, 2000), -2),
         ];
     }
 }
