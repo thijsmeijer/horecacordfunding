@@ -41,8 +41,8 @@
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3 sm:col-span-2">
                                     <label for="amount" class="block text-sm font-medium text-gray-700">Gevraagd bedrag</label>
-                                    <div v-if="form.errors.total_amount" class="bg-red-500 text-white py-1 px-4 pr-0 rounded mb-4 shadow-lg">
-                                        {{ form.errors.total_amount }}
+                                    <div v-if="form.errors.amount" class="bg-red-500 text-white py-1 px-4 pr-0 rounded mb-4 shadow-lg">
+                                        {{ form.errors.amount }}
                                     </div>
                                     <div class="mt-1 flex rounded-md shadow-sm">
                                         <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
@@ -52,7 +52,7 @@
                                             id="amount"
                                             class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="100000"
-                                            v-model="form.total_amount"
+                                            v-model="form.amount"
                                         />
                                     </div>
                                     <p class="mt-2 text-sm text-gray-500">Graag het bedrag invullen zonder punten en komma's.</p>
@@ -210,7 +210,7 @@ export default {
             {
                 name: '',
                 description: '',
-                total_amount: '',
+                amount: '',
                 duration: 24,
                 interest_rate: 7,
                 iban: props.user.iban,

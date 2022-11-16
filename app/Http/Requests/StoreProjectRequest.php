@@ -22,7 +22,7 @@ class StoreProjectRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'location' => 'required|string|max:255',
-            'total_amount' => 'required|numeric',
+            'amount' => 'required|integer',
             'duration' => 'required|numeric',
             'interest_rate' => 'required|numeric',
             'iban' => 'required|string|max:255',

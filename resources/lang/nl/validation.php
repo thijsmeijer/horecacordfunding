@@ -144,7 +144,7 @@ return [
     */
 
     'attributes' => [
-        'total_amount' => 'Gevraagd bedrag',
+        'amount' => 'Gevraagd bedrag',
         'iban_name' => 'IBAN Tenaamstelling',
         'iban' => 'IBAN',
         'location' => 'Locatie',

@@ -37,7 +37,7 @@ class ProjectsController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'location' => $request->location,
-            'total_amount' => $request->total_amount,
+            'amount' => $request->amount,
             'duration' => $request->duration,
             'interest_rate' => $request->interest_rate,
             'iban' => $request->iban,
