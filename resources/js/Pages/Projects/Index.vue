@@ -36,7 +36,7 @@ defineProps({
                                 <span class="sr-only">investering</span>
                             </dt>
                             <dd>
-                                <span>{{ project.amount }}</span>
+                                <span>&euro;{{ project.formatted_amount }}</span>
                             </dd>
                         </dl>
 

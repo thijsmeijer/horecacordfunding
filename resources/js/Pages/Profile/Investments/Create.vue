@@ -9,17 +9,27 @@
                     <div class="mt-1">
                         <input type="text" name="name" id="name"
                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                               placeholder="Naam" v-model="form.name">
+                               placeholder="John Doe" v-model="form.name">
                     </div>
                 </div>
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Email</label>
-                    <div class="mt-1">
-                        <input type="text" name="name" id="name"
-                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                               placeholder="Email" v-model="form.email">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <div class="relative mt-1 rounded-md shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                 fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z"/>
+                                <path
+                                    d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z"/>
+                            </svg>
+                        </div>
+                        <input type="email" name="email" id="email"
+                               class="block w-full rounded-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                               placeholder="johndoe@voorbeeld.nl" v-model="form.email">
                     </div>
                 </div>
+
             </div>
             <div class="space-y-4">
                 <div>
@@ -27,7 +37,7 @@
                     <div class="mt-1">
                         <input type="text" name="name" id="name"
                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                               placeholder="IBAN" v-model="form.iban">
+                               placeholder="NL99 BANK 0123 4567 89" v-model="form.iban">
                     </div>
                 </div>
                 <div>
@@ -35,7 +45,7 @@
                     <div class="mt-1">
                         <input type="text" name="name" id="name"
                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                               placeholder="Te naam gestelde" v-model="form.iban_name">
+                               placeholder="John Doe" v-model="form.iban_name">
                     </div>
                 </div>
             </div>
@@ -53,6 +63,17 @@
                             <span class="text-gray-500 sm:text-sm" id="price-currency">EUR</span>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-end">
+                    <button
+                        type="submit"
+                        name="submit"
+                        class="w-full block rounded-lg p-3 text-center text-white bg-blue-400"
+                    >
+                        Opslaan
+                    </button>
                 </div>
             </div>
         </form>
@@ -84,7 +105,7 @@ export default {
         })
 
         function submit() {
-            this.form.post(route('investments.store'), {
+            this.form.post(route('investments.store', props.project.data.id), {
                 preserveScroll: true,
                 onSuccess: () => {
                     Inertia.reload()

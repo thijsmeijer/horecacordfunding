@@ -12,10 +12,6 @@ class ProjectShowResource extends ProjectIndexResource
             return [
                 'id' => $investment->id,
                 'amount' => number_format($investment->amount, 0, ',', '.'),
-                'user' => [
-                    'id' => $investment->user->id,
-                    'name' => $investment->user->name,
-                ],
                 'invested_at' => $investment->created_at->diffForHumans(),
             ];
         });
