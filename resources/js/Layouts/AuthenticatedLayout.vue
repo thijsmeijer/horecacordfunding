@@ -33,6 +33,9 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('profile')" :active="route().current('profile')">
                                     Profiel
                                 </NavLink>
+                                <NavLink :href="route('profile.projects')" :active="route().current('profile.projects')">
+                                    Projecten
+                                </NavLink>
                                 <NavLink :href="route('profile.investments')" :active="route().current('profile.investments')">
                                     Investeringen
                                 </NavLink>
@@ -108,7 +111,7 @@ const showingNavigationDropdown = ref(false);
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="max-w-7xl mx-auto px-4 lg:px-8">
                 <slot />
             </main>
         </div>

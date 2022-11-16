@@ -56,27 +56,32 @@ class ProjectsController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Project $project): \Illuminate\Http\RedirectResponse | \Inertia\Response
     {
-        //
+        if ($project->user_id !== auth()->user()->id) {
+            return redirect()->route('profile.projects');
+        }
+
+        return Inertia::render('Profile/Projects/Edit', [
+            'project' => new ProjectResource($project),
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $parse = new \Parsedown();
+        $project->update([
+            'name' => $request->name,
+            'description' => $parse->text($request->description),
+            'location' => $request->location,
+            'total_amount' => $request->amount,
+            'duration' => $request->duration,
+            'interest_rate' => $request->interest_rate,
+            'iban' => $request->iban,
+            'iban_name' => $request->iban_name,
+        ]);
+
+        return redirect()->route('profile.projects.edit', $project);
     }
 
     /**

@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvestmentsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,12 @@ Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth',
 
 Route::post('/profile/update', [ProfileController::class, 'update'])->middleware(['auth', 'verified'])->name('profile.update');
 
+Route::resource('projects', ProjectsController::class);
+
 Route::get('/profile/investments', [InvestmentsController::class, 'index'])->middleware(['auth', 'verified'])->name('profile.investments');
 
-Route::resource('projects', ProjectsController::class)->except(['index']);
+Route::get('/profile/projects', [ProfileController::class, 'projects'])->middleware(['auth', 'verified'])->name('profile.projects');
 
-require __DIR__ . '/auth.php';
+Route::any('/profile/projects/{project}/edit', [ProjectsController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.projects.edit');
+
+require __DIR__.'/auth.php';
