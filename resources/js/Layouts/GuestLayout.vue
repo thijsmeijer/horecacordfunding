@@ -7,7 +7,7 @@ import {Link} from '@inertiajs/inertia-vue3';
 <template>
     <div>
         <div class="min-h-screen">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-white border-b border-gray-200 shadow">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
@@ -19,7 +19,10 @@ import {Link} from '@inertiajs/inertia-vue3';
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
-                            <div class="ml-3 relative space-x-4">
+                            <div class="ml-3 relative" v-if="$page.props.auth.user">
+                                <Link :href="route('dashboard')" class="text-blue-400 font-semibold">Dashboard</Link>
+                            </div>
+                            <div class="ml-3 relative space-x-4" v-else>
                                 <Link :href="route('register')" class="text-blue-400 font-semibold">Registreer</Link>
                                 <Link :href="route('login')" class="text-blue-400 font-semibold">Login</Link>
                             </div>

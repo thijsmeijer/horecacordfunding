@@ -57,7 +57,7 @@
                                                     <span class="sr-only">duur</span>
                                                 </dt>
                                                 <dd>
-                                                    <span>{{ project.data.duration }} dagen</span>
+                                                    <span>{{ project.data.duration }} maanden</span>
                                                 </dd>
                                             </dl>
                                             <dl class="flex items-center space-x-2 text-lg">
@@ -77,14 +77,14 @@
                                             </dl>
                                         </div>
                                         <div class="p-6">
-                                            <a href="#"
+                                            <a :href="route('investments.create', project.data.id)"
                                                class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Investeren</a>
                                         </div>
                                     </div>
                                     <div class="space-y-2 pt-10">
                                         <h2 class="text-center text-xl font-semibold">
                                             <span>&euro;{{ project.data.total_invested }}</span> van de
-                                            <span>&euro;{{ project.data.amount }}</span> ophehaald.
+                                            <span>&euro;{{ project.data.formatted_amount }}</span> ophehaald.
                                         </h2>
                                         <!-- Progress bar -->
                                         <div class="w-full bg-gray-200 dark:bg-gray-700">
