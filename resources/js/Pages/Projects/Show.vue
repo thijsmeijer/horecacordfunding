@@ -72,7 +72,7 @@
                                                     <span class="sr-only">rente</span>
                                                 </dt>
                                                 <dd>
-                                                    <span>{{ project.data.interest_rate }}</span>
+                                                    <span>{{ project.data.interest_rate }}%</span>
                                                 </dd>
                                             </dl>
                                         </div>

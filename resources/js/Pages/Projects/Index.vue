@@ -63,7 +63,7 @@ defineProps({
                                 </svg>
                                 <span class="sr-only">Rendament</span>
                             </dt>
-                            <dd><span>{{ project.interest_rate }} rente</span>
+                            <dd><span>{{ project.interest_rate }}% rente</span>
                             </dd>
                         </dl>
                         <div class="pt-4">
