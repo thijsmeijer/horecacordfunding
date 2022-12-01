@@ -77,8 +77,8 @@
                                             </dl>
                                         </div>
                                         <div class="p-6">
-                                            <a :href="route('investments.create', project.data.id)"
-                                               class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Investeren</a>
+                                            <a :href="route('profile.projects.edit', project.data.id)" target="_blank"
+                                               class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Aanpassen</a>
                                         </div>
                                     </div>
                                     <div class="space-y-2 pt-10">
