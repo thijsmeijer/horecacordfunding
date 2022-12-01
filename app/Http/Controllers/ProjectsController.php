@@ -20,16 +20,16 @@ class ProjectsController extends Controller
     public function index(): \Inertia\Response
     {
         return Inertia::render('Projects/Index', [
-            'projects' => ProjectIndexResource::collection(Project::paginate(8)),
+            'projects' => ProjectIndexResource::collection(Project::where('status', 'public')->paginate(8)),
         ]);
     }
 
     public function create()
     {
         return Inertia::render('Profile/Projects/New',
-        [
-            'user' => auth()->user(),
-        ]);
+            [
+                'user' => auth()->user(),
+            ]);
     }
 
     public function store(StoreProjectRequest $request)
