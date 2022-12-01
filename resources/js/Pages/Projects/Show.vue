@@ -127,10 +127,16 @@
                             <div>
                                 <div class="overflow-hidden rounded-lg border bg-white w-72 shadow-md">
                                     <ul role="list" class="divide-y divide-gray-200">
-                                        <li v-for="investment in project.data.investments"
+                                        <li v-if="project.data.investments.length > 0"
+                                            v-for="investment in project.data.investments"
                                             class="px-6 py-4 text-center flex justify-between">
                                             <span>&euro;{{ investment.amount }}</span>
                                             <span class="text-slate-500">{{ investment.invested_at }}</span>
+                                        </li>
+                                        <li v-else class="px-6 py-4 text-center">
+                                            <span>Er zijn nog geen investeringen gedaan, wees de eerste door <a
+                                                class="text-blue-400 underline"
+                                                :href="route('investments.create', project.data.id)">nu te investeren</a>!</span>
                                         </li>
                                     </ul>
                                 </div>
