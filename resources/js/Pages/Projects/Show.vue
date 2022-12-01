@@ -89,7 +89,7 @@
                                         <!-- Progress bar -->
                                         <div class="w-full bg-gray-200 dark:bg-gray-700">
                                             <div
-                                                class="bg-blue-400 font-medium text-white font-bold text-center p-3 leading-none"
+                                                class="bg-blue-400 font-medium text-white font-bold text-center p-1.5 leading-none"
                                                 :style="'width:' + project.data.total_invested_percent">
                                             </div>
                                         </div>
