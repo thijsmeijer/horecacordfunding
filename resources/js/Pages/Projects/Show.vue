@@ -76,9 +76,13 @@
                                                 </dd>
                                             </dl>
                                         </div>
-                                        <div class="p-6">
+                                        <div class="p-6" v-if="project.data.status === 'private'">
                                             <a :href="route('profile.projects.edit', project.data.id)" target="_blank"
                                                class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Aanpassen</a>
+                                        </div>
+                                        <div class="p-6" v-else>
+                                            <a :href="route('investments.create', project.data.id)"
+                                               class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Investeren</a>
                                         </div>
                                     </div>
                                     <div class="space-y-2 pt-10">
