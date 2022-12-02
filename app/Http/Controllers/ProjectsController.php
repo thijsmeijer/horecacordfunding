@@ -19,9 +19,11 @@ class ProjectsController extends Controller
      */
     public function index(): \Inertia\Response
     {
-        $projects = Project::where('status', 'public')->orWhere(function ($query) {
-            $query->where('status', 'private')->where('user_id', auth()->id());
-        })->paginate(8);
+        $projects = Project::where(function ($query) {
+            $query->where('status', 'public')->orWhere(function ($query) {
+                $query->where('status', 'private')->where('user_id', auth()->id());
+            });
+        })->where('name', 'like', '%' . request()->search . '%')->paginate(8);
 
         return Inertia::render('Projects/Index', [
             'projects' => ProjectIndexResource::collection($projects),
