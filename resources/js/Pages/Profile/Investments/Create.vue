@@ -5,11 +5,12 @@
             <div
                 class="w-2/5 mx-auto shadow-md rounded-lg border space-y-8 flex flex-col justify-between overflow-hidden">
                 <div>
-                    <div
-                        class="w-full h-52 bg-cover bg-center rounded relative overflow-hidden flex items-end group "
+                    <a
+                        :href="route('projects.show', project.data.id)"
+                        class="w-full h-52 bg-cover bg-center rounded relative overflow-hidden flex items-end group"
                         style="background-image: url('https://picsum.photos/800/200')">
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-gray-700 opacity-70"></div>
+                            class="absolute inset-0 bg-gradient-to-t from-gray-700 opacity-70 group-hover:opacity-50 duration-150"></div>
                         <div class="relative z-20 pb-5 px-5 text-left text-white">
                             <h3 class="text-3xl font-bold mt-2">{{ project.data.name }}</h3>
                             <dl class="flex items-center space-x-2 font-semibold">
@@ -29,7 +30,7 @@
                                 </dd>
                             </dl>
                         </div>
-                    </div>
+                    </a>
                     <div class="p-6 space-y-4">
                         <div class="font-semibold">
                             <dl class="flex items-center space-x-2 text-lg">
