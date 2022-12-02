@@ -31,12 +31,17 @@ class InvestmentsController extends Controller
     {
         $data = $request->validated();
 
-        User::find($request->user()->id)->update($data);
+        $request->user()->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+        ]);
 
         Investment::create([
             'user_id' => request()->user()->id,
             'project_id' => $project->id,
             'amount' => $data['amount'],
+            'iban' => $data['iban'],
+            'iban_name' => $data['iban_name'],
         ]);
 
         return redirect()->route('projects.show', $project->id)->with('success', 'Investering succesvol uitgevoerd!');
