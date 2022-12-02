@@ -3,37 +3,54 @@
         <img src="https://picsum.photos/800/200" class="object-cover h-48 w-full" alt="">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="rounded-md bg-green-50 p-4" v-if="$page.props.flash.success">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                 fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                                      clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-green-800">{{ $page.props.flash.success }}</p>
+                <div class="space-y-4">
+                    <div class="rounded-md bg-green-50 p-4" v-if="$page.props.flash.success">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20"
+                                     fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-green-800">{{ $page.props.flash.success }}</p>
+                            </div>
+                            <div class="ml-auto pl-3">
+                                <div class="-mx-1.5 -my-1.5">
+                                    <button type="button"
+                                            @click="$page.props.flash.success = null"
+                                            class="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50">
+                                        <span class="sr-only">Dismiss</span>
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                             fill="currentColor" aria-hidden="true">
+                                            <path
+                                                d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <a :href="$page.props.previousUrl">
-                        <dl class="flex items-center space-x-2 text-blue-500">
-                            <dt>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"/>
-                                </svg>
-                                <span class="sr-only">goback</span>
-                            </dt>
-                            <dd>
-                                <span>Terug</span>
-                            </dd>
-                        </dl>
-                    </a>
+                    <div>
+                        <a :href="$page.props.previousUrl">
+                            <dl class="flex items-center space-x-2 text-blue-500">
+                                <dt>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"/>
+                                    </svg>
+                                    <span class="sr-only">goback</span>
+                                </dt>
+                                <dd>
+                                    <span>Terug</span>
+                                </dd>
+                            </dl>
+                        </a>
+                    </div>
                 </div>
                 <div class="overflow-hidden sm:rounded-lg">
                     <div class="p-6 space-y-2">

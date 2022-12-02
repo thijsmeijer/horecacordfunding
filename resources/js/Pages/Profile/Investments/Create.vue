@@ -113,10 +113,7 @@ export default {
 
         function submit() {
             this.form.post(route('investments.store', props.project.data.id), {
-                preserveScroll: true,
-                onSuccess: () => {
-                    Inertia.reload()
-                }
+                preserveScroll: true
             })
         }
 
