@@ -55,6 +55,10 @@ class ProjectsController extends Controller
 
     public function show(Project $project): \Inertia\Response
     {
+        if ($project->status === 'private' && $project->user_id !== auth()->id()) {
+            abort(404);
+        }
+
         return Inertia::render('Projects/Show', [
             'project' => new ProjectShowResource($project),
         ]);
