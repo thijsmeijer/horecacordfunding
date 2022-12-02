@@ -1,6 +1,6 @@
 <template>
     <GuestLayout>
-        <img src="https://picsum.photos/800/200" class="w-full max-h-48">
+        <img src="https://picsum.photos/800/200" class="object-cover h-48 w-full">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden sm:rounded-lg">
