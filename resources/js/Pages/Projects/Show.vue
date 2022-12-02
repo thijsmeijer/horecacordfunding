@@ -1,8 +1,25 @@
 <template>
     <GuestLayout>
-        <img src="https://picsum.photos/800/200" class="w-full max-h-48">
+        <img src="https://picsum.photos/800/200" class="object-cover h-48 w-full" alt="">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div>
+                    <a :href="$page.props.previousUrl">
+                        <dl class="flex items-center space-x-2 text-blue-500">
+                            <dt>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"/>
+                                </svg>
+                                <span class="sr-only">goback</span>
+                            </dt>
+                            <dd>
+                                <span>Terug</span>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
                 <div class="overflow-hidden sm:rounded-lg">
                     <div class="p-6 space-y-2">
                         <div class="flex justify-between">
@@ -76,7 +93,11 @@
                                                 </dd>
                                             </dl>
                                         </div>
-                                        <div class="p-6">
+                                        <div class="p-6" v-if="project.data.status === 'private'">
+                                            <a :href="route('profile.projects.edit', project.data.id)" target="_blank"
+                                               class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Aanpassen</a>
+                                        </div>
+                                        <div class="p-6" v-else>
                                             <a :href="route('investments.create', project.data.id)"
                                                class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Investeren</a>
                                         </div>
@@ -89,7 +110,7 @@
                                         <!-- Progress bar -->
                                         <div class="w-full bg-gray-200 dark:bg-gray-700">
                                             <div
-                                                class="bg-blue-400 font-medium text-white font-bold text-center p-3 leading-none"
+                                                class="bg-blue-400 font-medium text-white font-bold text-center p-1.5 leading-none"
                                                 :style="'width:' + project.data.total_invested_percent">
                                             </div>
                                         </div>
@@ -127,10 +148,16 @@
                             <div>
                                 <div class="overflow-hidden rounded-lg border bg-white w-72 shadow-md">
                                     <ul role="list" class="divide-y divide-gray-200">
-                                        <li v-for="investment in project.data.investments"
+                                        <li v-if="project.data.investments.length > 0"
+                                            v-for="investment in project.data.investments"
                                             class="px-6 py-4 text-center flex justify-between">
                                             <span>&euro;{{ investment.amount }}</span>
                                             <span class="text-slate-500">{{ investment.invested_at }}</span>
+                                        </li>
+                                        <li v-else class="px-6 py-4 text-center">
+                                            <span>Er zijn nog geen investeringen gedaan, wees de eerste door <a
+                                                class="text-blue-400 underline"
+                                                :href="route('investments.create', project.data.id)">nu te investeren</a>!</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -143,13 +170,16 @@
     </GuestLayout>
 </template>
 
-<script setup>
+<script>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 
-defineProps({
-    project: {
-        type: Object,
-        required: true,
+export default {
+    name: 'Project',
+    components: {
+        GuestLayout,
     },
-});
+    props: {
+        project: Object,
+    },
+};
 </script>

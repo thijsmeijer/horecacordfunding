@@ -19,17 +19,21 @@ class ProjectsController extends Controller
      */
     public function index(): \Inertia\Response
     {
+        $projects = Project::where('status', 'public')->orWhere(function ($query) {
+            $query->where('status', 'private')->where('user_id', auth()->id());
+        })->paginate(8);
+
         return Inertia::render('Projects/Index', [
-            'projects' => ProjectIndexResource::collection(Project::paginate(8)),
+            'projects' => ProjectIndexResource::collection($projects),
         ]);
     }
 
     public function create()
     {
         return Inertia::render('Profile/Projects/New',
-        [
-            'user' => auth()->user(),
-        ]);
+            [
+                'user' => auth()->user(),
+            ]);
     }
 
     public function store(StoreProjectRequest $request)
@@ -51,6 +55,10 @@ class ProjectsController extends Controller
 
     public function show(Project $project): \Inertia\Response
     {
+        if ($project->status === 'private' && $project->user_id !== auth()->id()) {
+            abort(404);
+        }
+
         return Inertia::render('Projects/Show', [
             'project' => new ProjectShowResource($project),
         ]);
