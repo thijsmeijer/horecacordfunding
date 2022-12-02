@@ -18,7 +18,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Determine the current asset version.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return string|null
      */
     public function version(Request $request)
@@ -29,14 +29,14 @@ class HandleInertiaRequests extends Middleware
     /**
      * Define the props that are shared by default.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return mixed[]
      */
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
             'flash' => [
-                'message' => fn () => $request->session()->get('message'),
+                'message' => fn() => $request->session()->get('message'),
             ],
             'auth' => [
                 'user' => $request->user(),
@@ -46,6 +46,7 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'previousUrl' => url()->previous(),
         ]);
     }
 }

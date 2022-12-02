@@ -1,8 +1,25 @@
 <template>
     <GuestLayout>
-        <img src="https://picsum.photos/800/200" class="object-cover h-48 w-full">
+        <img src="https://picsum.photos/800/200" class="object-cover h-48 w-full" alt="">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div>
+                    <a :href="$page.props.previousUrl">
+                        <dl class="flex items-center space-x-2 text-blue-500">
+                            <dt>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"/>
+                                </svg>
+                                <span class="sr-only">goback</span>
+                            </dt>
+                            <dd>
+                                <span>Terug</span>
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
                 <div class="overflow-hidden sm:rounded-lg">
                     <div class="p-6 space-y-2">
                         <div class="flex justify-between">
@@ -153,13 +170,16 @@
     </GuestLayout>
 </template>
 
-<script setup>
+<script>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 
-defineProps({
-    project: {
-        type: Object,
-        required: true,
+export default {
+    name: 'Project',
+    components: {
+        GuestLayout,
     },
-});
+    props: {
+        project: Object,
+    },
+};
 </script>
