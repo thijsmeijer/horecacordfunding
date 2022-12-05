@@ -17,6 +17,8 @@
                                 <div class="ml-3 relative space-x-4" v-if="$page.props.auth.user">
                                     <Link :href="route('home')" class="text-slate-800 font-semibold">Home
                                     </Link>
+                                    <Link :href="route('projects.index')" class="text-slate-800 font-semibold">Projecten
+                                    </Link>
                                     <Link :href="route('dashboard')" class="text-slate-800 font-semibold">Dashboard
                                     </Link>
                                     <Link :href="route('logout')" method="post" class="text-red-400 font-semibold">
