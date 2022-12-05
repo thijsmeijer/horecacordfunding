@@ -26,7 +26,7 @@ Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth',
 
 Route::post('/profile/update', [ProfileController::class, 'update'])->middleware(['auth', 'verified'])->name('profile.update');
 
-Route::resource('projects', ProjectsController::class);
+Route::resource('projects', ProjectsController::class)->except('index');
 
 Route::get('/profile/investments', [InvestmentsController::class, 'index'])->middleware(['auth', 'verified'])->name('profile.investments');
 
