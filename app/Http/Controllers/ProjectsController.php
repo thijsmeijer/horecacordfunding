@@ -21,11 +21,7 @@ class ProjectsController extends Controller
      */
     public function index(): \Inertia\Response
     {
-        $projects = Project::where(function ($query) {
-                $query->where('status', 'public')->orWhere(function ($query) {
-                    $query->where('status', 'private')->where('user_id', auth()->id());
-                });
-            })->where('name', 'like', '%' . request()->search . '%')
+        $projects = Project::where('name', 'like', '%' . request()->search . '%')
             ->when(request()->sort, function ($query) {
                 $fundingProgress = DB::raw('(SELECT SUM(amount) /projects.amount * 100 FROM investments WHERE project_id = projects.id)');
 

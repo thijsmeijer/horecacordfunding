@@ -22,6 +22,11 @@ class Project extends Model
         'duration',
     ];
 
+    protected static function booted()
+    {
+        static::addGlobalScope(new Scopes\StatusScope);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
