@@ -6,7 +6,7 @@
         <div class="max-w-6xl mx-6 mt-10 lg:mx-auto">
             <div>
                 <div class="flex space-x-3">
-                    <h2 class="text-2xl font-semibold mb-6">Meest recente projecten</h2>
+                    <h2 class="text-lg sm:text-xl md:text-2xl font-semibold mb-6">Meest recente projecten</h2>
                     <a :href="route('projects.index')" class="text-blue-500 underline">(zie alles)</a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
@@ -87,7 +87,8 @@
             </div>
             <div>
                 <div class="flex space-x-3">
-                    <h2 class="text-2xl font-semibold mb-6">Projecten met de finishlijn in zicht</h2>
+                    <h2 class="text-lg sm:text-xl md:text-2xl font-semibold mb-6">Projecten met de finishlijn in
+                        zicht</h2>
                     <a :href="route('projects.index')" class="text-blue-500 underline">(zie alles)</a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
