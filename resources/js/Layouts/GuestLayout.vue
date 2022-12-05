@@ -15,6 +15,8 @@
 
                             <div class="hidden sm:flex sm:items-center sm:ml-6">
                                 <div class="ml-3 relative space-x-4" v-if="$page.props.auth.user">
+                                    <Link :href="route('home')" class="text-slate-800 font-semibold">Home
+                                    </Link>
                                     <Link :href="route('dashboard')" class="text-slate-800 font-semibold">Dashboard
                                     </Link>
                                     <Link :href="route('logout')" method="post" class="text-red-400 font-semibold">
@@ -53,9 +55,9 @@
                 <div v-if="showMenu" class="absolute shadow w-full border-b border-gray-200 z-50 bg-white md:hidden">
                     <div>
                         <div class="flex flex-col">
-                            <Link :href="route('projects.index')"
+                            <Link :href="route('home')"
                                   class="p-3 text-slate-800 border-r-4 font-semibold flex space-x-3"
-                                  :class="{'border-blue-400': false}">
+                                  :class="{'border-blue-400': route().current('home')}">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round"
