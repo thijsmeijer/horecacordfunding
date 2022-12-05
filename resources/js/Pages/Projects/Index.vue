@@ -139,10 +139,6 @@ export default {
         });
 
         const search = () => {
-            if (form.processing) {
-                return;
-            }
-
             form.get(route('projects.index'), {
                 preserveState: true,
                 onSuccess: (page) => {
