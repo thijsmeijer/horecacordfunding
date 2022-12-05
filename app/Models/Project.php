@@ -31,4 +31,9 @@ class Project extends Model
     {
         return $this->hasMany(Investment::class)->orderBy('created_at', 'desc');
     }
+
+    public function getFundingProgressAttribute()
+    {
+        return round($this->investments->sum('amount') / $this->amount * 100);
+    }
 }
