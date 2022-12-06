@@ -13,6 +13,8 @@ class Investment extends Model
         'user_id',
         'project_id',
         'amount',
+        'iban',
+        'iban_name',
     ];
 
     protected $with = ['project'];
