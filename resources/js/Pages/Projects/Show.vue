@@ -186,6 +186,9 @@
                                             <span>&euro;{{ investment.amount }}</span>
                                             <span class="text-slate-500">{{ investment.invested_at }}</span>
                                         </li>
+                                        <li v-else-if="project.data.status === 'private'" class="px-6 py-4 text-center">
+                                            <span>Publiceer je project om investeringen te ontvangen.</span>
+                                        </li>
                                         <li v-else class="px-6 py-4 text-center">
                                             <span>Er zijn nog geen investeringen gedaan, wees de eerste door <a
                                                 class="text-blue-400 underline"

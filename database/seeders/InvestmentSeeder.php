@@ -17,7 +17,7 @@ class InvestmentSeeder extends Seeder
     public function run()
     {
         $users = User::all();
-        $projects = Project::all();
+        $projects = Project::where('status', 'public')->get();
 
         foreach ($users as $user) {
             foreach ($projects as $project) {
