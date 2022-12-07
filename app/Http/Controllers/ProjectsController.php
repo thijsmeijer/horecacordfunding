@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Enums\ProjectStatus;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\EditProjectRequest;
-use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectIndexResource;
 use App\Http\Resources\ProjectShowResource;
 use App\Models\Project;
