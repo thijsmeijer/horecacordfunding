@@ -39,6 +39,6 @@ class Project extends Model
 
     public function getFundingProgressAttribute()
     {
-        return round($this->investments->sum('amount') / $this->amount * 100) . '%';
+        return round($this->investments->sum('amount') / $this->amount * 100).'%';
     }
 }

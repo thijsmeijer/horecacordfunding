@@ -40,4 +40,4 @@ Route::resource('projects', ProjectsController::class)->except(['index']);
 
 Route::get('/profile/projects/{project}/edit', [ProjectsController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.projects.edit');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
