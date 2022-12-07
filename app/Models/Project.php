@@ -22,6 +22,11 @@ class Project extends Model
         'duration',
     ];
 
+    protected static function booted()
+    {
+        static::addGlobalScope(new Scopes\StatusScope);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -30,5 +35,10 @@ class Project extends Model
     public function investments()
     {
         return $this->hasMany(Investment::class)->orderBy('created_at', 'desc');
+    }
+
+    public function getFundingProgressAttribute()
+    {
+        return round($this->investments->sum('amount') / $this->amount * 100);
     }
 }

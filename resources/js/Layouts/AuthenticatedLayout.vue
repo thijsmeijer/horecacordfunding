@@ -92,8 +92,22 @@ const showingNavigationDropdown = ref(false);
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}"
                      class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink :href="route('projects.index')" :active="route().current('projects.index')">
+                            Home
+                        </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('profile')" :active="route().current('profile')">
+                            Profiel
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('profile.projects')"
+                                           :active="route().current('profile.projects')">
+                            Projecten
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('profile.investments')"
+                                           :active="route().current('profile.investments')">
+                            Investeringen
                         </ResponsiveNavLink>
                     </div>
 
@@ -106,7 +120,7 @@ const showingNavigationDropdown = ref(false);
 
                         <div class="mt-3 space-y-1">
                             <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
+                                Uitloggen
                             </ResponsiveNavLink>
                         </div>
                     </div>
