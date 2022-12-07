@@ -20,7 +20,7 @@ class EditProjectRequest extends FormRequest
             'duration' => ['required', 'integer', 'min:12', 'max:60'],
             'iban' => [Rule::requiredIf($this->status !== ProjectStatus::Pending->value), 'nullable', 'string', 'max:255'],
             'iban_name' => [Rule::requiredIf($this->status !== ProjectStatus::Pending->value), 'nullable', 'string', 'max:255'],
-            'status' => ['required', 'string', Rule::in(['public', 'private'])],
+            'status' => ['required', 'string', Rule::in(ProjectStatus::getValues())],
         ];
     }
 }
