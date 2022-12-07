@@ -16,4 +16,16 @@ class UserRepository implements UserRepositoryInterface
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function update(User $user, array $data): User
+    {
+        $user->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'iban' => $data['iban'],
+            'iban_name' => $data['iban_name'],
+        ]);
+
+        return $user;
+    }
 }

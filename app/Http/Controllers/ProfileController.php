@@ -2,33 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ChangeUserRequest;
+use App\Http\Requests\ChangeProfileInformationRequest;
 use App\Http\Resources\UserProfileResource;
 use App\Http\Resources\UserProjectResource;
-use App\Models\User;
+use App\Repositories\UserRepository;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class ProfileController extends Controller
 {
+    public function __construct(
+        private readonly UserRepository $userRepository
+    ) {
+    }
+
     public function index(): Response
     {
         return Inertia::render('Profile/Information', [
-            'user' => new UserProfileResource(request()->user()),
+            'user' => new UserProfileResource(auth()->user()),
         ]);
     }
 
-    public function update(ChangeUserRequest $request, User $user)
+    public function update(ChangeProfileInformationRequest $request)
     {
-        $request->user()->update($request->validated());
+        $this->userRepository->update(auth()->user(), $request->validated());
 
-        return redirect()->route('profile')->with('message', 'Je profiel was succesvol opgeslagen!');
+        return redirect()
+            ->route('profile')
+            ->with('message', 'Je profiel was succesvol opgeslagen!');
     }
 
     public function projects(): Response
     {
         return Inertia::render('Profile/Projects/Index', [
-            'user' => new UserProjectResource(request()->user()),
+            'user' => new UserProjectResource(auth()->user()),
         ]);
     }
 }
