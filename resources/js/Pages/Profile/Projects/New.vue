@@ -49,6 +49,7 @@
                                             class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="100000"
                                             v-model="form.amount"
+                                            @change="calculateContributions"
                                         />
                                     </div>
                                     <p class="mt-2 text-sm text-gray-500">Graag het bedrag invullen zonder punten en
@@ -56,30 +57,86 @@
                                     <InputError class="mt-2" :message="form.errors.amount"/>
                                 </div>
                             </div>
+                            <div
+                                v-show="own_contribution > 0"
+                                class="grid grid-cols-3 gap-6"
+                            >
+                                <div class="col-span-3 sm:col-span-2">
+                                    <label for="own_contribution" class="block text-sm font-medium text-gray-700">Eigen bijdrage</label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <span
+                                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
+                                        <input
+                                            type="text"
+                                            name="own_contribution"
+                                            id="own_contribution"
+                                            class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                            :value="own_contribution"
+                                            disabled
+                                        />
+                                    </div>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat u zelf zou moeten investeren om dit project op te starten.</p>
+                                </div>
+                            </div>
+                            <div
+                                v-show="external_contribution > 0"
+                                class="grid grid-cols-3 gap-6"
+                            >
+                                <div class="col-span-3 sm:col-span-2">
+                                    <label for="extern_contribution" class="block text-sm font-medium text-gray-700">Bijgelegd bedrag</label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <span
+                                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
+                                        <input
+                                            type="text"
+                                            name="extern_contribution"
+                                            id="extern_contribution"
+                                            class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                            :value="external_contribution"
+                                            disabled
+                                        />
+                                    </div>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat zal worden bijgelegd door externe investeerders.</p>
+                                </div>
+                            </div>
+                            <div
+                                v-show="crowdfunding_contribution > 0"
+                                class="grid grid-cols-3 gap-6"
+                            >
+                                <div class="col-span-3 sm:col-span-2">
+                                    <label for="crowdfunding_contribution" class="block text-sm font-medium text-gray-700">Crowdfunding bedrag</label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <span
+                                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
+                                        <input
+                                            type="text"
+                                            name="crowdfunding_contribution"
+                                            id="crowdfunding_contribution"
+                                            class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                            :value="crowdfunding_contribution"
+                                            disabled
+                                        />
+                                    </div>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat uiteindelijk gevraagd zal worden op het crowdfunding platform.</p>
+                                </div>
+                            </div>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3 sm:col-span-2">
                                     <label for="interest" class="block text-sm font-medium text-gray-700">Rente</label>
                                     <div class="mt-1 flex">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <select
-                                                id="interest"
+                                            <input
+                                                type="text"
                                                 name="interest"
-                                                class="block w-full rounded-l-md border border-gray-300 bg-white py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                v-model="form.interest_rate"
-                                            >
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                            </select>
+                                                id="interest"
+                                                class="block flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                                value="7"
+                                                disabled
+                                            />
                                         </div>
                                         <span
                                             class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">%</span>
                                     </div>
-                                    <InputError class="mt-2" :message="form.errors.interest_rate"/>
                                 </div>
                             </div>
                             <div class="grid grid-cols-3 gap-6">
@@ -87,23 +144,18 @@
                                     <label for="duration" class="block text-sm font-medium text-gray-700">Duur</label>
                                     <div class="mt-1 flex">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <select
-                                                id="duration"
+                                            <input
+                                                type="text"
                                                 name="duration"
-                                                class="block w-full rounded-l-md border border-gray-300 bg-white py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                v-model="form.duration"
-                                            >
-                                                <option>12</option>
-                                                <option>24</option>
-                                                <option>36</option>
-                                                <option>48</option>
-                                                <option>60</option>
-                                            </select>
+                                                id="duration"
+                                                class="block flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                                value="60"
+                                                disabled
+                                            />
                                         </div>
                                         <span
                                             class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">maanden</span>
                                     </div>
-                                    <InputError class="mt-2" :message="form.errors.duration"/>
                                 </div>
                             </div>
                             <div class="grid grid-cols-3 gap-6">
@@ -206,14 +258,19 @@ export default {
     props: {
         user: Object,
     },
+    data() {
+        return {
+            own_contribution: 0,
+            external_contribution: 0,
+            crowdfunding_contribution: 0,
+        }
+    },
     setup(props) {
         const form = useForm(
             {
                 name: '',
                 description: '',
                 amount: '',
-                duration: 24,
-                interest_rate: 7,
                 iban: props.user.iban,
                 iban_name: props.user.iban_name,
                 location: '',
@@ -224,6 +281,17 @@ export default {
     methods: {
         submit() {
             this.form.post(route('projects.store'));
+        },
+        calculateContributions() {
+            if(this.form.amount && this.form.amount > 0) {
+                this.own_contribution = this.form.amount * 0.1;
+                this.external_contribution = this.form.amount * 0.3;
+                this.crowdfunding_contribution = this.form.amount * 0.6;
+            } else {
+                this.own_contribution = 0;
+                this.external_contribution = 0;
+                this.crowdfunding_contribution = 0;
+            }
         }
     }
 }

@@ -18,11 +18,10 @@ class Project extends Model
         'own_contribution',
         'external_contribution',
         'crowdfunding_contribution',
-        'interest_rate',
         'status',
         'iban',
         'iban_name',
-        'duration',
+        'updated_at',
     ];
 
     protected static function booted()
@@ -49,6 +48,13 @@ class Project extends Model
     {
         return Attribute::make(
             get: fn () => $this->crowdfunding_contribution - $this->investments->sum('amount'),
+        );
+    }
+
+    public function totalAmount(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->own_contribution + $this->external_contribution + $this->crowdfunding_contribution,
         );
     }
 }

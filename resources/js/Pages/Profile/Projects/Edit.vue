@@ -30,8 +30,6 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             :placeholder="project.data.name"
                                             v-model="form.name"
-                                            :disabled="project.data.status === 'public'"
-                                            :class="{'bg-gray-200 cursor-not-allowed': project.data.status === 'public'}"
                                         />
                                     </div>
                                 </div>
@@ -49,13 +47,75 @@
                                             id="amount"
                                             class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="100000"
-                                            v-model="form.amount"
-                                            :disabled="project.data.status === 'public'"
-                                            :class="{'bg-gray-200 cursor-not-allowed': project.data.status === 'public'}"
+                                            v-model="form.total_amount"
+                                            @change="calculateContributions"
                                         />
                                     </div>
                                     <p class="mt-2 text-sm text-gray-500">Graag het bedrag invullen zonder punten en
                                         komma's. Het bedrag moet een honderdtal zijn.</p>
+                                </div>
+                            </div>
+                            <div
+                                v-show="form.own_contribution > 0"
+                                class="grid grid-cols-3 gap-6"
+                            >
+                                <div class="col-span-3 sm:col-span-2">
+                                    <label for="own_contribution" class="block text-sm font-medium text-gray-700">Eigen bijdrage</label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <span
+                                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
+                                        <input
+                                            type="text"
+                                            name="own_contribution"
+                                            id="own_contribution"
+                                            class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                            :value="form.own_contribution"
+                                            disabled
+                                        />
+                                    </div>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat u zelf zou moeten investeren om dit project op te starten.</p>
+                                </div>
+                            </div>
+                            <div
+                                v-show="form.external_contribution > 0"
+                                class="grid grid-cols-3 gap-6"
+                            >
+                                <div class="col-span-3 sm:col-span-2">
+                                    <label for="extern_contribution" class="block text-sm font-medium text-gray-700">Bijgelegd bedrag</label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <span
+                                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
+                                        <input
+                                            type="text"
+                                            name="extern_contribution"
+                                            id="extern_contribution"
+                                            class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                            :value="form.external_contribution"
+                                            disabled
+                                        />
+                                    </div>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat zal worden bijgelegd door externe investeerders.</p>
+                                </div>
+                            </div>
+                            <div
+                                v-show="form.crowdfunding_contribution > 0"
+                                class="grid grid-cols-3 gap-6"
+                            >
+                                <div class="col-span-3 sm:col-span-2">
+                                    <label for="crowdfunding_contribution" class="block text-sm font-medium text-gray-700">Crowdfunding bedrag</label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <span
+                                            class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
+                                        <input
+                                            type="text"
+                                            name="crowdfunding_contribution"
+                                            id="crowdfunding_contribution"
+                                            class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                            :value="form.crowdfunding_contribution"
+                                            disabled
+                                        />
+                                    </div>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat uiteindelijk gevraagd zal worden op het crowdfunding platform.</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-3 gap-6">
@@ -63,22 +123,14 @@
                                     <label for="interest" class="block text-sm font-medium text-gray-700">Rente</label>
                                     <div class="mt-1 flex">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <select
-                                                id="interest"
+                                            <input
+                                                type="text"
                                                 name="interest"
-                                                class="block w-full rounded-l-md border border-gray-300 bg-white py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                v-model="form.interest_rate"
-                                                :disabled="project.data.status === 'public'"
-                                                :class="{'bg-gray-200 cursor-not-allowed': project.data.status === 'public'}"
-                                            >
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                            </select>
+                                                id="interest"
+                                                class="block flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                                value="7"
+                                                disabled
+                                            />
                                         </div>
                                         <span
                                             class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">%</span>
@@ -90,54 +142,17 @@
                                     <label for="duration" class="block text-sm font-medium text-gray-700">Duur</label>
                                     <div class="mt-1 flex">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <select
-                                                id="duration"
+                                            <input
+                                                type="text"
                                                 name="duration"
-                                                class="block w-full rounded-l-md border border-gray-300 bg-white py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                v-model="form.duration"
-                                                :disabled="project.data.status === 'public'"
-                                                :class="{'bg-gray-200 cursor-not-allowed': project.data.status === 'public'}"
-                                            >
-                                                <option>12</option>
-                                                <option>24</option>
-                                                <option>36</option>
-                                                <option>48</option>
-                                                <option>60</option>
-                                            </select>
+                                                id="duration"
+                                                class="block flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                                value="60"
+                                                disabled
+                                            />
                                         </div>
                                         <span
                                             class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">maanden</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-6">
-                                <div class="col-span-3 sm:col-span-2">
-                                    <label for="iban" class="block text-sm font-medium text-gray-700">IBAN</label>
-                                    <div class="mt-1 flex rounded-md shadow-sm">
-                                        <input
-                                            type="text"
-                                            name="iban"
-                                            id="iban"
-                                            class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                            placeholder="IBAN"
-                                            v-model="form.iban"
-                                            :disabled="project.data.status === 'public'"
-                                            :class="{'bg-gray-200 cursor-not-allowed': project.data.status === 'public'}"
-                                        />
-                                    </div>
-                                    <div class="mt-1 flex rounded-md items-center">
-                                            <span class="mr-2">
-                                                Naam
-                                            </span>
-                                        <input
-                                            type="text"
-                                            name="iban_name"
-                                            class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                            placeholder="IBAN Tenaamstelling"
-                                            v-model="form.iban_name"
-                                            :disabled="project.data.status === 'public'"
-                                            :class="{'bg-gray-200 cursor-not-allowed': project.data.status === 'public'}"
-                                        />
                                     </div>
                                 </div>
                             </div>
@@ -172,27 +187,15 @@
                                 </div>
                             </div>
                             <div class="sm:col-span-6">
-                                <label for="about" class="block text-sm font-medium text-gray-700">Alles over jouw
-                                    project</label>
+                                <label for="about" class="block text-sm font-medium text-gray-700">
+                                    Alles over jouw project
+                                </label>
                                 <div class="mt-1">
-                                    <textarea id="about" name="about" rows="15"
-                                              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                              v-model="form.description"/>
-                                </div>
-                            </div>
-                            <div class="sm:col-span-6" v-if="project.data.status === 'private'">
-                                <label for="about" class="block text-sm font-bold">Maak jouw project publiek</label>
-                                <div class="mt-1">
-                                    <span class="text-red-500 text-sm">Let op! De instellingen van dit project kunnen niet meer gewijzigd worden nadat het publiek is gemaakt. </span>
-                                    <select
-                                        id="duration"
-                                        name="duration"
-                                        class="block w-1/4 rounded-md border border-gray-300 bg-white py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                        v-model="form.status"
-                                    >
-                                        <option>private</option>
-                                        <option>public</option>
-                                    </select>
+                                    <textarea
+                                        id="about" name="about" rows="15"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                        v-model="form.description"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -245,6 +248,17 @@ export default {
 
             });
         },
+        calculateContributions() {
+            if(this.form.total_amount && parseInt(this.form.total_amount) > 0) {
+                this.form.own_contribution = parseInt(this.form.total_amount) * 0.1;
+                this.form.external_contribution = parseInt(this.form.total_amount) * 0.3;
+                this.form.crowdfunding_contribution = parseInt(this.form.total_amount) * 0.6;
+            } else {
+                this.form.own_contribution = 0;
+                this.form.external_contribution = 0;
+                this.form.crowdfunding_contribution = 0;
+            }
+        }
     },
 }
 </script>

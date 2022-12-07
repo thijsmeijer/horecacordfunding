@@ -12,15 +12,12 @@ class EditProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', Rule::unique('projects', 'name')->ignore($this->project->id)],
             'description' => ['required', 'string'],
             'location' => ['required', 'string', 'max:255'],
-            'amount' => ['required', 'integer', 'min:5000', new Round],
-            'interest_rate' => ['required', 'integer', 'min:5', 'max:10'],
-            'duration' => ['required', 'integer', 'min:12', 'max:60'],
+            'total_amount' => ['required', 'integer', 'min:5000', new Round],
             'iban' => [Rule::requiredIf($this->status !== ProjectStatus::Pending->value), 'nullable', 'string', 'max:255'],
             'iban_name' => [Rule::requiredIf($this->status !== ProjectStatus::Pending->value), 'nullable', 'string', 'max:255'],
-            'status' => ['required', 'string', Rule::in(ProjectStatus::getValues())],
         ];
     }
 }
