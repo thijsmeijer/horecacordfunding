@@ -99,7 +99,7 @@
                     <a :href="route('projects.index')" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 duration-100">bekijk alles</a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-                    <div v-for="project in highestProjects.data"
+                    <div v-for="project in highestFundedProjects.data"
                          :key="project.id"
                          class="overflow-hidden rounded-md shadow-xl flex flex-col">
                         <div class="relative bg-gray-900">
@@ -193,10 +193,20 @@ import {Head, Link, useForm} from '@inertiajs/inertia-vue3';
 import Pagination from "@/Components/Pagination.vue";
 
 export default {
-    components: {GuestLayout, Head, Link},
+    components: {
+        GuestLayout,
+        Head,
+        Link
+    },
     props: {
-        highestProjects: Object,
-        newestProjects: Object,
+        highestFundedProjects: {
+            type: Object,
+            required: true
+        },
+        newestProjects: {
+            type: Object,
+            required: true
+        },
     },
 };
 </script>

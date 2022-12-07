@@ -3,26 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProjectIndexResource;
-use App\Models\Project;
+use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Inertia\Response
-     */
+    public function __construct(
+        private readonly ProjectRepository $projectRepository
+    ) {
+    }
+
     public function __invoke(Request $request)
     {
-        $newestProjects = Project::latest()->take(4)->get();
-        $highestProjects = Project::orderBy(DB::raw('(SELECT SUM(amount) / projects.crowdfunding_contribution * 100 FROM investments WHERE project_id = projects.id)'), 'desc')->take(8)->get();
+        $newestProjects = $this->projectRepository->getNewestProjects();
+        $highestFundedProjects = $this->projectRepository->getHighestFundedProjects();
 
         return Inertia::render('Home', [
-            'highestProjects' => ProjectIndexResource::collection($highestProjects),
+            'highestFundedProjects' => ProjectIndexResource::collection($highestFundedProjects),
             'newestProjects' => ProjectIndexResource::collection($newestProjects),
         ]);
     }
