@@ -82,6 +82,14 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Progress bar -->
+                        <div class="w-full bg-gray-200 dark:bg-gray-700">
+                            <div
+                                class="font-medium text-white font-bold text-center p-1 leading-none"
+                                :class="{'bg-blue-400': project.funding_progress !== '0%'}"
+                                :style="'width:' + project.funding_progress">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,6 +171,14 @@
                                     <a :href="route('projects.show', project.id)"
                                        class="w-full block rounded py-2 text-center text-white bg-blue-400">Bekijken</a>
                                 </div>
+                            </div>
+                        </div>
+                        <!-- Progress bar -->
+                        <div class="w-full bg-gray-200 dark:bg-gray-700">
+                            <div
+                                class="font-medium text-white font-bold text-center p-1 leading-none"
+                                :class="{'bg-blue-400': project.funding_progress !== '0%'}"
+                                :style="'width:' + project.funding_progress">
                             </div>
                         </div>
                     </div>

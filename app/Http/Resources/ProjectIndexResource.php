@@ -22,7 +22,7 @@ class ProjectIndexResource extends JsonResource
             'description' => $parse->text($this->description),
             'location' => $this->location,
             'amount' => $this->amount,
-            'funded' => $this->fundingProgress,
+            'funding_progress' => $this->fundingProgress,
             'formatted_amount' => number_format($this->amount, 0, ',', '.'),
             'duration' => $this->duration,
             'interest_rate' => $this->interest_rate,
