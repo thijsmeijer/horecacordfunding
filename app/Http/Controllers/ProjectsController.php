@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\EditProjectRequest;
+use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectIndexResource;
 use App\Http\Resources\ProjectShowResource;
-use App\Models\Investment;
 use App\Models\Project;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
@@ -21,7 +19,7 @@ class ProjectsController extends Controller
      */
     public function index(): \Inertia\Response
     {
-        $projects = Project::where('name', 'like', '%' . request()->search . '%')
+        $projects = Project::where('name', 'like', '%'.request()->search.'%')
             ->when(request()->sort, function ($query) {
                 $fundingProgress = DB::raw('(SELECT SUM(amount) /projects.amount * 100 FROM investments WHERE project_id = projects.id)');
 

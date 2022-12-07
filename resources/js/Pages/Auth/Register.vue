@@ -25,9 +25,10 @@ const submit = () => {
     <GuestLayout>
         <Head title="Register"/>
 
-        <form @submit.prevent="submit" class="max-w-md mx-auto mt-36 p-6 shadow-md rounded-lg border">
+        <form @submit.prevent="submit"
+              class="max-w-lg mx-2 mt-12 p-6 sm:mt-48 sm:mx-auto sm:shadow-md sm:rounded-lg sm:border">
             <div>
-                <InputLabel for="name" value="Name"/>
+                <InputLabel for="name" value="Volledige naam"/>
                 <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus
                            autocomplete="name"/>
                 <InputError class="mt-2" :message="form.errors.name"/>
@@ -41,14 +42,14 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password"/>
+                <InputLabel for="password" value="Wachtwoord"/>
                 <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
                            autocomplete="new-password"/>
                 <InputError class="mt-2" :message="form.errors.password"/>
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password"/>
+                <InputLabel for="password_confirmation" value="Herhaal wachtwoord"/>
                 <TextInput id="password_confirmation" type="password" class="mt-1 block w-full"
                            v-model="form.password_confirmation" required autocomplete="new-password"/>
                 <InputError class="mt-2" :message="form.errors.password_confirmation"/>
@@ -56,11 +57,11 @@ const submit = () => {
 
             <div class="flex items-center justify-end mt-4">
                 <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Already registered?
+                    Heb je al een account?
                 </Link>
 
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
+                    Registreren
                 </PrimaryButton>
             </div>
         </form>

@@ -33,7 +33,8 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit" class="max-w-md mx-auto mt-36 p-6 shadow-md rounded-lg border">
+        <form @submit.prevent="submit"
+              class="max-w-lg mx-2 mt-12 p-6 sm:mt-48 sm:mx-auto sm:shadow-md sm:rounded-lg sm:border">
             <div>
                 <InputLabel for="email" value="Email"/>
                 <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus
@@ -42,7 +43,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password"/>
+                <InputLabel for="password" value="Wachtwoord"/>
                 <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
                            autocomplete="current-password"/>
                 <InputError class="mt-2" :message="form.errors.password"/>
@@ -51,14 +52,14 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember"/>
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    <span class="ml-2 text-sm text-gray-600">Onthoud mij</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')"
+                <Link :href="route('register')"
                       class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
+                    Nog geen account?
                 </Link>
 
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">

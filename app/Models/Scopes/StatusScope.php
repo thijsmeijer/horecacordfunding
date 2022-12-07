@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Scope;
 
 class StatusScope implements Scope
 {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function apply(Builder $builder, Model $model)
     {
