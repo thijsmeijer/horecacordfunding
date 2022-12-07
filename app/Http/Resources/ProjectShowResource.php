@@ -19,7 +19,6 @@ class ProjectShowResource extends ProjectIndexResource
         return parent::toArray($request) + [
                 'investments' => $investments,
                 'total_invested' => number_format($this->investments->sum('amount'), 0, ',', '.'),
-                'total_invested_percent' => round($this->investments->sum('amount') / $this->amount * 100) . '%',
             ];
     }
 }
