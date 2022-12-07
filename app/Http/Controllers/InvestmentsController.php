@@ -7,7 +7,6 @@ use App\Http\Resources\ProjectShowResource;
 use App\Http\Resources\UserInvestmentsResource;
 use App\Models\Investment;
 use App\Models\Project;
-use App\Models\User;
 use Inertia\Inertia;
 
 class InvestmentsController extends Controller

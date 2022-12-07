@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Rules\Round;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreProjectRequest extends FormRequest
 {

@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
 class ProjectShowResource extends ProjectIndexResource
 {
     public function toArray($request)
@@ -17,8 +15,8 @@ class ProjectShowResource extends ProjectIndexResource
         });
 
         return parent::toArray($request) + [
-                'investments' => $investments,
-                'total_invested' => number_format($this->investments->sum('amount'), 0, ',', '.'),
-            ];
+            'investments' => $investments,
+            'total_invested' => number_format($this->investments->sum('amount'), 0, ',', '.'),
+        ];
     }
 }
