@@ -2,28 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\ProjectStatus;
 use App\Rules\Round;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class EditProjectRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'max:255'],
@@ -32,8 +18,8 @@ class EditProjectRequest extends FormRequest
             'amount' => ['required', 'integer', 'min:5000', new Round],
             'interest_rate' => ['required', 'integer', 'min:5', 'max:10'],
             'duration' => ['required', 'integer', 'min:12', 'max:60'],
-            'iban' => [Rule::requiredIf($this->status === 'public'), 'nullable', 'string', 'max:255'],
-            'iban_name' => [Rule::requiredIf($this->status === 'public'), 'nullable', 'string', 'max:255'],
+            'iban' => [Rule::requiredIf($this->status !== ProjectStatus::Pending->value), 'nullable', 'string', 'max:255'],
+            'iban_name' => [Rule::requiredIf($this->status !== ProjectStatus::Pending->value), 'nullable', 'string', 'max:255'],
             'status' => ['required', 'string', Rule::in(['public', 'private'])],
         ];
     }
