@@ -6,6 +6,7 @@ use App\Http\Resources\ProjectIndexResource;
 use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,7 @@ class HomeController extends Controller
     ) {
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
         $newestProjects = $this->projectRepository->getNewestProjects();
         $highestFundedProjects = $this->projectRepository->getHighestFundedProjects();

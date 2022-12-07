@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,5 +43,12 @@ class Project extends Model
     public function getFundingProgressAttribute()
     {
         return round($this->investments()->sum('amount') / $this->crowdfunding_contribution * 100).'%';
+    }
+
+    public function maximumInvestment(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->crowdfunding_contribution - $this->investments->sum('amount'),
+        );
     }
 }
