@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ProjectStatus;
 use App\Models\Investment;
 use App\Models\Project;
 use App\Models\User;
@@ -17,7 +18,7 @@ class InvestmentSeeder extends Seeder
     public function run()
     {
         $users = User::all();
-        $projects = Project::where('status', 'public')->get();
+        $projects = Project::where('status', '!=', ProjectStatus::Pending->value)->get();
 
         foreach ($users as $user) {
             foreach ($projects as $project) {
