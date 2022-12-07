@@ -4,9 +4,9 @@ namespace App\Enums;
 
 Enum ProjectStatus: string
 {
-    case Pending = 'in afwachting';
-    case Active = 'funding fase';
-    case Repayment = 'aflossings fase';
+    case Pending = 'afwachting';
+    case Active = 'funding';
+    case Repayment = 'aflossing';
     case Completed = 'afgerond';
     case Cancelled = 'geannuleerd';
 

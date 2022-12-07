@@ -5,9 +5,9 @@
     <GuestLayout>
         <div class="max-w-6xl mx-6 mt-10 lg:mx-auto">
             <div>
-                <div class="flex justify-between items-center">
-                    <h2 class="text-lg sm:text-xl md:text-2xl font-semibold mb-6">Meest recente projecten</h2>
-                    <a :href="route('projects.index')" class="bg-blue-400 rounded-md py-2 px-3 text-white">Zie alles</a>
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">Meest recente projecten</h2>
+                    <a :href="route('projects.index')" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 duration-100">bekijk alles</a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
                     <div v-for="project in newestProjects.data" :key="project.id"
@@ -78,7 +78,7 @@
                                 </dl>
                                 <div class="pt-4">
                                     <a :href="route('projects.show', project.id)"
-                                       class="w-full block rounded py-2 text-center text-white bg-blue-400">Bekijken</a>
+                                       class="w-full block rounded py-2 text-center text-white bg-blue-400 hover:bg-blue-500 duration-100">Bekijken</a>
                                 </div>
                             </div>
                         </div>
@@ -94,10 +94,9 @@
                 </div>
             </div>
             <div>
-                <div class="flex justify-between items-center">
-                    <h2 class="text-lg sm:text-xl md:text-2xl font-semibold mb-6">Projecten met de finishlijn in
-                        zicht</h2>
-                    <a :href="route('projects.index')" class="bg-blue-400 rounded-md py-2 px-3 text-white">Zie alles</a>
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">Projecten dicht bij de finish</h2>
+                    <a :href="route('projects.index')" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 duration-100">bekijk alles</a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
                     <div v-for="project in highestProjects.data"
@@ -169,7 +168,7 @@
                                 </dl>
                                 <div class="pt-4">
                                     <a :href="route('projects.show', project.id)"
-                                       class="w-full block rounded py-2 text-center text-white bg-blue-400">Bekijken</a>
+                                       class="w-full block rounded py-2 text-center text-white bg-blue-400 hover:bg-blue-500 duration-100">Bekijken</a>
                                 </div>
                             </div>
                         </div>

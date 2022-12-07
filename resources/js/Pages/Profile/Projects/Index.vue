@@ -85,7 +85,7 @@
                                 </dl>
                                 <div class="pt-4 mb-4">
                                     <a :href="route('projects.show', project.id)"
-                                       class="w-full block rounded py-2 text-center text-white bg-blue-400">Bekijken</a>
+                                       class="w-full block rounded py-2 text-center text-white bg-blue-400 hover:bg-blue-500 duration-100">Bekijken</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <button
@@ -132,10 +132,11 @@ export default {
     data() {
         return {
             statusColor: {
-                'funding fase': 'bg-green-500 text-green-100',
+                'funding': 'bg-green-500 text-green-100',
+                'afgerond': 'bg-green-100 text-green-600',
                 'geannuleerd': 'bg-red-500 text-red-100',
-                'in afwachting': 'bg-yellow-500 text-yellow-100',
-                'afgerond': 'bg-blue-500 text-blue-100',
+                'afwachting': 'bg-yellow-500 text-yellow-100',
+                'aflossing': 'bg-blue-500 text-blue-100',
             },
         }
     },

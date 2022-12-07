@@ -16,6 +16,7 @@ class InvestmentProjectResource extends JsonResource
     {
         return [
             'name' => $this->name,
+            'status' => $this->status,
         ];
     }
 }

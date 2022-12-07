@@ -105,7 +105,7 @@
                             </dl>
                             <div class="pt-4">
                                 <a :href="route('projects.show', project.id)"
-                                   class="w-full block rounded py-2 text-center text-white bg-blue-400">Bekijken</a>
+                                   class="w-full block rounded py-2 text-center text-white bg-blue-400 hover:bg-blue-500 duration-100">Bekijken</a>
                             </div>
                         </div>
                     </div>
