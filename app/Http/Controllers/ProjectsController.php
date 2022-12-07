@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ProjectStatus;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\EditProjectRequest;
 use App\Http\Resources\ProjectIndexResource;
@@ -70,7 +71,7 @@ class ProjectsController extends Controller
 
     public function show(Project $project): \Inertia\Response
     {
-        if ($project->status === 'private' && $project->user_id !== auth()->id()) {
+        if ($project->status === ProjectStatus::Pending->value && $project->user_id !== auth()->id()) {
             abort(404);
         }
 

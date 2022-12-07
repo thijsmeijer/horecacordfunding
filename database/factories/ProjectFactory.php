@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\ProjectStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,10 +24,10 @@ class ProjectFactory extends Factory
             'description' => fake()->text(255),
             'amount' => round(fake()->numberBetween(20000, 100000), -2),
             'interest_rate' => fake()->numberBetween(5, 10),
-            'status' => fake()->randomElement(['private', 'public']),
             'iban' => fake()->iban(),
             'iban_name' => fake()->name(),
             'duration' => fake()->randomElement([12, 24, 36, 48, 60]),
+            'status' => fake()->randomElement(ProjectStatus::getValues()),
         ];
     }
 }

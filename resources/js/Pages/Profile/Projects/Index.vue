@@ -85,7 +85,7 @@
                                     <a :href="route('projects.show', project.id)"
                                        class="w-full block rounded py-2 text-center text-white bg-blue-400">Bekijken</a>
                                 </div>
-                                <div class="flex justify-end">
+                                <div class="flex justify-between items-center">
                                     <button
                                         type="submit"
                                         @click.prevent="editProject(project)"
@@ -96,6 +96,12 @@
                                                   d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
                                         </svg>
                                     </button>
+                                    <span
+                                        class="px-2 rounded-full text-sm font-bold block"
+                                        :class="statusColor[project.status]"
+                                    >
+                                        {{ project.status }}
+                                    </span>
                                 </div>
                             </div>
 
@@ -120,6 +126,16 @@ export default {
     },
     props: {
         user: Object,
+    },
+    data() {
+        return {
+            statusColor: {
+                'funding fase': 'bg-green-500 text-green-100',
+                'geannuleerd': 'bg-red-500 text-red-100',
+                'in afwachting': 'bg-yellow-500 text-yellow-100',
+                'afgerond': 'bg-blue-500 text-blue-100',
+            },
+        }
     },
     methods: {
         editProject(project) {
