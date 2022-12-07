@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ProjectStatus;
-use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\EditProjectRequest;
+use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectIndexResource;
 use App\Http\Resources\ProjectShowResource;
 use App\Models\Project;
@@ -13,11 +13,6 @@ use Inertia\Inertia;
 
 class ProjectsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Inertia\Response
-     */
     public function index(): \Inertia\Response
     {
         $projects = Project::where('name', 'like', '%'.request()->search.'%')
@@ -103,10 +98,5 @@ class ProjectsController extends Controller
         ]);
 
         return redirect()->route('profile.projects.edit', $project);
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }
