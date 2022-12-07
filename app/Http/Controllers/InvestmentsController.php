@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreInvestmentRequest;
 use App\Http\Resources\ProjectShowResource;
 use App\Http\Resources\UserInvestmentsResource;
-use App\Models\Investment;
 use App\Models\Project;
 use Inertia\Inertia;
 
@@ -30,19 +29,13 @@ class InvestmentsController extends Controller
     {
         $data = $request->validated();
 
-        $request->user()->update([
-            'name' => $data['name'],
-            'email' => $data['email'],
-        ]);
-
-        Investment::create([
-            'user_id' => request()->user()->id,
+        auth()->user()->investments()->create([
             'project_id' => $project->id,
             'amount' => $data['amount'],
             'iban' => $data['iban'],
             'iban_name' => $data['iban_name'],
         ]);
 
-        return redirect()->route('projects.show', $project->id)->with('success', 'Investering succesvol uitgevoerd!');
+        return to_route('projects.show', $project->id)->with('success', 'Investering succesvol uitgevoerd!');
     }
 }
