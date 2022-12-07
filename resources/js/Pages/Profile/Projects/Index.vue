@@ -18,13 +18,15 @@
                     >
 
                         <span class="block w-full flex flex-wrap justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-20 h-20">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                             </svg>
                         <span class="font-bold block w-full">Start een nieuw project</span>
                         </span>
                     </button>
-                    <div v-for="project in user.data.projects" class="overflow-hidden rounded-md shadow-xl m-2 flex flex-col justify-between">
+                    <div v-for="project in user.data.projects"
+                         class="overflow-hidden rounded-md shadow-xl m-2 flex flex-col justify-between">
                         <div>
                             <img
                                 src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
@@ -48,7 +50,7 @@
                                         <span class="sr-only">investering</span>
                                     </dt>
                                     <dd>
-                                        <span>€ {{ project.formatted_amount }}</span>
+                                        <span>€ {{ project.formatted_crowdfunding_contribution }}</span>
                                     </dd>
                                 </dl>
                                 <dl class="flex space-x-2 items-center">

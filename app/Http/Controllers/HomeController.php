@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         $newestProjects = Project::latest()->take(4)->get();
-        $highestProjects = Project::orderBy(DB::raw('(SELECT SUM(amount) /projects.amount * 100 FROM investments WHERE project_id = projects.id)'), 'desc')->take(8)->get();
+        $highestProjects = Project::orderBy(DB::raw('(SELECT SUM(amount) / projects.crowdfunding_contribution * 100 FROM investments WHERE project_id = projects.id)'), 'desc')->take(8)->get();
 
         return Inertia::render('Home', [
             'highestProjects' => ProjectIndexResource::collection($highestProjects),

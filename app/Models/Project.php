@@ -14,7 +14,9 @@ class Project extends Model
         'name',
         'location',
         'description',
-        'amount',
+        'own_contribution',
+        'external_contribution',
+        'crowdfunding_contribution',
         'interest_rate',
         'status',
         'iban',
@@ -39,6 +41,6 @@ class Project extends Model
 
     public function getFundingProgressAttribute()
     {
-        return round($this->investments->sum('amount') / $this->amount * 100).'%';
+        return round($this->investments()->sum('amount') / $this->crowdfunding_contribution * 100).'%';
     }
 }

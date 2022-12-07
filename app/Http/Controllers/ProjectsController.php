@@ -21,7 +21,7 @@ class ProjectsController extends Controller
     {
         $projects = Project::where('name', 'like', '%'.request()->search.'%')
             ->when(request()->sort, function ($query) {
-                $fundingProgress = DB::raw('(SELECT SUM(amount) /projects.amount * 100 FROM investments WHERE project_id = projects.id)');
+                $fundingProgress = DB::raw('(SELECT SUM(amount) / projects.crowdfunding_contribution * 100 FROM investments WHERE project_id = projects.id)');
 
                 if (request()->sort === 'newest') {
                     $query->orderBy('created_at', 'desc');
