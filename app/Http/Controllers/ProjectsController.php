@@ -8,16 +8,23 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectIndexResource;
 use App\Http\Resources\ProjectShowResource;
 use App\Models\Project;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\ProjectRepository;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ProjectsController extends Controller
 {
-    public function index(): \Inertia\Response
+    public function __construct(
+        private readonly ProjectRepository $projectRepository,
+    ) {
+    }
+
+    public function index(): Response
     {
         $projects = Project::where('name', 'like', '%'.request()->search.'%')
             ->when(request()->sort, function ($query) {
-                $fundingProgress = DB::raw('(SELECT SUM(amount) / projects.crowdfunding_contribution * 100 FROM investments WHERE project_id = projects.id)');
+                $fundingProgress = $this->projectRepository->getFundingProgress();
 
                 if (request()->sort === 'newest') {
                     $query->orderBy('created_at', 'desc');
@@ -45,24 +52,14 @@ class ProjectsController extends Controller
             ]);
     }
 
-    public function store(StoreProjectRequest $request)
+    public function store(StoreProjectRequest $request): RedirectResponse
     {
-        Project::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'location' => $request->location,
-            'amount' => $request->amount,
-            'duration' => $request->duration,
-            'interest_rate' => $request->interest_rate,
-            'iban' => $request->iban,
-            'iban_name' => $request->iban_name,
-            'user_id' => auth()->user()->id,
-        ]);
+        $this->projectRepository->create($request->validated());
 
         return redirect()->route('profile.projects');
     }
 
-    public function show(Project $project): \Inertia\Response
+    public function show(Project $project): Response
     {
         if ($project->status === ProjectStatus::Pending->value && $project->user_id !== auth()->id()) {
             abort(404);
@@ -73,7 +70,7 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function edit(Project $project): \Illuminate\Http\RedirectResponse|\Inertia\Response
+    public function edit(Project $project): RedirectResponse|Response
     {
         if ($project->user_id !== auth()->user()->id) {
             return redirect()->route('profile.projects');
@@ -86,16 +83,7 @@ class ProjectsController extends Controller
 
     public function update(EditProjectRequest $request, Project $project)
     {
-        $project->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'location' => $request->location,
-            'amount' => $request->amount,
-            'duration' => $request->duration,
-            'interest_rate' => $request->interest_rate,
-            'iban' => $request->iban,
-            'iban_name' => $request->iban_name,
-        ]);
+        $this->projectRepository->update($project, $request->validated());
 
         return redirect()->route('profile.projects.edit', $project);
     }
