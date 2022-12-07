@@ -46,7 +46,7 @@
                                         <span class="sr-only">investering</span>
                                     </dt>
                                     <dd>
-                                        <span>&euro;{{ project.formatted_amount }}</span>
+                                        <span>&euro;{{ project.formatted_crowdfunding_contribution }}</span>
                                     </dd>
                                 </dl>
 
@@ -137,7 +137,7 @@
                                         <span class="sr-only">investering</span>
                                     </dt>
                                     <dd>
-                                        <span>&euro;{{ project.formatted_amount }}</span>
+                                        <span>&euro;{{ project.formatted_crowdfunding_contribution }}</span>
                                     </dd>
                                 </dl>
 

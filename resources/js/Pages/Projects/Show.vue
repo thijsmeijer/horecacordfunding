@@ -76,10 +76,10 @@
                                     </dl>
                                 </div>
                                 <div
-                                    class="bg-white max-w-2xl rounded-lg shadow-md border overflow-hidden font-semibold">
+                                    class="bg-white max-w-2xl rounded-lg shadow-md border overflow-hidden">
                                     <div class="flex justify-between">
                                         <div class="px-6 pt-6">
-                                            <dl class="flex items-center space-x-2 text-lg">
+                                            <dl class="flex items-center space-x-2">
                                                 <dt>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24"
@@ -94,7 +94,7 @@
                                                     <span>{{ project.data.user }}</span>
                                                 </dd>
                                             </dl>
-                                            <dl class="flex items-center space-x-2 text-lg">
+                                            <dl class="flex items-center space-x-2">
                                                 <dt>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24"
@@ -109,7 +109,7 @@
                                                     <span>{{ project.data.duration }} maanden</span>
                                                 </dd>
                                             </dl>
-                                            <dl class="flex items-center space-x-2 text-lg">
+                                            <dl class="flex items-center space-x-2">
                                                 <dt>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24"
@@ -134,17 +134,32 @@
                                                class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Investeren</a>
                                         </div>
                                     </div>
-                                    <div class="space-y-2 pt-10">
-                                        <h2 class="text-center text-xl font-semibold">
-                                            <span>&euro;{{ project.data.total_invested }}</span> van de
-                                            <span>&euro;{{ project.data.formatted_amount }}</span> ophehaald.
-                                        </h2>
-                                        <!-- Progress bar -->
-                                        <div class="w-full bg-gray-200 dark:bg-gray-700">
-                                            <div
-                                                class="font-medium text-white font-bold text-center p-1.5 leading-none"
-                                                :class="{'bg-blue-400': project.data.funding_progress !== '0%'}"
-                                                :style="'width:' + project.data.funding_progress">
+                                    <div>
+                                        <div class="p-6">
+                                            <p>Eigen inbreng: &euro;{{ project.data.formatted_own_contribution }}
+                                                (10%)</p>
+                                            <p>Externe inbreng: &euro;{{ project.data.formatted_external_contribution }}
+                                                (30%)</p>
+                                            <p>Crowdfunding: &euro;{{
+                                                    project.data.formatted_crowdfunding_contribution
+                                                }}
+                                                (60%)</p>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <h2 class="text-center text-xl font-semibold">
+                                                <span>&euro;{{ project.data.total_invested }}</span> van de
+                                                <span>&euro;{{
+                                                        project.data.formatted_crowdfunding_contribution
+                                                    }}</span>
+                                                opgehaald.
+                                            </h2>
+                                            <!-- Progress bar -->
+                                            <div class="w-full bg-gray-200 dark:bg-gray-700">
+                                                <div
+                                                    class="font-medium text-white font-bold text-center p-1.5 leading-none"
+                                                    :class="{'bg-blue-400': project.data.funding_progress !== '0%'}"
+                                                    :style="'width:' + project.data.funding_progress">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

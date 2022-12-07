@@ -17,12 +17,16 @@ class ProjectFactory extends Factory
      */
     public function definition()
     {
+        $totalAmount = round($this->faker->numberBetween(100000, 500000), -3);
+
         return [
             'user_id' => fake()->numberBetween(1, 10),
             'name' => fake()->company(),
             'location' => fake()->city(),
             'description' => fake()->text(255),
-            'amount' => round(fake()->numberBetween(20000, 100000), -2),
+            'own_contribution' => $totalAmount * 0.1,
+            'external_contribution' => $totalAmount * 0.3,
+            'crowdfunding_contribution' => $totalAmount * 0.6,
             'interest_rate' => fake()->numberBetween(5, 10),
             'iban' => fake()->iban(),
             'iban_name' => fake()->name(),

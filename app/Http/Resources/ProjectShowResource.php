@@ -17,6 +17,8 @@ class ProjectShowResource extends ProjectIndexResource
         return parent::toArray($request) + [
             'investments' => $investments,
             'total_invested' => number_format($this->investments->sum('amount'), 0, ',', '.'),
+            'formatted_own_contribution' => number_format($this->own_contribution, 0, ',', '.'),
+            'formatted_external_contribution' => number_format($this->external_contribution, 0, ',', '.'),
         ];
     }
 }
