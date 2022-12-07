@@ -6,16 +6,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserProjectResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
-            'projects' => ProjectShowResource::collection($this->projects),
+            'projects' => ProjectShowResource::collection($this->projects->sortByDesc('created_at')),
             'name' => $this->name,
             'email' => $this->email,
         ];
