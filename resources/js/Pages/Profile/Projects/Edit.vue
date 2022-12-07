@@ -197,13 +197,18 @@
                             </div>
                         </div>
                     </div>
-                    <button
-                        type="submit"
-                        @click.prevent="submit"
-                        class="my-4 inline-flex py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Opslaan
-                    </button>
+                    <div class="flex items-center gap-4">
+                        <button
+                            type="submit"
+                            @click.prevent="submit"
+                            class="my-4 inline-flex py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            Opslaan
+                        </button>
+                        <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
+                            <p v-if="form.recentlySuccessful" class="text-sm text-green-600 dark:text-gray-400">Project succesful opgeslagen.</p>
+                        </Transition>
+                    </div>
                 </div>
             </div>
         </div>
