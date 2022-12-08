@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EditProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Resources\ProjectEditResource;
 use App\Http\Resources\ProjectIndexResource;
 use App\Http\Resources\ProjectShowResource;
 use App\Models\Project;
@@ -58,14 +59,14 @@ class ProjectsController extends Controller
 
     public function store(StoreProjectRequest $request): RedirectResponse
     {
-        $this->projectRepository->create($request->validated());
+        $this->projectRepository->create($request->validated(), auth()->user());
 
-        return redirect()->route('profile.projects');
+        return redirect()->route('projects.show', ['project' => auth()->user()->projects()->latest()->first()]);
     }
 
     public function show(Project $project): Response
     {
-        if ($project->is_pending && $project->belongs_to_current_user) {
+        if ($project->is_pending && ! $project->belongs_to_current_user) {
             abort(404);
         }
 
@@ -76,12 +77,12 @@ class ProjectsController extends Controller
 
     public function edit(Project $project): RedirectResponse|Response
     {
-        if ($project->user_id !== auth()->user()->id) {
+        if ($project->belongs_to_current_user) {
             return redirect()->route('profile.projects');
         }
 
         return Inertia::render('Profile/Projects/Edit', [
-            'project' => new ProjectIndexResource($project),
+            'project' => new ProjectEditResource($project),
         ]);
     }
 
