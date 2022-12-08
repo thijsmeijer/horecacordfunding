@@ -112,8 +112,8 @@
                     <div class="w-full bg-gray-200 dark:bg-gray-700">
                         <div
                             class="font-medium text-white font-bold text-center p-1 leading-none"
-                            :class="{'bg-blue-400': project.funding_progress !== '0%'}"
-                            :style="'width:' + project.funding_progress">
+                            :class="{'bg-blue-400': project.funding_progress!== '0'}"
+                            :style="'width:' + project.funding_progress + '%'">
                         </div>
                     </div>
                 </div>

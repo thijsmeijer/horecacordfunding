@@ -43,7 +43,7 @@ class Project extends Model
     public function FundingProgress(): Attribute
     {
         return Attribute::make(
-            get: fn () => round($this->investments()->sum('amount') / $this->crowdfunding_contribution * 100).'%',
+            get: fn () => round($this->investments()->sum('amount') / $this->crowdfunding_contribution * 100),
         );
     }
 
