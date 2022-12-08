@@ -15,6 +15,7 @@ class Investment extends Model
         'amount',
         'iban',
         'iban_name',
+        'status',
     ];
 
     protected $with = ['project'];

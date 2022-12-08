@@ -20,7 +20,7 @@
                                 </Link>
                                 <Link :href="route('projects.index')"
                                       class="text-slate-800 hover:border-b-2"
-                                      :class="{'border-b-2 border-blue-500': route().current('projects.index')}">
+                                      :class="{'border-b-2 border-blue-500': route().current('projects.*')}">
                                     Projecten
                                 </Link>
                             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\InvestmentStatus;
 use App\Http\Requests\StoreInvestmentRequest;
 use App\Http\Resources\ProjectShowResource;
 use App\Http\Resources\UserInvestmentsResource;
@@ -35,9 +36,12 @@ class InvestmentsController extends Controller
 
     public function store(Project $project, StoreInvestmentRequest $request): RedirectResponse
     {
-        $this->investmentRepository->create($request->validated(), $project->id, auth()->user());
+        $data = array_merge($request->validated(), [
+            'status' => InvestmentStatus::pending->value,
+        ]);
 
-        return to_route('projects.show', $project->id)
-            ->with('success', 'Investering succesvol uitgevoerd!');
+        $this->investmentRepository->create($data, $project->id, auth()->user());
+
+        return to_route('investments.agreement.show');
     }
 }
