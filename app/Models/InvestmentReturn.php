@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class InvestmentReturn extends Model
 {
@@ -16,7 +17,7 @@ class InvestmentReturn extends Model
         'status',
     ];
 
-    public function investment()
+    public function investment(): belongsTo
     {
         return $this->belongsTo(Investment::class);
     }

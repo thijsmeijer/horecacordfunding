@@ -6,6 +6,8 @@ use App\Enums\ProjectStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
@@ -25,17 +27,17 @@ class Project extends Model
         'updated_at',
     ];
 
-    protected static function booted()
+    protected static function booted(): void
     {
         static::addGlobalScope(new Scopes\StatusScope);
     }
 
-    public function user()
+    public function user(): belongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function investments()
+    public function investments(): hasMany
     {
         return $this->hasMany(Investment::class)->orderBy('created_at', 'desc');
     }

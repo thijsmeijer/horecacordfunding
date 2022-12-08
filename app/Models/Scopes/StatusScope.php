@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Scope;
 
 class StatusScope implements Scope
 {
-    public function apply(Builder $builder, Model $model)
+    public function apply(Builder $builder, Model $model): void
     {
         $builder->where('status', '!=', ProjectStatus::Pending->value)->orWhere('user_id', auth()->id());
     }
