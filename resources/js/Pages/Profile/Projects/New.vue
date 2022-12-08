@@ -128,8 +128,8 @@
                                                 type="text"
                                                 name="interest"
                                                 id="interest"
-                                                class="block flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
-                                                value="7"
+                                                class="block flex-1 rounded-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                                value="6"
                                                 disabled
                                             />
                                         </div>
@@ -147,7 +147,7 @@
                                                 type="text"
                                                 name="duration"
                                                 id="duration"
-                                                class="block flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
+                                                class="block flex-1 rounded-none border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-100"
                                                 value="60"
                                                 disabled
                                             />
@@ -157,6 +157,19 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:grid md:grid-cols-3 md:gap-6 mt-4">
+                <div class="md:col-span-1">
+                    <div class="px-4 sm:px-0">
+                        <p class="mt-1 text-sm text-gray-600">Bankgegevens</p>
+                    </div>
+                </div>
+                <div class="mt-5 md:col-span-2 md:mt-0">
+                    <div class="shadow sm:overflow-hidden sm:rounded-md">
+                        <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3 sm:col-span-2">
                                     <label for="iban" class="block text-sm font-medium text-gray-700">IBAN</label>
@@ -172,9 +185,7 @@
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.iban"/>
                                     <div class="mt-1 flex rounded-md items-center">
-                                            <span class="mr-2">
-                                                Naam
-                                            </span>
+
                                         <input
                                             type="text"
                                             name="iban_name"

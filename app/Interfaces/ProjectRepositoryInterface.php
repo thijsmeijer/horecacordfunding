@@ -17,4 +17,6 @@ interface ProjectRepositoryInterface
     public function create(array $data, User $user): Project;
 
     public function update(Project $project, array $data): Project;
+
+    public function updateStatus(Project $project, array $data): Project;
 }

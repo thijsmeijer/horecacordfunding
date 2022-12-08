@@ -21,7 +21,7 @@ class ProjectFactory extends Factory
             'crowdfunding_contribution' => $totalAmount * config('crowdfunding.contributions.crowdfunding'),
             'iban' => fake()->iban(),
             'iban_name' => fake()->name(),
-            'status' => fake()->randomElement(ProjectStatus::getValues()),
+            'status' => ProjectStatus::Pending->name,
             'interest_rate' => config('crowdfunding.interest'),
             'duration' => config('crowdfunding.duration'),
         ];

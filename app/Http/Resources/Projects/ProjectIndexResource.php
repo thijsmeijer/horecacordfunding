@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Projects;
 
+use App\Enums\ProjectStatus;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProjectIndexResource extends JsonResource
@@ -19,7 +20,7 @@ class ProjectIndexResource extends JsonResource
             'duration' => $this->duration,
             'interest_rate' => $this->interest_rate,
             'user' => $this->user->name,
-            'status' => $this->status,
+            'status' => ProjectStatus::getValue($this->status),
         ];
     }
 }

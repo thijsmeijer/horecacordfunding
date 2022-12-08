@@ -20,4 +20,26 @@ enum ProjectStatus: string
             self::Cancelled,
         ];
     }
+
+    public static function getLabel(string $value): ProjectStatus
+    {
+        return match ($value) {
+            'afwachting' => self::Pending,
+            'funding' => self::Active,
+            'aflossing' => self::Repayment,
+            'afgerond' => self::Completed,
+            'geannuleerd' => self::Cancelled,
+        };
+    }
+
+    public static function getValue(string $label): ProjectStatus
+    {
+        return match ($label) {
+            'Pending' => self::Pending,
+            'Active' => self::Active,
+            'Repayment' => self::Repayment,
+            'Completed' => self::Completed,
+            'Cancelled' => self::Cancelled,
+        };
+    }
 }
