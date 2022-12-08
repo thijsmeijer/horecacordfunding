@@ -3,21 +3,31 @@
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Projecten
-            </h2>
+            <div class="flex items-center justify-between">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    Projecten
+                </h2>
+                <button class="text-blue-400 hover:text-blue-500 focus:text-blue-500 md:hidden"
+                        @click.prevent="createProject">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="w-8 h-8">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </button>
+            </div>
         </template>
 
-        <div class="py-12">
+        <div class="py-10">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="grid grid-cols-4">
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <button
-                        class="overflow-hidden rounded-md m-2 flex  border-dashed border-2 border-gray-300 items-center text-gray-300"
+                        class="overflow-hidden hidden md:block rounded-md m-2 flex  border-dashed border-2 border-gray-300 items-center text-gray-300"
                         type="submit"
                         @click.prevent="createProject"
                     >
 
-                        <span class="block w-full flex flex-wrap justify-center">
+                        <span class="block w-full flex flex-wrap justify-center py-14">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-20 h-20">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
