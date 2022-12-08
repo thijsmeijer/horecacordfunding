@@ -11,8 +11,7 @@
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Project informatie</h3>
-                        <p class="mt-1 text-sm text-gray-600">Deze informatie kan niet meer veranderd worden na het
-                            publiek maken van dit project.</p>
+                        <p class="mt-1 text-sm text-gray-600">Deze informatie kan niet meer veranderd worden vanaf de funding fase van dit project.</p>
                     </div>
                 </div>
                 <div class="mt-5 md:col-span-2 md:mt-0">
@@ -194,8 +193,35 @@
             <div class="md:grid md:grid-cols-3 md:gap-6 mt-4">
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
-                        <p class="mt-1 text-sm text-gray-600">Deze informatie kan na het publiek maken van dit project
-                            nog gewijzigt worden.</p>
+                        <p class="mt-1 text-sm text-gray-600">Documenten.</p>
+                    </div>
+                </div>
+                <div class="mt-5 md:col-span-2 md:mt-0">
+                    <div class="shadow sm:overflow-hidden sm:rounded-md">
+                        <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                            <div class="grid grid-cols-3 gap-6">
+                                <div class="col-span-3 sm:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700">
+                                        Business plan
+                                    </label>
+                                    <div class=" mt-1 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG</p>
+                                        </div>
+                                        <input id="dropzone-file" type="file" class="hidden" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:grid md:grid-cols-3 md:gap-6 mt-4">
+                <div class="md:col-span-1">
+                    <div class="px-4 sm:px-0">
+                        <p class="mt-1 text-sm text-gray-600">Deze informatie kan in de funding fase worden aangepast.</p>
                     </div>
                 </div>
                 <div class="mt-5 md:col-span-2 md:mt-0">
