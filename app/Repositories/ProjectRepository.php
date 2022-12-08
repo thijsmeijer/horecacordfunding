@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Enums\ProjectStatus;
 use App\Interfaces\ProjectRepositoryInterface;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -33,19 +34,19 @@ class ProjectRepository implements ProjectRepositoryInterface
         ');
     }
 
-    public function create(array $data): Project
+    public function create(array $data, User $user): Project
     {
         return Project::create([
             'name' => $data['name'],
             'description' => $data['description'],
             'location' => $data['location'],
-            'crowdfunding_contribution' => $data['amount'] * 0.6,
-            'external_contribution' => $data['amount'] * 0.3,
-            'own_contribution' => $data['amount'] * 0.1,
+            'crowdfunding_contribution' => $data['amount'] * config('crowdfunding.contributions.crowdfunding'),
+            'external_contribution' => $data['amount'] * config('crowdfunding.contributions.external'),
+            'own_contribution' => $data['amount'] * config('crowdfunding.contributions.own'),
             'status' => ProjectStatus::Pending,
             'iban' => $data['iban'],
             'iban_name' => $data['iban_name'],
-            'user_id' => auth()->user()->id,
+            'user_id' => $user->id,
         ]);
     }
 
@@ -55,9 +56,9 @@ class ProjectRepository implements ProjectRepositoryInterface
             'name' => $data['name'],
             'description' => $data['description'],
             'location' => $data['location'],
-            'crowdfunding_contribution' => $data['total_amount'] * 0.6,
-            'external_contribution' => $data['total_amount'] * 0.3,
-            'own_contribution' => $data['total_amount'] * 0.1,
+            'crowdfunding_contribution' => $data['total_amount'] * config('crowdfunding.contributions.crowdfunding'),
+            'external_contribution' => $data['total_amount'] * config('crowdfunding.contributions.external'),
+            'own_contribution' => $data['total_amount'] * config('crowdfunding.contributions.own'),
             'iban' => $data['iban'],
             'iban_name' => $data['iban_name'],
         ]);
