@@ -7,6 +7,7 @@ use App\Interfaces\ProjectRepositoryInterface;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\DB;
 
 class ProjectRepository implements ProjectRepositoryInterface
@@ -25,10 +26,10 @@ class ProjectRepository implements ProjectRepositoryInterface
         return Project::latest()->take(4)->get();
     }
 
-    public function getFundingProgress()
+    public function getFundingProgress(): Expression
     {
         return DB::raw('(
-            SELECT SUM(amount) / projects.crowdfunding_contribution * 100
+            SELECT SUM(amount) / projects.crowdfunding_contribution
             FROM investments
             WHERE project_id = projects.id)
         ');
