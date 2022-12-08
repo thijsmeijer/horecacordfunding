@@ -9,11 +9,8 @@ use Illuminate\Database\Eloquent\Scope;
 
 class StatusScope implements Scope
 {
-    /**
-     * {@inheritDoc}
-     */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('status', ProjectStatus::Active->value)->orWhere('user_id', auth()->id());
+        $builder->where('status', '!=', ProjectStatus::Pending->value)->orWhere('user_id', auth()->id());
     }
 }

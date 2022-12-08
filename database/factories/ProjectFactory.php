@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjectFactory extends Factory
 {
-
     public function definition(): array
     {
         $totalAmount = round($this->faker->numberBetween(100000, 500000), -3);

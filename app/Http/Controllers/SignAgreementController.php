@@ -19,7 +19,7 @@ class SignAgreementController extends Controller
     {
         $pendingInvestment = $this->investmentRepository->getPendingInvestment(auth()->user());
 
-        abort_if(!$pendingInvestment, 404);
+        abort_if(! $pendingInvestment, 404);
 
         return Inertia::render('Profile/Investments/Agreement');
     }
@@ -28,7 +28,7 @@ class SignAgreementController extends Controller
     {
         $pendingInvestment = $this->investmentRepository->getPendingInvestment(auth()->user());
 
-        abort_if(!$pendingInvestment, 404);
+        abort_if(! $pendingInvestment, 404);
 
         $this->investmentRepository->setInvestmentStatus($pendingInvestment, InvestmentStatus::Accepted->value);
 
