@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\InvestmentStatus;
 use App\Http\Requests\StoreInvestmentRequest;
-use App\Http\Resources\ProjectShowResource;
-use App\Http\Resources\UserInvestmentsResource;
+use App\Http\Resources\Investments\UserInvestmentsResource;
+use App\Http\Resources\Projects\ProjectShowResource;
 use App\Models\Project;
 use App\Repositories\InvestmentRepository;
 use Illuminate\Http\RedirectResponse;

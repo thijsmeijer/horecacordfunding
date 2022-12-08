@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Projects;
 
 class ProjectEditResource extends ProjectIndexResource
 {
@@ -8,6 +8,8 @@ class ProjectEditResource extends ProjectIndexResource
     {
         return parent::toArray($request) + [
             'description' => $this->description,
+            'own_contribution' => $this->own_contribution,
+            'external_contribution' => $this->external_contribution,
         ];
     }
 }

@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Investments;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class InvestmentResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'amount' => $this->amount,

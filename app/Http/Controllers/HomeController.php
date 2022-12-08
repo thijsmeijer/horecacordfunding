@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProjectIndexResource;
+use App\Http\Resources\Projects\ProjectIndexResource;
 use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EditProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
-use App\Http\Resources\ProjectEditResource;
-use App\Http\Resources\ProjectIndexResource;
-use App\Http\Resources\ProjectShowResource;
+use App\Http\Resources\Projects\ProjectEditResource;
+use App\Http\Resources\Projects\ProjectIndexResource;
+use App\Http\Resources\Projects\ProjectShowResource;
 use App\Models\Project;
 use App\Repositories\ProjectRepository;
 use Illuminate\Http\RedirectResponse;

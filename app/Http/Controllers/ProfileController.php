@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\ChangeProfileInformationRequest;
-use App\Http\Resources\UserProfileResource;
-use App\Http\Resources\UserProjectResource;
+use App\Http\Resources\User\UserProfileResource;
+use App\Http\Resources\User\UserProjectResource;
 use App\Repositories\UserRepository;
 use Inertia\Inertia;
 use Inertia\Response;

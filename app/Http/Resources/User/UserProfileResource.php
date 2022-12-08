@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\User;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserProjectResource extends JsonResource
+class UserProfileResource extends JsonResource
 {
     public function toArray($request): array
     {
         return [
-            'projects' => ProjectShowResource::collection($this->projects()->orderBy('created_at', 'desc')->get()),
             'name' => $this->name,
             'email' => $this->email,
+            'iban' => $this->iban,
+            'iban_name' => $this->iban_name,
         ];
     }
 }
