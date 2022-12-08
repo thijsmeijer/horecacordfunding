@@ -50,7 +50,7 @@ class Project extends Model
     public function maximumInvestment(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->crowdfunding_contribution - $this->investments->sum('amount'),
+            get: fn () => $this->crowdfunding_contribution - $this->investments()->sum('amount'),
         );
     }
 

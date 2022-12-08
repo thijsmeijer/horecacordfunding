@@ -9,7 +9,7 @@ class UserProjectResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'projects' => ProjectShowResource::collection($this->projects->sortByDesc('created_at')),
+            'projects' => ProjectShowResource::collection($this->projects()->orderBy('created_at', 'desc')->get()),
             'name' => $this->name,
             'email' => $this->email,
         ];

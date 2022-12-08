@@ -18,7 +18,7 @@ class UserInvestmentsResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'total_invested' => $this->total_invested,
-            'investments' => InvestmentResource::collection($this->investments->sortByDesc('created_at')),
+            'investments' => InvestmentResource::collection($this->investments()->orderBy('created_at', 'desc')->get()),
         ];
     }
 }
