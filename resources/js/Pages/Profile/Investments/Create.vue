@@ -1,9 +1,9 @@
 <template>
 
     <GuestLayout>
-        <div class="flex justify-center max-w-6xl mx-auto mt-48">
+        <div class="flex justify-center max-w-6xl mx-auto md:mt-48">
             <div
-                class="w-2/5 mx-auto shadow-md rounded-lg border space-y-8 flex flex-col justify-between overflow-hidden">
+                class="hidden w-2/5 mx-auto shadow-md rounded-lg border space-y-8 justify-between overflow-hidden md:flex md:flex-col">
                 <div>
                     <a
                         :href="route('projects.show', project.data.id)"
@@ -122,13 +122,13 @@
                     </div>
                 </div>
             </div>
-            <form @submit.prevent="submit" class="w-2/5 mx-auto p-6 shadow-md rounded-lg border space-y-8">
+            <form @submit.prevent="submit" class="md:w-2/5 mx-auto p-6 md:shadow-md md:rounded-lg md:border space-y-8">
                 <div class="space-y-4">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Naam</label>
                         <div class="mt-1">
                             <input type="text" name="name" id="name"
-                                   class="block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 cursor-not-allowed focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                   class="block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 cursor-not-allowed focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                    v-model="user.name" disabled>
                         </div>
                         <InputError class="mt-2" :message="form.errors.name"/>
@@ -147,7 +147,7 @@
                                 </svg>
                             </div>
                             <input type="email" name="email" id="email"
-                                   class="block w-full rounded-md border-gray-300 pl-10 bg-gray-100 cursor-not-allowed focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                   class="block w-full rounded-md border-gray-300 pl-10 bg-gray-100 cursor-not-allowed focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                    v-model="user.email" disabled>
                         </div>
                         <InputError class="mt-2" :message="form.errors.email"/>
@@ -158,7 +158,7 @@
                         <label for="name" class="block text-sm font-medium text-gray-700">IBAN</label>
                         <div class="mt-1">
                             <input type="text" name="name" id="name"
-                                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                    placeholder="NL99 BANK 0123 4567 89" v-model="form.iban">
                         </div>
                         <InputError class="mt-2" :message="form.errors.iban"/>
@@ -167,7 +167,7 @@
                         <label for="name" class="block text-sm font-medium text-gray-700">Te naam gestelde</label>
                         <div class="mt-1">
                             <input type="text" name="name" id="name"
-                                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                    :placeholder="$page.props.user.iban_name" v-model="form.iban_name">
                         </div>
                         <InputError class="mt-2" :message="form.errors.iban_name"/>
@@ -181,7 +181,7 @@
                                 <span class="text-gray-500 sm:text-sm">&euro;</span>
                             </div>
                             <input type="text" name="amount" id="amount"
-                                   class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                   class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                    placeholder="0.00" aria-describedby="price-currency" v-model="form.amount">
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                                 <span class="text-gray-500 sm:text-sm" id="price-currency">EUR</span>
