@@ -13,7 +13,7 @@
                                 </div>
                             </div>
 
-                            <div class="hidden sm:relative sm:space-x-6 sm:flex">
+                            <div class="hidden sm:relative sm:space-x-6 md:flex">
                                 <Link :href="route('home')"
                                       class="text-slate-800 hover:border-b-2"
                                       :class="{'border-b-2 border-blue-500': route().current('home')}">
@@ -36,7 +36,7 @@
                                 </Link>
                             </div>
 
-                            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                            <div class="hidden md:flex sm:items-center sm:ml-6">
                                 <div class="ml-3 relative">
                                     <div class="ml-3 relative">
                                         <Dropdown align="right" width="48">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
 
-                            <div class="sm:hidden">
+                            <div class="md:hidden">
                                 <!--             Hamburger button               -->
                                 <button type="button"
                                         @click="toggleMenu"
