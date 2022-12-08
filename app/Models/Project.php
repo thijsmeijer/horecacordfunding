@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ProjectStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -39,9 +40,11 @@ class Project extends Model
         return $this->hasMany(Investment::class)->orderBy('created_at', 'desc');
     }
 
-    public function getFundingProgressAttribute()
+    public function FundingProgress(): Attribute
     {
-        return round($this->investments()->sum('amount') / $this->crowdfunding_contribution * 100).'%';
+        return Attribute::make(
+            get: fn () => round($this->investments()->sum('amount') / $this->crowdfunding_contribution * 100).'%',
+        );
     }
 
     public function maximumInvestment(): Attribute
@@ -55,6 +58,20 @@ class Project extends Model
     {
         return Attribute::make(
             get: fn () => $this->own_contribution + $this->external_contribution + $this->crowdfunding_contribution,
+        );
+    }
+
+    public function belongsToCurrentUser(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->user_id !== auth()->id(),
+        );
+    }
+
+    public function isPending(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->status === ProjectStatus::Pending,
         );
     }
 }

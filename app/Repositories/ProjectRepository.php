@@ -12,7 +12,11 @@ class ProjectRepository implements ProjectRepositoryInterface
 {
     public function getHighestFundedProjects(): Collection
     {
-        return Project::orderBy(DB::raw('(SELECT SUM(amount) / projects.crowdfunding_contribution * 100 FROM investments WHERE project_id = projects.id)'), 'desc')->take(8)->get();
+        return Project::orderBy(DB::raw('(
+            SELECT SUM(amount) / projects.crowdfunding_contribution * 100
+            FROM investments
+            WHERE project_id = projects.id)
+            '), 'desc')->take(8)->get();
     }
 
     public function getNewestProjects(): Collection
@@ -22,7 +26,11 @@ class ProjectRepository implements ProjectRepositoryInterface
 
     public function getFundingProgress()
     {
-        return DB::raw('(SELECT SUM(amount) / projects.crowdfunding_contribution * 100 FROM investments WHERE project_id = projects.id)');
+        return DB::raw('(
+            SELECT SUM(amount) / projects.crowdfunding_contribution * 100
+            FROM investments
+            WHERE project_id = projects.id)
+        ');
     }
 
     public function create(array $data): Project

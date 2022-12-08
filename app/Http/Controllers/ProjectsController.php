@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ProjectStatus;
 use App\Http\Requests\EditProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectIndexResource;
@@ -26,14 +25,19 @@ class ProjectsController extends Controller
             ->when(request()->sort, function ($query) {
                 $fundingProgress = $this->projectRepository->getFundingProgress();
 
-                if (request()->sort === 'newest') {
-                    $query->orderBy('created_at', 'desc');
-                } elseif (request()->sort === 'oldest') {
-                    $query->orderBy('created_at', 'asc');
-                } elseif (request()->sort === 'highest') {
-                    $query->orderBy($fundingProgress, 'desc');
-                } elseif (request()->sort === 'lowest') {
-                    $query->orderBy($fundingProgress, 'asc');
+                switch (request()->sort) {
+                    case 'newest':
+                        $query->orderByDesc('created_at');
+                        break;
+                    case 'oldest':
+                        $query->orderBy('created_at');
+                        break;
+                    case 'highest':
+                        $query->orderByDesc($fundingProgress);
+                        break;
+                    case 'lowest':
+                        $query->orderBy($fundingProgress);
+                        break;
                 }
             })->paginate(8)->withQueryString();
 
@@ -44,7 +48,7 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Profile/Projects/New',
             [
@@ -61,7 +65,7 @@ class ProjectsController extends Controller
 
     public function show(Project $project): Response
     {
-        if ($project->status === ProjectStatus::Pending->value && $project->user_id !== auth()->id()) {
+        if ($project->is_pending && $project->belongs_to_current_user) {
             abort(404);
         }
 
