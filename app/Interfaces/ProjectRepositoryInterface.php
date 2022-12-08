@@ -3,6 +3,7 @@
 namespace App\Interfaces;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
 interface ProjectRepositoryInterface
@@ -13,7 +14,7 @@ interface ProjectRepositoryInterface
 
     public function getFundingProgress();
 
-    public function create(array $data): Project;
+    public function create(array $data, User $user): Project;
 
     public function update(Project $project, array $data): Project;
 }

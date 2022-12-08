@@ -58,14 +58,14 @@ class ProjectsController extends Controller
 
     public function store(StoreProjectRequest $request): RedirectResponse
     {
-        $this->projectRepository->create($request->validated());
+        $this->projectRepository->create($request->validated(), auth()->user());
 
-        return redirect()->route('profile.projects');
+        return redirect()->route('projects.show', ['project' => auth()->user()->projects()->latest()->first()]);
     }
 
     public function show(Project $project): Response
     {
-        if ($project->is_pending && $project->belongs_to_current_user) {
+        if ($project->is_pending && ! $project->belongs_to_current_user) {
             abort(404);
         }
 
@@ -76,7 +76,7 @@ class ProjectsController extends Controller
 
     public function edit(Project $project): RedirectResponse|Response
     {
-        if ($project->user_id !== auth()->user()->id) {
+        if ($project->belongs_to_current_user) {
             return redirect()->route('profile.projects');
         }
 
