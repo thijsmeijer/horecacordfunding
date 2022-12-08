@@ -42,10 +42,10 @@
                     <div class="relative bg-gray-900">
                         <img
                             src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-                            class="h-auto w-full" :class="{'opacity-30': project.status === 'private'}"
+                            class="h-auto w-full" :class="{'opacity-30': project.status === 'afwachting'}"
                             alt="Restaurant"/>
                         <div class="absolute inset-0 z-10 flex items-center justify-center"
-                             v-if="project.status === 'private'">
+                             v-if="project.status === 'afwachting'">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                  class="w-8 h-8 text-red-500">
                                 <path fill-rule="evenodd"

@@ -36,7 +36,7 @@
                     </div>
                     <div>
                         <a :href="$page.props.previousUrl">
-                            <dl class="flex items-center space-x-2 text-blue-500">
+                            <dl class="hidden md:flex items-center space-x-2 text-blue-500">
                                 <dt>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -54,8 +54,8 @@
                 </div>
                 <div class="overflow-hidden sm:rounded-lg">
                     <div class="p-6 space-y-2">
-                        <div class="flex justify-between">
-                            <div class="max-w-3xl w-full">
+                        <div class="space-y-12 lg:flex lg:justify-between">
+                            <div class="max-w-3xl">
                                 <div class="mb-4">
                                     <h1 class="text-3xl font-bold">{{ project.data.name }}</h1>
                                     <dl class="flex items-center space-x-2 text-slate-400">
@@ -139,11 +139,11 @@
                                                 </dd>
                                             </dl>
                                         </div>
-                                        <div class="p-6" v-if="project.data.status === 'private'">
+                                        <div class="hidden md:block p-6" v-if="project.data.status === 'afwachting'">
                                             <a :href="route('profile.projects.edit', project.data.id)" target="_blank"
                                                class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Aanpassen</a>
                                         </div>
-                                        <div class="p-6" v-else>
+                                        <div class="hidden md:block p-6" v-else>
                                             <a :href="route('investments.create', project.data.id)"
                                                class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Investeren</a>
                                         </div>
@@ -207,8 +207,9 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div>
-                                <div class="overflow-hidden rounded-lg border bg-white w-72 shadow-md">
+                            <div class="w-full lg:w-72">
+                                <div
+                                    class="overflow-hidden rounded-lg border bg-white shadow-md">
                                     <ul role="list" class="divide-y divide-gray-200">
                                         <li v-if="project.data.investments.length > 0"
                                             v-for="investment in project.data.investments"
@@ -216,7 +217,8 @@
                                             <span>&euro;{{ investment.amount }}</span>
                                             <span class="text-slate-500">{{ investment.invested_at }}</span>
                                         </li>
-                                        <li v-else-if="project.data.status === 'private'" class="px-6 py-4 text-center">
+                                        <li v-else-if="project.data.status === 'afwachting'"
+                                            class="px-6 py-4 text-center">
                                             <span>Publiceer je project om investeringen te ontvangen.</span>
                                         </li>
                                         <li v-else class="px-6 py-4 text-center">
@@ -230,6 +232,55 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="sticky bottom-0 z-50 bg-white p-4 border-t md:hidden">
+            <div class="flex items-center justify-between">
+                <a :href="$page.props.previousUrl">
+                    <dl class="flex items-center space-x-2 text-blue-500">
+                        <dt>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"/>
+                            </svg>
+                            <span class="sr-only">goback</span>
+                        </dt>
+                        <dd>
+                            <span>Terug</span>
+                        </dd>
+                    </dl>
+                </a>
+                <a :href="route('profile.projects.edit', project.data.id)" v-if="project.data.status === 'afwachting'">
+                    <dl class="flex items-center space-x-2 text-blue-500">
+                        <dt>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+                            </svg>
+                            <span class="sr-only">aanpassen</span>
+                        </dt>
+                        <dd>
+                            <span>Aanpassen</span>
+                        </dd>
+                    </dl>
+                </a>
+                <a :href="route('investments.create', project.data.id)" v-else>
+                    <dl class="flex items-center space-x-2 text-blue-500">
+                        <dt>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/>
+                            </svg>
+                            <span class="sr-only">investeren</span>
+                        </dt>
+                        <dd>
+                            <span>Investeren</span>
+                        </dd>
+                    </dl>
+                </a>
             </div>
         </div>
     </GuestLayout>
