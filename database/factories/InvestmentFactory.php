@@ -10,12 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class InvestmentFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'amount' => round(fake()->numberBetween(1000, 2000), -2),

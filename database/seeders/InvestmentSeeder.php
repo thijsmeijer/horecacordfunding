@@ -10,12 +10,7 @@ use Illuminate\Database\Seeder;
 
 class InvestmentSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         $users = User::all();
         $projects = Project::where('status', '!=', ProjectStatus::Pending->value)->get();
