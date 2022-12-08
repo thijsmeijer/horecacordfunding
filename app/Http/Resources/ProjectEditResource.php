@@ -6,7 +6,7 @@ class ProjectEditResource extends ProjectIndexResource
 {
     public function toArray($request): array
     {
-        return [
+        return parent::toArray($request) + [
             'description' => $this->description,
         ];
     }

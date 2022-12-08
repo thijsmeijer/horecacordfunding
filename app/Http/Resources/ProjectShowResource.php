@@ -6,8 +6,10 @@ use App\Enums\InvestmentStatus;
 
 class ProjectShowResource extends ProjectIndexResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
+        $parse = new \Parsedown();
+
         $investments = $this->investments()->where('status', InvestmentStatus::Accepted->value)->get()->map(function ($investment) {
             return [
                 'id' => $investment->id,
@@ -17,6 +19,7 @@ class ProjectShowResource extends ProjectIndexResource
         });
 
         return parent::toArray($request) + [
+            'description' => $parse->text($this->description),
             'investments' => $investments,
             'total_invested' => number_format($this->investments->sum('amount'), 0, ',', '.'),
             'formatted_own_contribution' => number_format($this->own_contribution, 0, ',', '.'),

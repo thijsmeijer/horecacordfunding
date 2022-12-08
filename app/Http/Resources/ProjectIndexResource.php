@@ -6,20 +6,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProjectIndexResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
-    public function toArray($request)
+    public function toArray($request): array
     {
-        $parse = new \Parsedown();
 
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $parse->text($this->description),
             'location' => $this->location,
             'crowdfunding_contribution' => $this->crowdfunding_contribution,
             'own_contribution' => $this->own_contribution,
