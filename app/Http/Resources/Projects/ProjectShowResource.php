@@ -16,6 +16,7 @@ class ProjectShowResource extends ProjectIndexResource
             'total_invested' => number_format($this->investments()->sum('amount'), 0, ',', '.'),
             'formatted_own_contribution' => number_format($this->own_contribution, 0, ',', '.'),
             'formatted_external_contribution' => number_format($this->external_contribution, 0, ',', '.'),
+            'formatted_total_amount' => number_format($this->total_amount, 0, ',', '.'),
         ];
     }
 }
