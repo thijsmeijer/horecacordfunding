@@ -2,11 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\InvestmentStatus;
+
 class ProjectShowResource extends ProjectIndexResource
 {
     public function toArray($request)
     {
-        $investments = $this->investments->map(function ($investment) {
+        $investments = $this->investments()->where('status', InvestmentStatus::Accepted->value)->get()->map(function ($investment) {
             return [
                 'id' => $investment->id,
                 'amount' => number_format($investment->amount, 0, ',', '.'),

@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestmentsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\SignAgreementController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,9 @@ Route::get('/profile/projects', [ProfileController::class, 'projects'])->middlew
 
 Route::get('/projects/{project}/investments/create', [InvestmentsController::class, 'create'])->middleware(['auth', 'verified'])->name('investments.create');
 Route::post('/projects/{project}/investments', [InvestmentsController::class, 'store'])->middleware(['auth', 'verified'])->name('investments.store');
+
+Route::get('/projects/investments/agreement', [SignAgreementController::class, 'show'])->middleware(['auth', 'verified'])->name('investments.agreement.show');
+Route::post('/projects/investments/agreement', [SignAgreementController::class, 'store'])->middleware(['auth', 'verified'])->name('investments.agreement.store');
 
 Route::resource('projects', ProjectsController::class)->except(['index']);
 
