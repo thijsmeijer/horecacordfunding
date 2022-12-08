@@ -79,10 +79,11 @@
                 semper, in consectetur sem aliquet. Nulla facilisi.
             </p>
 
-            <div class="flex justify-center space-x-6 pt-10">
-                <button class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+            <div class="flex justify-center space-x-6 py-10">
+                <a class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
+                   :href="$page.props.previousUrl">
                     Annuleren
-                </button>
+                </a>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="submit">
                     Ik ga akkoord
                 </button>
