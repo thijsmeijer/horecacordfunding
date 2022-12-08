@@ -44,7 +44,7 @@ class ProjectRepository implements ProjectRepositoryInterface
             'crowdfunding_contribution' => $data['amount'] * config('crowdfunding.contributions.crowdfunding'),
             'external_contribution' => $data['amount'] * config('crowdfunding.contributions.external'),
             'own_contribution' => $data['amount'] * config('crowdfunding.contributions.own'),
-            'status' => ProjectStatus::Pending,
+            'status' => ProjectStatus::Pending->name,
             'iban' => $data['iban'],
             'iban_name' => $data['iban_name'],
             'user_id' => $user->id,
@@ -62,6 +62,15 @@ class ProjectRepository implements ProjectRepositoryInterface
             'own_contribution' => $data['total_amount'] * config('crowdfunding.contributions.own'),
             'iban' => $data['iban'],
             'iban_name' => $data['iban_name'],
+        ]);
+
+        return $project;
+    }
+
+    public function updateStatus(Project $project, array $data): Project
+    {
+        $project->update([
+            'status' => ProjectStatus::getLabel($data['status'])->name,
         ]);
 
         return $project;

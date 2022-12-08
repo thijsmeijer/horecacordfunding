@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProjectStatusRequest;
 use App\Http\Requests\EditProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\Projects\ProjectEditResource;
@@ -9,6 +10,7 @@ use App\Http\Resources\Projects\ProjectIndexResource;
 use App\Http\Resources\Projects\ProjectShowResource;
 use App\Models\Project;
 use App\Repositories\ProjectRepository;
+use Illuminate\Http\Client\Request;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -89,6 +91,13 @@ class ProjectsController extends Controller
     public function update(EditProjectRequest $request, Project $project): RedirectResponse
     {
         $this->projectRepository->update($project, $request->validated());
+
+        return redirect()->route('profile.projects.edit', $project);
+    }
+
+    public function updateStatus(EditProjectStatusRequest $request, Project $project): RedirectResponse
+    {
+        $this->projectRepository->updateStatus($project, $request->validated());
 
         return redirect()->route('profile.projects.edit', $project);
     }

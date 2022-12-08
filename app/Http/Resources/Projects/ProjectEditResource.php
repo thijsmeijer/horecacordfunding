@@ -10,6 +10,8 @@ class ProjectEditResource extends ProjectIndexResource
             'description' => $this->description,
             'own_contribution' => $this->own_contribution,
             'external_contribution' => $this->external_contribution,
+            'iban' => $this->iban,
+            'iban_name' => $this->iban_name,
         ];
     }
 }
