@@ -11,6 +11,6 @@ class StatusScope implements Scope
 {
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('status', '!=', ProjectStatus::Pending->value)->orWhere('user_id', auth()->id());
+        $builder->where('status', '!=', ProjectStatus::Pending->name)->orWhere('user_id', auth()->id());
     }
 }
