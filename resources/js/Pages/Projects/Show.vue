@@ -1,8 +1,8 @@
 <template>
     <GuestLayout>
         <img src="https://picsum.photos/800/200" class="object-cover h-48 w-full" alt="">
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="md:py-12">
+            <div class="max-w-7xl mx-auto md:px-6 lg:px-8">
                 <div class="space-y-4">
                     <div class="rounded-md bg-green-50 p-4" v-if="$page.props.flash.success">
                         <div class="flex">
@@ -162,7 +162,7 @@
                                                 (60%)</p>
                                         </div>
                                         <div class="space-y-2">
-                                            <h2 class="text-center text-xl font-semibold">
+                                            <h2 class="text-center text-lg md:text-xl font-semibold">
                                                 <span>&euro;{{ project.data.total_invested }}</span> van de
                                                 <span>&euro;{{
                                                         project.data.formatted_crowdfunding_contribution
