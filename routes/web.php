@@ -19,26 +19,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['auth', 'verified'])->group( function() {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/investments', [InvestmentsController::class, 'index'])->name('profile.investments');
+    Route::get('/profile/projects', [ProfileController::class, 'projects'])->name('profile.projects');
+
+    Route::get('/projects/{project}/investments/create', [InvestmentsController::class, 'create'])->name('investments.create');
+    Route::post('/projects/{project}/investments', [InvestmentsController::class, 'store'])->name('investments.store');
+
+    Route::get('/projects/create', [ProjectsController::class, 'create'])->name('projects.create');
+    Route::post('/projects', [ProjectsController::class, 'store'])->name('projects.store');
+    Route::get('/profile/projects/{project}/edit', [ProjectsController::class, 'edit'])->name('profile.projects.edit');
+    Route::patch('/profile/projects/{project}', [ProjectsController::class, 'update'])->name('projects.update');
+
+    Route::get('/projects/investments/agreement', [SignAgreementController::class, 'show'])->name('investments.agreement.show');
+    Route::post('/projects/investments/agreement', [SignAgreementController::class, 'store'])->name('investments.agreement.store');
+});
+
 Route::get('/', HomeController::class)->name('home');
+Route::get('/projects', [ProjectsController::class, 'index'])->name('projects.index');
+Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
 
-Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profile');
 
-Route::post('/profile/update', [ProfileController::class, 'update'])->middleware(['auth', 'verified'])->name('profile.update');
-
-Route::resource('projects', ProjectsController::class);
-
-Route::get('/profile/investments', [InvestmentsController::class, 'index'])->middleware(['auth', 'verified'])->name('profile.investments');
-
-Route::get('/profile/projects', [ProfileController::class, 'projects'])->middleware(['auth', 'verified'])->name('profile.projects');
-
-Route::get('/projects/{project}/investments/create', [InvestmentsController::class, 'create'])->middleware(['auth', 'verified'])->name('investments.create');
-Route::post('/projects/{project}/investments', [InvestmentsController::class, 'store'])->middleware(['auth', 'verified'])->name('investments.store');
-
-Route::get('/projects/investments/agreement', [SignAgreementController::class, 'show'])->middleware(['auth', 'verified'])->name('investments.agreement.show');
-Route::post('/projects/investments/agreement', [SignAgreementController::class, 'store'])->middleware(['auth', 'verified'])->name('investments.agreement.store');
-
-Route::resource('projects', ProjectsController::class)->except(['index']);
-
-Route::get('/profile/projects/{project}/edit', [ProjectsController::class, 'edit'])->middleware(['auth', 'verified'])->name('profile.projects.edit');
 
 require __DIR__.'/auth.php';
