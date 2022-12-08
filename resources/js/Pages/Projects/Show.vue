@@ -55,7 +55,7 @@
                 <div class="overflow-hidden sm:rounded-lg">
                     <div class="p-6 space-y-2">
                         <div class="space-y-12 lg:flex lg:justify-between">
-                            <div class="max-w-3xl">
+                            <div class="w-full">
                                 <div class="mb-4">
                                     <h1 class="text-3xl font-bold">{{ project.data.name }}</h1>
                                     <dl class="flex items-center space-x-2 text-slate-400">
