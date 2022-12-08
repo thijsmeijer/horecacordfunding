@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ChangeProfileInformationRequest;
+use App\Http\Requests\Auth\ChangeProfileInformationRequest;
 use App\Http\Resources\UserProfileResource;
 use App\Http\Resources\UserProjectResource;
 use App\Repositories\UserRepository;

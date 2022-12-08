@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth', 'verified'])->group( function() {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile/investments', [InvestmentsController::class, 'index'])->name('profile.investments');
@@ -40,7 +40,5 @@ Route::middleware(['auth', 'verified'])->group( function() {
 Route::get('/', HomeController::class)->name('home');
 Route::get('/projects', [ProjectsController::class, 'index'])->name('projects.index');
 Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
-
-
 
 require __DIR__.'/auth.php';
