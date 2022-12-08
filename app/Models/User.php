@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -12,11 +14,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -25,27 +22,24 @@ class User extends Authenticatable
         'iban_name',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
     ];
 
-    public function projects()
+    public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
     }
 
-    public function investments()
+    public function investments(): HasMany
     {
         return $this->hasMany(Investment::class);
     }
 
-    public function getTotalInvestedAttribute()
+    public function totalInvested(): Attribute
     {
-        return $this->investments->sum('amount');
+        return Attribute::make(
+            get: fn () => $this->investments()->sum('amount'),
+        );
     }
 }
