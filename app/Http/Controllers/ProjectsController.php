@@ -86,7 +86,7 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function update(EditProjectRequest $request, Project $project)
+    public function update(EditProjectRequest $request, Project $project): RedirectResponse
     {
         $this->projectRepository->update($project, $request->validated());
 
