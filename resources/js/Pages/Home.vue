@@ -7,7 +7,9 @@
             <div>
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">Meest recente projecten</h2>
-                    <a :href="route('projects.index')" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 duration-100">bekijk alles</a>
+                    <a :href="route('projects.index')"
+                       class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 duration-100">bekijk
+                        alles</a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
                     <div v-for="project in newestProjects.data" :key="project.id"
@@ -34,8 +36,8 @@
                                     <span class="block text-sm text-slate-400">{{ project.location }}</span>
                                 </h2>
                             </div>
-                            <div>
-                                <dl class="flex items-center space-x-2">
+                            <div class="space-y-0.5">
+                                <dl class="flex items-center space-x-2 text-sm">
                                     <dt>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5"
@@ -50,7 +52,21 @@
                                     </dd>
                                 </dl>
 
-                                <dl class="flex space-x-2 items-center">
+                                <dl class="flex items-center space-x-2 text-sm">
+                                    <dt>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="text-slate-500 w-4 h-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+                                        </svg>
+                                        <span class="sr-only">opgehaald</span>
+                                    </dt>
+                                    <dd>
+                                        <span>{{ project.funding_progress }}% opgehaald</span>
+                                    </dd>
+                                </dl>
+
+                                <dl class="flex space-x-2 items-center text-sm">
                                     <dt>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="text-slate-500 w-4 h-4">
@@ -63,7 +79,7 @@
                                         <span>{{ project.duration }} maanden</span>
                                     </dd>
                                 </dl>
-                                <dl class="flex space-x-2 items-center">
+                                <dl class="flex space-x-2 items-center text-sm">
                                     <dt>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5"
@@ -96,7 +112,9 @@
             <div>
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-lg sm:text-xl md:text-2xl font-semibold">Projecten dicht bij de finish</h2>
-                    <a :href="route('projects.index')" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 duration-100">bekijk alles</a>
+                    <a :href="route('projects.index')"
+                       class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 duration-100">bekijk
+                        alles</a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
                     <div v-for="project in highestFundedProjects.data"
@@ -124,8 +142,8 @@
                                     <span class="block text-sm text-slate-400">{{ project.location }}</span>
                                 </h2>
                             </div>
-                            <div>
-                                <dl class="flex items-center space-x-2">
+                            <div class="space-y-0.5">
+                                <dl class="flex items-center space-x-2 text-sm">
                                     <dt>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5"
@@ -140,7 +158,21 @@
                                     </dd>
                                 </dl>
 
-                                <dl class="flex space-x-2 items-center">
+                                <dl class="flex items-center space-x-2 text-sm">
+                                    <dt>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="text-slate-500 w-4 h-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+                                        </svg>
+                                        <span class="sr-only">opgehaald</span>
+                                    </dt>
+                                    <dd>
+                                        <span>{{ project.funding_progress }}% opgehaald</span>
+                                    </dd>
+                                </dl>
+
+                                <dl class="flex space-x-2 items-center text-sm">
                                     <dt>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="text-slate-500 w-4 h-4">
@@ -153,7 +185,7 @@
                                         <span>{{ project.duration }} maanden</span>
                                     </dd>
                                 </dl>
-                                <dl class="flex space-x-2 items-center">
+                                <dl class="flex space-x-2 items-center text-sm">
                                     <dt>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5"
