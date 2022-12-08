@@ -22,6 +22,8 @@ class ProjectFactory extends Factory
             'iban' => fake()->iban(),
             'iban_name' => fake()->name(),
             'status' => fake()->randomElement(ProjectStatus::getValues()),
+            'interest_rate' => config('crowdfunding.interest'),
+            'duration' => config('crowdfunding.duration'),
         ];
     }
 }
