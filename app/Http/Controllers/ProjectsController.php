@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EditProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Resources\ProjectEditResource;
 use App\Http\Resources\ProjectIndexResource;
 use App\Http\Resources\ProjectShowResource;
 use App\Models\Project;
@@ -81,7 +82,7 @@ class ProjectsController extends Controller
         }
 
         return Inertia::render('Profile/Projects/Edit', [
-            'project' => new ProjectIndexResource($project),
+            'project' => new ProjectEditResource($project),
         ]);
     }
 
