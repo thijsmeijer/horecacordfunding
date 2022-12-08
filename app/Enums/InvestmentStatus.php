@@ -4,16 +4,16 @@ namespace App\Enums;
 
 enum InvestmentStatus: string
 {
-    case pending = 'pending';
-    case accepted = 'accepted';
-    case rejected = 'rejected';
+    case Pending = 'pending';
+    case Accepted = 'accepted';
+    case Rejected = 'rejected';
 
     public static function getValues(): array
     {
         return [
-            self::pending,
-            self::accepted,
-            self::rejected,
+            self::Pending,
+            self::Accepted,
+            self::Rejected,
         ];
     }
 }

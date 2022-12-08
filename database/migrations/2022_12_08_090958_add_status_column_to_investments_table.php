@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('investments', function (Blueprint $table) {
-            $table->string('status')->default(InvestmentStatus::pending->value)->after('amount');
+            $table->string('status')->default(InvestmentStatus::Pending->value)->after('amount');
         });
     }
 

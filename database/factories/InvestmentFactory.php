@@ -19,7 +19,7 @@ class InvestmentFactory extends Factory
     {
         return [
             'amount' => round(fake()->numberBetween(1000, 2000), -2),
-            'status' => InvestmentStatus::accepted->value,
+            'status' => InvestmentStatus::Accepted->value,
             'iban' => fake()->iban('NL'),
             'iban_name' => fake()->name(),
         ];

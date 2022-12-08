@@ -23,7 +23,7 @@ class InvestmentRepository implements InvestmentRepositoryInterface
     public function getPendingInvestment(User $user): ?Investment
     {
         return Investment::where('user_id', $user->id)
-            ->where('status', InvestmentStatus::pending->value)
+            ->where('status', InvestmentStatus::Pending->value)
             ->first();
     }
 

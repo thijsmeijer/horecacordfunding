@@ -37,7 +37,7 @@ class InvestmentsController extends Controller
     public function store(Project $project, StoreInvestmentRequest $request): RedirectResponse
     {
         $data = array_merge($request->validated(), [
-            'status' => InvestmentStatus::pending->value,
+            'status' => InvestmentStatus::Pending->value,
         ]);
 
         $this->investmentRepository->create($data, $project->id, auth()->user());
