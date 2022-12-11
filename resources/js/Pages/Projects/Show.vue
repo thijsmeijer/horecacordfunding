@@ -140,17 +140,17 @@
                                             </dl>
                                         </div>
                                         <div class="hidden md:block p-6" v-if="project.data.status === 'afwachting'">
-                                            <a :href="route('profile.projects.edit', project.data.id)" target="_blank"
+                                            <a :href="route('profile.projects.edit', project.data.slug)" target="_blank"
                                                class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Aanpassen</a>
                                         </div>
                                         <div class="hidden md:block p-6" v-else>
-                                            <a :href="route('investments.create', project.data.id)"
+                                            <a :href="route('investments.create', project.data.slug)"
                                                class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Investeren</a>
                                         </div>
                                     </div>
                                     <div>
                                         <div class="p-6">
-                                            <p>Totale investering: &euro;{{ project.data.formatted_total_amount }}
+                                            <p>Totale investeering: &euro;{{ project.data.formatted_total_amount }}
                                             </p>
                                             <p>Eigen inbreng: &euro;{{ project.data.formatted_own_contribution }}
                                                 (10%)</p>
