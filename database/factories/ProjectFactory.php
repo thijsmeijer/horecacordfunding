@@ -14,6 +14,7 @@ class ProjectFactory extends Factory
 
         return [
             'user_id' => User::factory(),
+            'slug' => fake()->slug,
             'name' => fake()->company(),
             'location' => fake()->city(),
             'description' => fake()->text(255),

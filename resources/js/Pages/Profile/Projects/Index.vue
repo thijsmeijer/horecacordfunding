@@ -93,10 +93,7 @@
                                     </span>
                                     </dd>
                                 </dl>
-                                <div class="pt-4 mb-4">
-                                    <a :href="route('projects.show', project.id)"
-                                       class="w-full block rounded py-2 text-center text-white bg-blue-400 hover:bg-blue-500 duration-100">Bekijken</a>
-                                </div>
+                                <view-project-button :project-slug="project.slug"/>
                                 <div class="flex justify-between items-center">
                                     <button
                                         type="submit"
@@ -129,12 +126,14 @@
 <script>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head} from '@inertiajs/inertia-vue3';
+import ViewProjectButton from "@/Components/ViewProjectButton.vue";
 
 export default {
     name: "Index",
     components: {
         AuthenticatedLayout,
         Head,
+        ViewProjectButton
     },
     props: {
         user: Object,
@@ -152,7 +151,7 @@ export default {
     },
     methods: {
         editProject(project) {
-            this.$inertia.get(`/profile/projects/${project.id}/edit`);
+            this.$inertia.get(`/profile/projects/${project.slug}/edit`);
         },
         createProject() {
             this.$inertia.get(route('projects.create'));

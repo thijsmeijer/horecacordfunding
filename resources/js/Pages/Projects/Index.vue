@@ -117,10 +117,7 @@
                                 <dd><span>{{ project.interest_rate }}% rente</span>
                                 </dd>
                             </dl>
-                            <div class="pt-4">
-                                <a :href="route('projects.show', project.id)"
-                                   class="w-full block rounded py-2 text-center text-white bg-blue-400 hover:bg-blue-500 duration-100">Bekijken</a>
-                            </div>
+                            <view-project-button :project-slug="project.slug"/>
                         </div>
                     </div>
                     <div class="w-full bg-gray-200 dark:bg-gray-700">
@@ -145,9 +142,10 @@
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import {Head, Link, useForm} from '@inertiajs/inertia-vue3';
 import Pagination from "@/Components/Pagination.vue";
+import ViewProjectButton from "@/Components/ViewProjectButton.vue";
 
 export default {
-    components: {GuestLayout, Head, Link, Pagination, useForm},
+    components: {GuestLayout, Head, Link, Pagination, useForm, ViewProjectButton},
     props: {
         projects: Object,
         sorting: String,

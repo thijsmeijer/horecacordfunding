@@ -17,12 +17,9 @@ class HomeController extends Controller
 
     public function __invoke(Request $request): Response
     {
-        $newestProjects = $this->projectRepository->getNewestProjects();
-        $highestFundedProjects = $this->projectRepository->getHighestFundedProjects();
-
         return Inertia::render('Home', [
-            'highestFundedProjects' => ProjectIndexResource::collection($highestFundedProjects),
-            'newestProjects' => ProjectIndexResource::collection($newestProjects),
+            'highestFundedProjects' => ProjectIndexResource::collection($this->projectRepository->getHighestFundedProjects()),
+            'newestProjects' => ProjectIndexResource::collection($this->projectRepository->getNewestProjects()),
         ]);
     }
 }
