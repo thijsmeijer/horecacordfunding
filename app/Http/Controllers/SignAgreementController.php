@@ -12,14 +12,15 @@ class SignAgreementController extends Controller
 {
     public function __construct(
         private readonly InvestmentRepository $investmentRepository,
-    ) {
+    )
+    {
     }
 
     public function show(): Response
     {
         $pendingInvestment = $this->investmentRepository->getPendingInvestment(auth()->user());
 
-        abort_if(! $pendingInvestment, 404);
+        abort_if(!$pendingInvestment, 404);
 
         return Inertia::render('Profile/Investments/Agreement');
     }
@@ -28,10 +29,10 @@ class SignAgreementController extends Controller
     {
         $pendingInvestment = $this->investmentRepository->getPendingInvestment(auth()->user());
 
-        abort_if(! $pendingInvestment, 404);
+        abort_if(!$pendingInvestment, 404);
 
         $this->investmentRepository->setInvestmentStatus($pendingInvestment, InvestmentStatus::Accepted->value);
 
-        return to_route('projects.show', $pendingInvestment->project->id)->with('success', 'Investering succesvol uitgevoerd.');
+        return to_route('projects.show', $pendingInvestment->project->slug)->with('success', 'Investering succesvol uitgevoerd.');
     }
 }
