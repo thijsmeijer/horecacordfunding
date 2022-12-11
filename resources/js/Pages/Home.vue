@@ -92,10 +92,7 @@
                                     <dd><span>{{ project.interest_rate }}% rente</span>
                                     </dd>
                                 </dl>
-                                <div class="pt-4">
-                                    <a :href="route('projects.show', project.id)"
-                                       class="w-full block rounded py-2 text-center text-white bg-blue-400 hover:bg-blue-500 duration-100">Bekijken</a>
-                                </div>
+                                <view-project-button :project-slug="project.slug"/>
                             </div>
                         </div>
                         <!-- Progress bar -->
@@ -198,10 +195,7 @@
                                     <dd><span>{{ project.interest_rate }}% rente</span>
                                     </dd>
                                 </dl>
-                                <div class="pt-4">
-                                    <a :href="route('projects.show', project.id)"
-                                       class="w-full block rounded py-2 text-center text-white bg-blue-400 hover:bg-blue-500 duration-100">Bekijken</a>
-                                </div>
+                                <view-project-button :project-slug="project.slug"/>
                             </div>
                         </div>
                         <!-- Progress bar -->
@@ -221,14 +215,16 @@
 
 <script>
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import {Head, Link, useForm} from '@inertiajs/inertia-vue3';
-import Pagination from "@/Components/Pagination.vue";
+import {Head, Link} from '@inertiajs/inertia-vue3';
+import ViewProjectButton from "@/Components/ViewProjectButton.vue";
+
 
 export default {
     components: {
         GuestLayout,
         Head,
-        Link
+        Link,
+        ViewProjectButton
     },
     props: {
         highestFundedProjects: {

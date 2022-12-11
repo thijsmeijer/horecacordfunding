@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditProjectStatusRequest;
-use App\Http\Requests\EditProjectRequest;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Resources\Projects\ProjectEditResource;
 use App\Http\Resources\Projects\ProjectIndexResource;
 use App\Http\Resources\Projects\ProjectShowResource;
 use App\Models\Project;
 use App\Repositories\ProjectRepository;
-use Illuminate\Http\Client\Request;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -68,10 +67,6 @@ class ProjectsController extends Controller
 
     public function show(Project $project): Response
     {
-        if ($project->is_pending && ! $project->belongs_to_current_user) {
-            abort(404);
-        }
-
         return Inertia::render('Projects/Show', [
             'project' => new ProjectShowResource($project),
         ]);
@@ -79,8 +74,8 @@ class ProjectsController extends Controller
 
     public function edit(Project $project): RedirectResponse|Response
     {
-        if ($project->belongs_to_current_user) {
-            return redirect()->route('profile.projects');
+        if (! $project->belongs_to_current_user) {
+            return redirect()->route('projects.show', ['project' => $project]);
         }
 
         return Inertia::render('Profile/Projects/Edit', [
@@ -88,7 +83,7 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function update(EditProjectRequest $request, Project $project): RedirectResponse
+    public function update(UpdateProjectRequest $request, Project $project): RedirectResponse
     {
         $this->projectRepository->update($project, $request->validated());
 

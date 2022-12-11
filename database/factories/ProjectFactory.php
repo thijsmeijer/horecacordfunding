@@ -13,6 +13,7 @@ class ProjectFactory extends Factory
 
         return [
             'user_id' => fake()->numberBetween(1, 10),
+            'slug' => fake()->slug,
             'name' => fake()->company(),
             'location' => fake()->city(),
             'description' => fake()->text(255),

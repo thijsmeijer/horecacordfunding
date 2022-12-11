@@ -7,11 +7,11 @@ use App\Rules\MultipleOfHundred;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class EditProjectRequest extends FormRequest
+class UpdateProjectRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return auth()->user()->id === $this->project->user->id;
+        return $this->project->belongs_to_current_user;
     }
 
     public function rules(): array

@@ -16,6 +16,7 @@ class Project extends Model
     protected $fillable = [
         'user_id',
         'name',
+        'slug',
         'location',
         'description',
         'own_contribution',
@@ -26,6 +27,11 @@ class Project extends Model
         'iban_name',
         'updated_at',
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     protected static function booted(): void
     {
@@ -66,14 +72,14 @@ class Project extends Model
     public function belongsToCurrentUser(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->user_id !== auth()->id(),
+            get: fn () => $this->user_id === auth()->id(),
         );
     }
 
     public function isPending(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->status === ProjectStatus::Pending,
+            get: fn () => $this->status == ProjectStatus::Pending,
         );
     }
 }
