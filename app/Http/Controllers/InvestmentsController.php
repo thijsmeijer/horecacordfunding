@@ -40,8 +40,8 @@ class InvestmentsController extends Controller
             'status' => InvestmentStatus::Pending->value,
         ]);
 
-        $this->investmentRepository->create($data, $project->id, auth()->user());
+        $investment = $this->investmentRepository->create($data, $project->id, auth()->user());
 
-        return to_route('investments.agreement.show');
+        return to_route('investments.agreement.show', $investment);
     }
 }

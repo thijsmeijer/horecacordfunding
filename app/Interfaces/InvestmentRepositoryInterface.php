@@ -9,7 +9,5 @@ interface InvestmentRepositoryInterface
 {
     public function create(array $data, int $projectId, User $user): Investment;
 
-    public function getPendingInvestment(User $user): ?Investment;
-
     public function setInvestmentStatus(Investment $investment, string $status): void;
 }

@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Enums\InvestmentStatus;
 use App\Interfaces\InvestmentRepositoryInterface;
 use App\Models\Investment;
 use App\Models\User;
@@ -18,13 +17,6 @@ class InvestmentRepository implements InvestmentRepositoryInterface
             'iban' => $data['iban'],
             'iban_name' => $data['iban_name'],
         ]);
-    }
-
-    public function getPendingInvestment(User $user): ?Investment
-    {
-        return Investment::where('user_id', $user->id)
-            ->where('status', InvestmentStatus::Pending->value)
-            ->first();
     }
 
     public function setInvestmentStatus(Investment $investment, string $status): void

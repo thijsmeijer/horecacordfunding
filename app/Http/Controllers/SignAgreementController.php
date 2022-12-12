@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\InvestmentStatus;
+use App\Models\Investment;
 use App\Repositories\InvestmentRepository;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -12,27 +13,28 @@ class SignAgreementController extends Controller
 {
     public function __construct(
         private readonly InvestmentRepository $investmentRepository,
-    )
-    {
+    ) {
     }
 
-    public function show(): Response
+    public function show(Investment $investment): Response
     {
-        $pendingInvestment = $this->investmentRepository->getPendingInvestment(auth()->user());
+        if (! $investment->belongs_to_current_user || $investment->status !== InvestmentStatus::Pending->value) {
+            abort(404);
+        }
 
-        abort_if(!$pendingInvestment, 404);
-
-        return Inertia::render('Profile/Investments/Agreement');
+        return Inertia::render('Profile/Investments/Agreement', [
+            'investment' => $investment,
+        ]);
     }
 
-    public function store(): RedirectResponse
+    public function store(Investment $investment): RedirectResponse
     {
-        $pendingInvestment = $this->investmentRepository->getPendingInvestment(auth()->user());
+        if (! $investment->belongs_to_current_user || $investment->status !== InvestmentStatus::Pending->value) {
+            abort(404);
+        }
 
-        abort_if(!$pendingInvestment, 404);
+        $this->investmentRepository->setInvestmentStatus($investment, InvestmentStatus::Accepted->value);
 
-        $this->investmentRepository->setInvestmentStatus($pendingInvestment, InvestmentStatus::Accepted->value);
-
-        return to_route('projects.show', $pendingInvestment->project->slug)->with('success', 'Investering succesvol uitgevoerd.');
+        return to_route('projects.show', $investment->project->slug)->with('success', 'Investering succesvol uitgevoerd.');
     }
 }
