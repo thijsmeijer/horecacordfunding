@@ -34,8 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile/projects/{project}', [ProjectsController::class, 'update'])->name('projects.update');
     Route::patch('/profile/projects/{project}/status', [ProjectsController::class, 'updateStatus'])->name('projects.update.status');
 
-    Route::get('/projects/investments/agreement', [SignAgreementController::class, 'show'])->name('investments.agreement.show');
-    Route::post('/projects/investments/agreement', [SignAgreementController::class, 'store'])->name('investments.agreement.store');
+    Route::get('/projects/investments/agreement/{investment}', [SignAgreementController::class, 'show'])->name('investments.agreement.show');
+    Route::post('/projects/investments/agreement/{investment}', [SignAgreementController::class, 'store'])->name('investments.agreement.store');
 });
 
 Route::get('/', HomeController::class)->name('home');

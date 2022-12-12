@@ -99,11 +99,14 @@ import {useForm} from "@inertiajs/inertia-vue3";
 export default {
     name: "Agreement",
     components: {GuestLayout},
-    setup() {
+    props: {
+        investment: Object,
+    },
+    setup(props) {
         const form = useForm();
 
         function submit() {
-            form.post(route('investments.agreement.store'));
+            form.post(route('investments.agreement.store', {investment: props.investment}));
         }
 
         return {
