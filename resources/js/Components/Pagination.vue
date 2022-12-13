@@ -30,7 +30,7 @@ import {InertiaLink} from '@inertiajs/inertia-vue3';
 export default {
     props: {
         links: Array,
-        meta: Array,
+        meta: Object,
     },
 }
 </script>
