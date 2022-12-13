@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class ProjectRepository implements ProjectRepositoryInterface
 {
@@ -40,7 +39,6 @@ class ProjectRepository implements ProjectRepositoryInterface
     {
         return Project::create([
             'name' => $data['name'],
-            'slug' => Str::slug($data['name']),
             'description' => $data['description'],
             'location' => $data['location'],
             'crowdfunding_contribution' => $data['amount'] * config('crowdfunding.contributions.crowdfunding'),
@@ -57,7 +55,6 @@ class ProjectRepository implements ProjectRepositoryInterface
     {
         $project->update([
             'name' => $data['name'],
-            'slug' => Str::slug($data['name']),
             'description' => $data['description'],
             'location' => $data['location'],
             'crowdfunding_contribution' => $data['total_amount'] * config('crowdfunding.contributions.crowdfunding'),
