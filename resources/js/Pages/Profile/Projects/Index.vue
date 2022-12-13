@@ -35,7 +35,7 @@
                         <span class="font-bold block w-full">Start een nieuw project</span>
                         </span>
                     </button>
-                    <div v-for="project in user.data.projects"
+                    <div v-for="project in user.projects"
                          class="overflow-hidden rounded-md shadow-xl m-2 flex flex-col justify-between">
                         <div>
                             <img
@@ -126,7 +126,7 @@
 <script>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head} from '@inertiajs/inertia-vue3';
-import ViewProjectButton from "@/Components/ViewProjectButton.vue";
+import ViewProjectButton from "@/Components/Project/ViewProjectButton.vue";
 
 export default {
     name: "Index",

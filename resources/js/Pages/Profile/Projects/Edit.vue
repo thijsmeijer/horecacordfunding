@@ -4,13 +4,13 @@
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Project {{ project.data.name }}
+                    Project {{ project.name }}
                 </h2>
                 <span
                     class="px-2 rounded-full text-sm font-bold block"
-                    :class="statusColor[project.data.status]"
+                    :class="statusColor[project.status]"
                 >
-                    {{ project.data.status }}
+                    {{ project.status }}
                 </span>
             </div>
         </template>
@@ -38,8 +38,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="Geef uw project een mooie naam!"
                                             v-model="form.name"
-                                            :disabled="project.data.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.data.status !== 'afwachting' }"
+                                            :disabled="project.status !== 'afwachting'"
+                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.name"/>
@@ -60,8 +60,8 @@
                                             placeholder="100000"
                                             v-model="form.total_amount"
                                             @change="calculateContributions"
-                                            :disabled="project.data.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.data.status !== 'afwachting' }"
+                                            :disabled="project.status !== 'afwachting'"
+                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
                                         />
                                     </div>
                                     <p class="mt-2 text-sm text-gray-500">Graag het bedrag invullen zonder punten en
@@ -199,8 +199,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="NL00RABO0000000000"
                                             v-model="form.iban"
-                                            :disabled="project.data.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.data.status !== 'afwachting' }"
+                                            :disabled="project.status !== 'afwachting'"
+                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.iban"/>
@@ -212,8 +212,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="IBAN Tenaamstelling"
                                             v-model="form.iban_name"
-                                            :disabled="project.data.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.data.status !== 'afwachting' }"
+                                            :disabled="project.status !== 'afwachting'"
+                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.iban_name"/>
@@ -392,7 +392,7 @@ export default {
         }
     },
     setup(props) {
-        let values = props.project.data;
+        let values = props.project;
 
         const form = useForm(
             values,
@@ -406,12 +406,12 @@ export default {
     },
     methods: {
         submit() {
-            this.form.patch(route('projects.update', this.project.data.slug), {
+            this.form.patch(route('projects.update', this.project.slug), {
                 preserveScroll: (page) => Object.keys(page.props.errors).length === 0,
             });
         },
         changeStatus() {
-            this.statusForm.patch(route('projects.update.status', this.project.data.slug), {
+            this.statusForm.patch(route('projects.update.status', this.project.slug), {
                 preserveScroll: true,
             });
         },

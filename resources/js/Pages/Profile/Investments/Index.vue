@@ -1,5 +1,5 @@
 <template>
-    <Head title="Investeringen" />
+    <Head title="Investeringen"/>
 
     <AuthenticatedLayout>
         <template #header>
@@ -16,15 +16,15 @@
                             <div class="flex flex-row justify-between mb-10">
                                 <div class="flex flex-col">
                                     <div class="text-2xl font-bold">
-                                        {{ user.data.name }}
+                                        {{ user.name }}
                                     </div>
                                     <div class="text-sm text-gray-500">
-                                        {{ user.data.email }}
+                                        {{ user.email }}
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <div class="text-2xl font-bold">
-                                        {{ user.data.total_invested }}
+                                        {{ user.total_invested }}
                                     </div>
                                     <div class="text-sm text-gray-500">
                                         geïnvesteerd
@@ -34,19 +34,32 @@
                             <div class="mt-8 flex flex-col">
                                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                        <div
+                                            class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                             <table class="min-w-full divide-y divide-gray-300">
                                                 <thead class="bg-gray-50">
                                                 <tr>
-                                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Project</th>
-                                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Datum</th>
-                                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">geïnvesteerd</th>
-                                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">aflossingen</th>
+                                                    <th scope="col"
+                                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                        Project
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        Datum
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        geïnvesteerd
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        aflossingen
+                                                    </th>
 
                                                 </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-gray-200 bg-white">
-                                                <tr v-for="investment in user.data.investments">
+                                                <tr v-for="investment in user.investments">
                                                     <td
                                                         class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 flex space-x-2"
                                                     >
@@ -60,12 +73,19 @@
                                                             {{ investment.project.status }}
                                                         </span>
                                                     </td>
-                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ investment.created_at }}</td>
-                                                    <td class="whitespace-nowrap px-3 py-4 text-sm font-bold">{{ investment.amount }}</td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                        {{ investment.created_at }}
+                                                    </td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm font-bold">
+                                                        {{ investment.amount }}
+                                                    </td>
                                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500">
                                                       <span class="flex items-center space-x-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                             viewBox="0 0 24 24" stroke-width="1.5"
+                                                             stroke="currentColor" class="w-4 h-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
                                                       </svg>
                                                       <span>bekijk</span>
                                                      </span>

@@ -6,13 +6,13 @@
                 class="hidden w-2/5 mx-auto shadow-md rounded-lg border space-y-8 justify-between overflow-hidden md:flex md:flex-col">
                 <div>
                     <a
-                        :href="route('projects.show', project.data.slug)"
+                        :href="route('projects.show', project.slug)"
                         class="w-full h-52 bg-cover bg-center rounded relative overflow-hidden flex items-end group"
                         style="background-image: url('https://picsum.photos/800/200')">
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-gray-700 opacity-70 group-hover:opacity-50 duration-150"></div>
                         <div class="relative z-20 pb-5 px-5 text-left text-white">
-                            <h3 class="text-3xl font-bold mt-2">{{ project.data.name }}</h3>
+                            <h3 class="text-3xl font-bold mt-2">{{ project.name }}</h3>
                             <dl class="flex items-center space-x-2 font-semibold">
                                 <dt>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -26,7 +26,7 @@
                                     <span class="sr-only">locatie</span>
                                 </dt>
                                 <dd>
-                                    <span>{{ project.data.location }}</span>
+                                    <span>{{ project.location }}</span>
                                 </dd>
                             </dl>
                         </div>
@@ -45,7 +45,7 @@
                                     <span class="sr-only">ondernemer</span>
                                 </dt>
                                 <dd>
-                                    <span>{{ project.data.user }}</span>
+                                    <span>{{ project.user }}</span>
                                 </dd>
                             </dl>
                             <dl class="flex items-center space-x-2">
@@ -58,7 +58,7 @@
                                     <span class="sr-only">opgehaald</span>
                                 </dt>
                                 <dd>
-                                    <span>{{ project.data.funding_progress }}% opgehaald</span>
+                                    <span>{{ project.funding_progress }}% opgehaald</span>
                                 </dd>
                             </dl>
                             <dl class="flex items-center space-x-2">
@@ -73,7 +73,7 @@
                                     <span class="sr-only">duur</span>
                                 </dt>
                                 <dd>
-                                    <span>{{ project.data.duration }} maanden</span>
+                                    <span>{{ project.duration }} maanden</span>
                                 </dd>
                             </dl>
                             <dl class="flex items-center space-x-2">
@@ -88,35 +88,35 @@
                                     <span class="sr-only">rente</span>
                                 </dt>
                                 <dd>
-                                    <span>{{ project.data.interest_rate }}%</span>
+                                    <span>{{ project.interest_rate }}%</span>
                                 </dd>
                             </dl>
                         </div>
                     </div>
                 </div>
                 <div class="p-6">
-                    <p>Eigen inbreng: &euro;{{ project.data.formatted_own_contribution }}
+                    <p>Eigen inbreng: &euro;{{ project.formatted_own_contribution }}
                         (10%)</p>
-                    <p>Externe inbreng: &euro;{{ project.data.formatted_external_contribution }}
+                    <p>Externe inbreng: &euro;{{ project.formatted_external_contribution }}
                         (30%)</p>
                     <p>Crowdfunding: &euro;{{
-                            project.data.formatted_crowdfunding_contribution
+                            project.formatted_crowdfunding_contribution
                         }}
                         (60%)</p>
                 </div>
                 <div class="flex flex-col justify-between font-semibold">
                     <div class="space-y-2">
                         <h2 class="text-center text-xl font-semibold">
-                            <span>&euro;{{ project.data.total_invested }}</span> van de
-                            <span>&euro;{{ project.data.formatted_crowdfunding_contribution }}
-                                ({{ project.data.funding_progress }}%)</span> opgehaald.
+                            <span>&euro;{{ project.total_invested }}</span> van de
+                            <span>&euro;{{ project.formatted_crowdfunding_contribution }}
+                                ({{ project.funding_progress }}%)</span> opgehaald.
                         </h2>
                         <!-- Progress bar -->
                         <div class="w-full bg-gray-200 dark:bg-gray-700">
                             <div
                                 class="font-medium text-white font-bold text-center p-1.5 leading-none"
-                                :class="{'bg-blue-400': project.data.funding_progress!== '0'}"
-                                :style="'width:' + project.data.funding_progress + '%'">
+                                :class="{'bg-blue-400': project.funding_progress!== '0'}"
+                                :style="'width:' + project.funding_progress + '%'">
                             </div>
                         </div>
                     </div>
@@ -235,7 +235,7 @@ export default {
         })
 
         function submit() {
-            this.form.post(route('investments.store', props.project.data.slug), {
+            this.form.post(route('investments.store', props.project.slug), {
                 preserveScroll: true
             })
         }
