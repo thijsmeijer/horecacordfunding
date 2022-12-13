@@ -138,7 +138,7 @@ export default {
         user: Object,
     },
     setup(props) {
-        let values = props.user.data;
+        let values = props.user;
 
         const form = useForm(
             values,

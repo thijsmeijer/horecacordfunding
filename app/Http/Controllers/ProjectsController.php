@@ -69,6 +69,7 @@ class ProjectsController extends Controller
     {
         return Inertia::render('Projects/Show', [
             'project' => new ProjectShowResource($project),
+            'belongsToUser' => $project->belongs_to_current_user,
         ]);
     }
 
