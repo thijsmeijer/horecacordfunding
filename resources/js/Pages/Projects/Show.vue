@@ -150,8 +150,8 @@
                                     </div>
                                     <div>
                                         <div class="p-6">
-                                            <p>Totale investeering: &euro;{{ project.data.formatted_total_amount }}
-                                                </p>
+                                            <p>Totale investering: &euro;{{ project.data.formatted_total_amount }}
+                                            </p>
                                             <p>Eigen inbreng: &euro;{{ project.data.formatted_own_contribution }}
                                                 (10%)</p>
                                             <p>Externe inbreng: &euro;{{ project.data.formatted_external_contribution }}
