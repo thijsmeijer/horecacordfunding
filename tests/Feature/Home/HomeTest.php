@@ -36,12 +36,12 @@ beforeEach(function () {
 });
 
 it('loads the home page', function () {
-    $this->get('/')
+    $this->get(route('home'))
         ->assertStatus(200);
 });
 
 it('shows the four most recent projects', function () {
-    $response = $this->get('/');
+    $response = $this->get(route('home'));
 
     $this->latestProjects->take(4)->each(function ($project) use ($response) {
         $response->assertSee($project->name);
@@ -49,7 +49,7 @@ it('shows the four most recent projects', function () {
 });
 
 it('shows the eight highest funded projects', function () {
-    $response = $this->get('/');
+    $response = $this->get(route('home'));
 
     $this->highFundedProjects->each(function ($project) use ($response) {
         $response->assertSee($project->name);
@@ -57,6 +57,6 @@ it('shows the eight highest funded projects', function () {
 });
 
 it('does not show projects that are not active', function () {
-    $this->get('/')
+    $this->get(route('home'))
         ->assertDontSee($this->pendingProject->name);
 });
