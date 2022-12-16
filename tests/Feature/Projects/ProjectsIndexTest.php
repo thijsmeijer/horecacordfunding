@@ -67,7 +67,7 @@ it('also shows my own projects no matter the status', function () {
 });
 
 it('shows the projects that have a name like the search query', function () {
-    $this->get(route('projects.index', ['search' => $this->projects->first->name]))
+    $this->get(route('projects.index', ['search' => $this->projects->first()->name]))
         ->assertStatus(200)
         ->assertSee($this->projects->first()->name)
         ->assertDontSee($this->projects->last()->name);
