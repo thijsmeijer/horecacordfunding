@@ -12,7 +12,6 @@ return new class extends Migration
             $table->bigInteger('own_contribution')->after('description');
             $table->bigInteger('external_contribution')->after('own_contribution');
             $table->bigInteger('crowdfunding_contribution')->after('external_contribution');
-            $table->dropColumn('amount');
         });
     }
 
@@ -22,7 +21,6 @@ return new class extends Migration
             $table->dropColumn('own_contribution');
             $table->dropColumn('external_contribution');
             $table->dropColumn('crowdfunding_contribution');
-            $table->bigInteger('amount')->after('description');
         });
     }
 };
