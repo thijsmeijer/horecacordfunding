@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\InvestmentStatus;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,6 +16,7 @@ class InvestmentFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
+            'project_id' => Project::factory(),
             'amount' => round(fake()->numberBetween(1000, 2000), -2),
             'status' => InvestmentStatus::Accepted->value,
             'iban' => fake()->iban('NL'),

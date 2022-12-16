@@ -15,10 +15,10 @@ beforeEach(function () {
     ])->create();
 
     $this->project->each(function ($project) {
-       Investment::factory([
-           'project_id' => $project->id,
-           'user_id' => User::factory()->create()->id,
-       ])->create();
+        Investment::factory([
+            'project_id' => $project->id,
+            'user_id' => User::factory()->create()->id,
+        ])->create();
     });
 });
 
@@ -45,10 +45,10 @@ it('shows the project progress', function () {
 });
 
 it('shows all investments', function () {
-   $response = $this->get(route('projects.show', $this->project));
+    $response = $this->get(route('projects.show', $this->project));
 
-   $this->project->investments()->each(function ($investment) use ($response) {
-       $response->assertSee(number_format($investment->amount, 0, ',', '.'))
-           ->assertSee($investment->created_at->diffForHumans());
-   });
+    $this->project->investments()->each(function ($investment) use ($response) {
+        $response->assertSee(number_format($investment->amount, 0, ',', '.'))
+            ->assertSee($investment->created_at->diffForHumans());
+    });
 });

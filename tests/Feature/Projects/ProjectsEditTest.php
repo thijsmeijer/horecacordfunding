@@ -132,7 +132,6 @@ it('lets the user edit the project location while the project is pending', funct
     ]);
 });
 
-
 it('lets the user edit the project description while the project is pending', function () {
     $this->actingAs($this->user)
         ->patch(route('projects.update', $this->pendingProject), [
