@@ -15,7 +15,7 @@ class InvestmentSeeder extends Seeder
         $projects = Project::where('status', '!=', ProjectStatus::Pending->value)->get();
 
         foreach ($projects as $project) {
-            Investment::factory(1)->create([
+            Investment::factory(10)->create([
                 'project_id' => $project->id,
             ]);
         }
