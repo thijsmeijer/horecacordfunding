@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\ProjectStatus;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjectFactory extends Factory
@@ -12,7 +13,7 @@ class ProjectFactory extends Factory
         $totalAmount = round($this->faker->numberBetween(100000, 500000), -3);
 
         return [
-            'user_id' => fake()->numberBetween(1, 10),
+            'user_id' => User::factory(),
             'name' => fake()->company(),
             'location' => fake()->city(),
             'description' => fake()->text(255),

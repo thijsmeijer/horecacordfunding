@@ -12,16 +12,12 @@ class InvestmentSeeder extends Seeder
 {
     public function run(): void
     {
-        $users = User::all();
         $projects = Project::where('status', '!=', ProjectStatus::Pending->value)->get();
 
-        foreach ($users as $user) {
-            foreach ($projects as $project) {
-                Investment::factory(1)->create([
-                    'user_id' => $user->id,
-                    'project_id' => $project->id,
-                ]);
-            }
+        foreach ($projects as $project) {
+            Investment::factory(1)->create([
+                'project_id' => $project->id,
+            ]);
         }
     }
 }
