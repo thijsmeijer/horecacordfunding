@@ -11,7 +11,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => '$2y$10$fY8l88rfpMo/RmzEZKpUaO7fjI..cJGwosAOn9rmWTshGRWeJ2ymG',
+            'password' => '$2y$10$fY8l88rfpMo/RmzEZKpUaO7fjI..cJGwosAOn9rmWTshGRWeJ2ymG', // password
             'iban' => fake()->iban(),
             'iban_name' => fake()->name(),
         ];
