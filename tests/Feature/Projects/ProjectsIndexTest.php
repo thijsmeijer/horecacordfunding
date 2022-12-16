@@ -7,30 +7,29 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
-
 beforeEach(function () {
+    $this->user = User::factory()->create();
+
     $this->projects = Project::factory([
-        'user_id' => User::factory()->create()->id,
         'own_contribution' => 100000,
         'external_contribution' => 300000,
         'crowdfunding_contribution' => 600000,
         'status' => ProjectStatus::Active->name,
-    ])->count(24)
-        ->sequence(fn ($sequence) => ['created_at' => now()->subHour($sequence->index)])
+    ])->count(13)
+        ->sequence(fn ($sequence) => ['created_at' => now()->subHours($sequence->index)])
         ->create();
 
-    $projects = $this->projects->each(function ($project, $index) {
+    $this->projects->each(function ($project, $index) {
         Investment::factory([
-            'user_id' => User::factory()->create()->id,
             'project_id' => $project->id,
             'amount' => 100 * ($index + 1),
-        ])->count($index)->create();
+        ])->for($this->user)->count(5)->create();
     });
 
     $this->pendingProject = Project::factory([
         'user_id' => User::factory()->create()->id,
         'status' => ProjectStatus::Pending->name,
-        'created_at' => now()->subHour($this->projects->count()),
+        'created_at' => now()->subHours($this->projects->count()),
     ])->create();
 });
 
@@ -49,9 +48,9 @@ it('loads the projects index page with pagination', function () {
 it('shows twelve projects per page', function () {
     $this->get(route('projects.index'))
         ->assertStatus(200)
-        ->assertSee($this->projects[0]->title)
-        ->assertSee($this->projects[11]->title)
-        ->assertDontSee($this->projects[12]->title);
+        ->assertSee($this->projects->first->title)
+        ->assertSee($this->projects->get(11)->title)
+        ->assertDontSee($this->projects->last()->title);
 });
 
 it('does not show projects that are not active', function () {
@@ -68,30 +67,26 @@ it('also shows my own projects no matter the status', function () {
 });
 
 it('shows the projects that have a name like the search query', function () {
-    $this->get(route('projects.index', ['search' => $this->projects[0]->name]))
+    $this->get(route('projects.index', ['search' => $this->projects->first->name]))
         ->assertStatus(200)
-        ->assertSee($this->projects[0]->name)
-        ->assertDontSee($this->projects[1]->name);
+        ->assertSee($this->projects->first()->name)
+        ->assertDontSee($this->projects->last()->name);
 });
 
 it('sorts the projects from new to old', function () {
     $this->get(route('projects.index', ['sort' => 'newest']))
         ->assertStatus(200)
-        ->assertSeeInOrder([
-            $this->projects[0]->name,
-            $this->projects[1]->name,
-            $this->projects[2]->name,
-        ]);
+        ->assertSeeInOrder(
+            $this->projects->take(3)->pluck('name')->toArray()
+        );
 });
 
 it('sorts the projects from old to new', function () {
     $this->get(route('projects.index', ['sort' => 'oldest']))
         ->assertStatus(200)
-        ->assertSeeInOrder([
-            $this->projects[23]->name,
-            $this->projects[22]->name,
-            $this->projects[21]->name,
-        ]);
+        ->assertSeeInOrder(
+            $this->projects->reverse()->take(3)->pluck('name')->toArray()
+        );
 });
 
 it('sorts the projects from highest funding to lowest funding', function () {

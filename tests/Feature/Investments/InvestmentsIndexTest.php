@@ -5,13 +5,14 @@ use App\Models\Investment;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Log;
 
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
     $this->user = User::factory()->create();
 
-    Project::factory()->has(Investment::factory(['user_id' => $this->user->id])->count(3))->create();
+    Project::factory(['status' => ProjectStatus::Active->name])->has(Investment::factory(['user_id' => $this->user->id])->count(3))->create();
 
     $this->actingAs($this->user);
 });
@@ -29,7 +30,9 @@ it('shows the users full name and email', function () {
 
 it('shows all investments', function () {
     $this->user->investments->each(function ($investment) {
-        $this->get(route('profile.investments'))->assertSee($investment->amount)
+        Log::info($investment->project);
+        $this->get(route('profile.investments'))
+            ->assertSee($investment->amount)
             ->assertSee($investment->created_at)
             ->assertSee(ProjectStatus::getValue($investment->project->status))
             ->assertSee($investment->project->name);
