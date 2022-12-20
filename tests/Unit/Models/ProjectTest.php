@@ -3,7 +3,10 @@
 use App\Models\Project;
 use App\Models\Investment;
 use App\Enums\ProjectStatus;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use function Pest\Laravel\actingAs;
+
+uses(RefreshDatabase::class);
 
 it('determines the maximal investment amount', function (){
     $project = Project::factory(['crowdfunding_contribution' => 5000])
