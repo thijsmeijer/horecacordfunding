@@ -23,4 +23,22 @@ class InvestmentFactory extends Factory
             'iban_name' => fake()->name(),
         ];
     }
+
+    public function pending()
+    {
+        return $this->state(function () {
+            return [
+                'status' => InvestmentStatus::Pending,
+            ];
+        });
+    }
+
+    public function accepted()
+    {
+        return $this->state(function () {
+            return [
+                'status' => InvestmentStatus::Accepted,
+            ];
+        });
+    }
 }
