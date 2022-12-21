@@ -64,11 +64,11 @@
                 </dl>
             </div>
             <div class="hidden md:block p-6" v-if="belongsToUser">
-                <a :href="route('profile.projects.edit', project.slug)" target="_blank"
+                <a :href="route('profile.projects.edit', project)" target="_blank"
                    class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Aanpassen</a>
             </div>
             <div class="hidden md:block p-6" v-else>
-                <a :href="route('investments.create', project.slug)"
+                <a :href="route('investments.create', project)"
                    class="w-full block rounded-lg p-3 text-center text-white bg-blue-400">Investeren</a>
             </div>
         </div>

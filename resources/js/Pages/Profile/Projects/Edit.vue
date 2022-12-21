@@ -406,12 +406,12 @@ export default {
     },
     methods: {
         submit() {
-            this.form.patch(route('projects.update', this.project.slug), {
+            this.form.patch(route('projects.update', this.project), {
                 preserveScroll: (page) => Object.keys(page.props.errors).length === 0,
             });
         },
         changeStatus() {
-            this.statusForm.patch(route('projects.update.status', this.project.slug), {
+            this.statusForm.patch(route('projects.update.status', this.project), {
                 preserveScroll: true,
             });
         },

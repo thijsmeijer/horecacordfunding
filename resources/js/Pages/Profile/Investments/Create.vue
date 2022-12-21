@@ -6,7 +6,7 @@
                 class="hidden w-2/5 mx-auto shadow-md rounded-lg border space-y-8 justify-between overflow-hidden md:flex md:flex-col">
                 <div>
                     <a
-                        :href="route('projects.show', project.slug)"
+                        :href="route('projects.show', project)"
                         class="w-full h-52 bg-cover bg-center rounded relative overflow-hidden flex items-end group"
                         style="background-image: url('https://picsum.photos/800/200')">
                         <div
@@ -235,7 +235,7 @@ export default {
         })
 
         function submit() {
-            this.form.post(route('investments.store', props.project.slug), {
+            this.form.post(route('investments.store', props.project), {
                 preserveScroll: true
             })
         }

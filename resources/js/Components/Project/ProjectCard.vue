@@ -84,7 +84,7 @@
                     <dd><span>{{ project.interest_rate }}% rente</span>
                     </dd>
                 </dl>
-                <view-project-button :project-slug="project.slug"/>
+                <view-project-button :project-slug="project"/>
             </div>
         </div>
         <div class="w-full bg-gray-200 dark:bg-gray-700">

@@ -93,7 +93,7 @@
                                     </span>
                                     </dd>
                                 </dl>
-                                <view-project-button :project-slug="project.slug"/>
+                                <view-project-button :project-slug="project"/>
                                 <div class="flex justify-between items-center">
                                     <button
                                         type="submit"
@@ -151,7 +151,8 @@ export default {
     },
     methods: {
         editProject(project) {
-            this.$inertia.get(`/profile/projects/${project.slug}/edit`);
+            this.$inertia.get(route('profile.projects.edit', project))
+
         },
         createProject() {
             this.$inertia.get(route('projects.create'));
