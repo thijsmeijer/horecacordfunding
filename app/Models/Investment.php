@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\InvestmentStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,10 @@ class Investment extends Model
         'iban',
         'iban_name',
         'status',
+    ];
+
+    protected $casts = [
+        'status' => InvestmentStatus::class
     ];
 
     public function returns(): HasMany

@@ -23,9 +23,22 @@ class ProjectFactory extends Factory
             'crowdfunding_contribution' => $totalAmount * config('crowdfunding.contributions.crowdfunding'),
             'iban' => fake()->iban(),
             'iban_name' => fake()->name(),
-            'status' => fake()->randomElement([ProjectStatus::Pending->name, ProjectStatus::Active->name, ProjectStatus::Cancelled->name]),
+            'status' => fake()->randomElement(ProjectStatus::cases()),
             'interest_rate' => config('crowdfunding.interest'),
             'duration' => config('crowdfunding.duration'),
         ];
+    }
+
+    public function funding(): static
+    {
+        return $this->state([
+            'status' => ProjectStatus::Funding
+        ]);
+    }
+    public function pending(): static
+    {
+        return $this->state([
+            'status' => ProjectStatus::Pending
+        ]);
     }
 }

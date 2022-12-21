@@ -9,7 +9,7 @@
                 <span>&euro;{{ investment.amount }}</span>
                 <span class="text-slate-500">{{ investment.invested_at }}</span>
             </li>
-            <li v-else-if="project.status === 'afwachting'"
+            <li v-else-if="project.is_pending"
                 class="px-6 py-4 text-center">
                 <span>Publiceer je project om investeringen te ontvangen.</span>
             </li>

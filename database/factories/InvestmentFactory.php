@@ -18,7 +18,7 @@ class InvestmentFactory extends Factory
             'user_id' => User::factory(),
             'project_id' => Project::factory(),
             'amount' => round(fake()->numberBetween(1000, 2000), -2),
-            'status' => InvestmentStatus::Accepted->value,
+            'status' => InvestmentStatus::Accepted,
             'iban' => fake()->iban('NL'),
             'iban_name' => fake()->name(),
         ];

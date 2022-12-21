@@ -11,20 +11,25 @@ uses(RefreshDatabase::class);
 beforeEach(function () {
     $this->latestProjects = Project::factory([
         'user_id' => User::factory()->create()->id,
-        'status' => ProjectStatus::Active->name,
-    ])->count(10)->create();
+    ])
+        ->funding()
+        ->count(10)
+        ->create();
 
     $this->pendingProject = Project::factory([
         'user_id' => User::factory()->create()->id,
-        'status' => ProjectStatus::Pending->name,
-    ])->create();
+    ])
+        ->pending()
+        ->create();
 
     $this->highFundedProjects = Project::factory([
         'user_id' => User::factory()->create()->id,
-        'status' => ProjectStatus::Active->name,
         'created_at' => now()->subDays(2),
         'updated_at' => now()->subDays(2),
-    ])->count(8)->create();
+    ])
+        ->funding()
+        ->count(8)
+        ->create();
 
     $this->highFundedProjects->each(function ($project) {
         Investment::factory([

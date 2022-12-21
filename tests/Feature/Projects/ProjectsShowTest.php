@@ -11,14 +11,16 @@ uses(RefreshDatabase::class);
 beforeEach(function () {
     $this->project = Project::factory([
         'user_id' => User::factory()->create()->id,
-        'status' => ProjectStatus::Active->name,
-    ])->create();
+    ])
+        ->funding()
+        ->create();
 
     $this->project->each(function ($project) {
         Investment::factory([
-            'project_id' => $project->id,
             'user_id' => User::factory()->create()->id,
-        ])->create();
+        ])
+            ->for($project)
+            ->create();
     });
 });
 

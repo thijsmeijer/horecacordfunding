@@ -38,8 +38,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="Geef uw project een mooie naam!"
                                             v-model="form.name"
-                                            :disabled="project.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
+                                            :disabled="!project.is_pending"
+                                            :class="{ 'bg-gray-100': !project.is_pending }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.name"/>
@@ -60,8 +60,8 @@
                                             placeholder="100000"
                                             v-model="form.total_amount"
                                             @change="calculateContributions"
-                                            :disabled="project.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
+                                            :disabled="!project.is_pending"
+                                            :class="{ 'bg-gray-100': !project.is_pending }"
                                         />
                                     </div>
                                     <p class="mt-2 text-sm text-gray-500">Graag het bedrag invullen zonder punten en
@@ -199,8 +199,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="NL00RABO0000000000"
                                             v-model="form.iban"
-                                            :disabled="project.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
+                                            :disabled="!project.is_pending"
+                                            :class="{ 'bg-gray-100': !project.is_pending }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.iban"/>
@@ -212,8 +212,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="IBAN Tenaamstelling"
                                             v-model="form.iban_name"
-                                            :disabled="project.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
+                                            :disabled="!project.is_pending"
+                                            :class="{ 'bg-gray-100': !project.is_pending }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.iban_name"/>
@@ -332,11 +332,11 @@
                                             v-model="statusForm.status"
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         >
-                                            <option value="afwachting">Afwachting</option>
+                                            <option value="pending">Afwachting</option>
                                             <option value="funding">Funding</option>
-                                            <option value="afgerond">Afgerond</option>
-                                            <option value="aflossing">Aflossing</option>
-                                            <option value="geannuleerd">Geannuleerd</option>
+                                            <option value="completed">Afgerond</option>
+                                            <option value="repayment">Aflossing</option>
+                                            <option value="cancelled">Geannuleerd</option>
                                         </select>
                                     </div>
                                 </div>
@@ -384,10 +384,10 @@ export default {
         return {
             statusColor: {
                 'funding': 'bg-green-500 text-green-100',
-                'afgerond': 'bg-green-100 text-green-600',
-                'geannuleerd': 'bg-red-500 text-red-100',
-                'afwachting': 'bg-yellow-500 text-yellow-100',
-                'aflossing': 'bg-blue-500 text-blue-100',
+                'completed': 'bg-green-100 text-green-600',
+                'cancelled': 'bg-red-500 text-red-100',
+                'pending': 'bg-yellow-500 text-yellow-100',
+                'repayment': 'bg-blue-500 text-blue-100',
             },
         }
     },

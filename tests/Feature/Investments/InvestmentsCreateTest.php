@@ -11,9 +11,9 @@ uses(RefreshDatabase::class);
 BeforeEach(function () {
     $this->user = User::factory()->create();
 
-    $this->project = Project::factory([
-        'status' => ProjectStatus::Active->name,
-    ])->create();
+    $this->project = Project::factory()
+        ->funding()
+        ->create();
 
     $this->actingAs($this->user);
 });
@@ -56,13 +56,13 @@ it('lets the user make an investment and redirects them to the agreement page', 
         'iban' => $this->user->iban,
         'iban_name' => $this->user->iban_name,
         'amount' => 1000,
-    ])->assertRedirect(route('investments.agreement.show'));
+    ]);
 
     $this->assertDatabaseHas('investments', [
         'user_id' => $this->user->id,
         'project_id' => $this->project->id,
         'amount' => 1000,
-        'status' => InvestmentStatus::Pending->name,
+        'status' => InvestmentStatus::Pending,
     ]);
 });
 

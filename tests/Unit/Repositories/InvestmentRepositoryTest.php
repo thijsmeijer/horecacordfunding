@@ -29,34 +29,6 @@ it('creates an investment', function () {
     expect($project->fresh()->investments()->count())->toBe(1);
 });
 
-it('gets the first pending investment of a user', function () {
-    $user = User::factory()
-        ->has(
-            Investment::factory()
-                ->count(2)
-                ->pending()
-                ->state(new Sequence(
-                    ['amount' => 200],
-                    ['amount' => 400],
-                ))
-        )
-        ->create();
-
-    $pendingInvestment = $this->repository->getPendingInvestment($user);
-
-    expect($pendingInvestment->amount)->toBe(200);
-});
-
-it('returns null when a user has no pending investments', function () {
-    $user = User::factory()
-        ->has(Investment::factory()->accepted())
-        ->create();
-
-    $pendingInvestment = $this->repository->getPendingInvestment($user);
-
-    expect($pendingInvestment)->toBeNull();
-});
-
 it('sets the investment status from an enum', function () {
     $investment = Investment::factory()
         ->pending()

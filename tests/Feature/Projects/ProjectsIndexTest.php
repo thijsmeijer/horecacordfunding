@@ -14,23 +14,28 @@ beforeEach(function () {
         'own_contribution' => 100000,
         'external_contribution' => 300000,
         'crowdfunding_contribution' => 600000,
-        'status' => ProjectStatus::Active->name,
-    ])->count(13)
+    ])
+        ->funding()
+        ->count(13)
         ->sequence(fn ($sequence) => ['created_at' => now()->subHours($sequence->index)])
         ->create();
 
     $this->projects->each(function ($project, $index) {
         Investment::factory([
-            'project_id' => $project->id,
             'amount' => 100 * ($index + 1),
-        ])->for($this->user)->count(5)->create();
+        ])
+            ->for($this->user)
+            ->for($project)
+            ->count(5)
+            ->create();
     });
 
     $this->pendingProject = Project::factory([
         'user_id' => User::factory()->create()->id,
-        'status' => ProjectStatus::Pending->name,
         'created_at' => now()->subHours($this->projects->count()),
-    ])->create();
+    ])
+        ->pending()
+        ->create();
 });
 
 it('loads the projects index page', function () {

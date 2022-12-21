@@ -11,15 +11,15 @@ uses(RefreshDatabase::class, WithFaker::class);
 beforeEach(function () {
     $this->user = User::factory()->create();
 
-    $this->pendingProject = Project::factory([
-        'user_id' => $this->user->id,
-        'status' => ProjectStatus::Pending->name,
-    ])->create();
+    $this->pendingProject = Project::factory()
+        ->for($this->user)
+        ->pending()
+        ->create();
 
-    $this->activeProject = Project::factory([
-        'user_id' => $this->user->id,
-        'status' => ProjectStatus::Active->name,
-    ])->create();
+    $this->activeProject = Project::factory()
+        ->for($this->user)
+        ->funding()
+        ->create();
 });
 
 it('loads the page', function () {
@@ -89,7 +89,7 @@ it('lets the user edit the project name while the project is pending', function 
             'total_amount' => $this->pendingProject->totalAmount,
             'iban' => $this->pendingProject->iban,
             'iban_name' => $this->pendingProject->iban_name,
-        ])->assertRedirect(route('profile.projects.edit', $this->pendingProject));
+        ])->assertRedirect(route('profile.projects.edit', $this->pendingProject->fresh()));
 
     $this->assertDatabaseHas('projects', [
         'id' => $this->pendingProject->id,
@@ -106,7 +106,7 @@ it('lets the user edit the project iban and iban name while the project is pendi
             'total_amount' => $this->pendingProject->totalAmount,
             'iban' => $this->faker->iban('NL'),
             'iban_name' => $this->faker->name,
-        ])->assertRedirect(route('profile.projects.edit', $this->pendingProject));
+        ])->assertRedirect(route('profile.projects.edit', $this->pendingProject->fresh()));
 
     $this->assertDatabaseHas('projects', [
         'id' => $this->pendingProject->id,
@@ -124,7 +124,7 @@ it('lets the user edit the project location while the project is pending', funct
             'total_amount' => $this->pendingProject->totalAmount,
             'iban' => $this->pendingProject->iban,
             'iban_name' => $this->pendingProject->iban_name,
-        ])->assertRedirect(route('profile.projects.edit', $this->pendingProject));
+        ])->assertRedirect(route('profile.projects.edit', $this->pendingProject->fresh()));
 
     $this->assertDatabaseHas('projects', [
         'id' => $this->pendingProject->id,
@@ -141,7 +141,7 @@ it('lets the user edit the project description while the project is pending', fu
             'total_amount' => $this->pendingProject->totalAmount,
             'iban' => $this->pendingProject->iban,
             'iban_name' => $this->pendingProject->iban_name,
-        ])->assertRedirect(route('profile.projects.edit', $this->pendingProject));
+        ])->assertRedirect(route('profile.projects.edit', $this->pendingProject->fresh()));
 
     $this->assertDatabaseHas('projects', [
         'id' => $this->pendingProject->id,

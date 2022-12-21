@@ -30,6 +30,10 @@ class Project extends Model
         'updated_at',
     ];
 
+    protected $casts = [
+        'status' => ProjectStatus::class
+    ];
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

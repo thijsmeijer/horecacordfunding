@@ -21,7 +21,8 @@ class ProjectIndexResource extends JsonResource
             'duration' => $this->duration,
             'interest_rate' => $this->interest_rate,
             'user' => $this->user->name,
-            'status' => ProjectStatus::getValue($this->status),
+            'status' => $this->status->value,
+            'is_pending' => $this->is_pending,
         ];
     }
 }

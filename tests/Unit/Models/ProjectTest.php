@@ -42,7 +42,7 @@ it('can determine if a project is pending', function () {
     ])->create();
 
     $activeProject = Project::factory([
-        'status' => ProjectStatus::Active,
+        'status' => ProjectStatus::Funding,
     ])->create();
 
     expect($pendingProject->is_pending)->toBeTrue();

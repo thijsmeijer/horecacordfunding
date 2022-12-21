@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\InvestmentStatus;
 use App\Interfaces\InvestmentRepositoryInterface;
 use App\Models\Investment;
 use App\Models\User;
@@ -19,7 +20,7 @@ class InvestmentRepository implements InvestmentRepositoryInterface
         ]);
     }
 
-    public function setInvestmentStatus(Investment $investment, string $status): void
+    public function setInvestmentStatus(Investment $investment, InvestmentStatus $status): void
     {
         $investment->update([
             'status' => $status,

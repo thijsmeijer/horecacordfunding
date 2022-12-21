@@ -12,7 +12,11 @@ uses(RefreshDatabase::class);
 beforeEach(function () {
     $this->user = User::factory()->create();
 
-    Project::factory(['status' => ProjectStatus::Active->name])->has(Investment::factory(['user_id' => $this->user->id])->count(3))->create();
+    Project::factory()
+        ->funding()
+        ->has(Investment::factory(['user_id' => $this->user->id])
+        ->count(3))
+        ->create();
 
     $this->actingAs($this->user);
 });
@@ -30,11 +34,10 @@ it('shows the users full name and email', function () {
 
 it('shows all investments', function () {
     $this->user->investments->each(function ($investment) {
-        Log::info($investment->project);
         $this->get(route('profile.investments'))
             ->assertSee($investment->amount)
             ->assertSee($investment->created_at)
-            ->assertSee(ProjectStatus::getValue($investment->project->status))
+            ->assertSee($investment->project->status->value)
             ->assertSee($investment->project->name);
     });
 });
