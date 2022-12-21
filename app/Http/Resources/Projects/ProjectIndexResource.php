@@ -12,6 +12,7 @@ class ProjectIndexResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'location' => $this->location,
             'crowdfunding_contribution' => $this->crowdfunding_contribution,
             'total_amount' => $this->total_amount,

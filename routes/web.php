@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\SignAgreementController;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,13 +30,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/projects/{project}/investments', [InvestmentsController::class, 'store'])->name('investments.store');
 
     Route::get('/projects/create', [ProjectsController::class, 'create'])->name('projects.create');
-    Route::post('/projects', [ProjectsController::class, 'store'])->name('projects.store');
+    Route::post('/projects/create', [ProjectsController::class, 'store'])->middleware(HandlePrecognitiveRequests::class)->name('projects.store');
     Route::get('/profile/projects/{project}/edit', [ProjectsController::class, 'edit'])->name('profile.projects.edit');
     Route::patch('/profile/projects/{project}', [ProjectsController::class, 'update'])->name('projects.update');
     Route::patch('/profile/projects/{project}/status', [ProjectsController::class, 'updateStatus'])->name('projects.update.status');
 
-    Route::get('/projects/investments/agreement', [SignAgreementController::class, 'show'])->name('investments.agreement.show');
-    Route::post('/projects/investments/agreement', [SignAgreementController::class, 'store'])->name('investments.agreement.store');
+    Route::get('/projects/investments/agreement/{investment}', [SignAgreementController::class, 'show'])->name('investments.agreement.show');
+    Route::post('/projects/investments/agreement/{investment}', [SignAgreementController::class, 'store'])->name('investments.agreement.store');
 });
 
 Route::get('/', HomeController::class)->name('home');

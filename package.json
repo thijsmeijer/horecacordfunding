@@ -22,6 +22,8 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "laravel-precognition": "^0.1.0",
+        "laravel-precognition-vue": "^0.1.0",
         "laravel-vue-pagination": "^4.0.0"
     }
 }

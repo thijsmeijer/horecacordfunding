@@ -4,13 +4,13 @@
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Project {{ project.data.name }}
+                    Project {{ project.name }}
                 </h2>
                 <span
                     class="px-2 rounded-full text-sm font-bold block"
-                    :class="statusColor[project.data.status]"
+                    :class="statusColor[project.status]"
                 >
-                    {{ project.data.status }}
+                    {{ project.status }}
                 </span>
             </div>
         </template>
@@ -38,8 +38,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="Geef uw project een mooie naam!"
                                             v-model="form.name"
-                                            :disabled="project.data.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.data.status !== 'afwachting' }"
+                                            :disabled="project.status !== 'afwachting'"
+                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.name"/>
@@ -47,7 +47,8 @@
                             </div>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3 sm:col-span-2">
-                                    <label for="amount" class="block text-sm font-medium text-gray-700">Gevraagd bedrag</label>
+                                    <label for="amount" class="block text-sm font-medium text-gray-700">Gevraagd
+                                        bedrag</label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
                                         <span
                                             class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
@@ -59,8 +60,8 @@
                                             placeholder="100000"
                                             v-model="form.total_amount"
                                             @change="calculateContributions"
-                                            :disabled="project.data.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.data.status !== 'afwachting' }"
+                                            :disabled="project.status !== 'afwachting'"
+                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
                                         />
                                     </div>
                                     <p class="mt-2 text-sm text-gray-500">Graag het bedrag invullen zonder punten en
@@ -72,7 +73,8 @@
                                 class="grid grid-cols-3 gap-6"
                             >
                                 <div class="col-span-3 sm:col-span-2">
-                                    <label for="own_contribution" class="block text-sm font-medium text-gray-700">Eigen bijdrage</label>
+                                    <label for="own_contribution" class="block text-sm font-medium text-gray-700">Eigen
+                                        bijdrage</label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
                                         <span
                                             class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
@@ -85,7 +87,8 @@
                                             disabled
                                         />
                                     </div>
-                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat u zelf zou moeten investeren om dit project op te starten.</p>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat u zelf zou moeten
+                                        investeren om dit project op te starten.</p>
                                 </div>
                             </div>
                             <div
@@ -93,7 +96,8 @@
                                 class="grid grid-cols-3 gap-6"
                             >
                                 <div class="col-span-3 sm:col-span-2">
-                                    <label for="extern_contribution" class="block text-sm font-medium text-gray-700">Bijgelegd bedrag</label>
+                                    <label for="extern_contribution" class="block text-sm font-medium text-gray-700">Bijgelegd
+                                        bedrag</label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
                                         <span
                                             class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
@@ -106,7 +110,8 @@
                                             disabled
                                         />
                                     </div>
-                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat zal worden bijgelegd door externe investeerders.</p>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat zal worden bijgelegd
+                                        door externe investeerders.</p>
                                 </div>
                             </div>
                             <div
@@ -114,7 +119,8 @@
                                 class="grid grid-cols-3 gap-6"
                             >
                                 <div class="col-span-3 sm:col-span-2">
-                                    <label for="crowdfunding_contribution" class="block text-sm font-medium text-gray-700">Crowdfunding bedrag</label>
+                                    <label for="crowdfunding_contribution"
+                                           class="block text-sm font-medium text-gray-700">Crowdfunding bedrag</label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
                                         <span
                                             class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">€</span>
@@ -127,7 +133,8 @@
                                             disabled
                                         />
                                     </div>
-                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat uiteindelijk gevraagd zal worden op het crowdfunding platform.</p>
+                                    <p class="mt-2 text-sm text-gray-500">Dit is het bedrag dat uiteindelijk gevraagd
+                                        zal worden op het crowdfunding platform.</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-3 gap-6">
@@ -192,8 +199,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="NL00RABO0000000000"
                                             v-model="form.iban"
-                                            :disabled="project.data.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.data.status !== 'afwachting' }"
+                                            :disabled="project.status !== 'afwachting'"
+                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.iban"/>
@@ -205,8 +212,8 @@
                                             class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="IBAN Tenaamstelling"
                                             v-model="form.iban_name"
-                                            :disabled="project.data.status !== 'afwachting'"
-                                            :class="{ 'bg-gray-100': project.data.status !== 'afwachting' }"
+                                            :disabled="project.status !== 'afwachting'"
+                                            :class="{ 'bg-gray-100': project.status !== 'afwachting' }"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.iban_name"/>
@@ -230,13 +237,20 @@
                                     <label class="block text-sm font-medium text-gray-700">
                                         Business plan
                                     </label>
-                                    <div class=" mt-1 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                    <div
+                                        class=" mt-1 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
+                                                 stroke="currentColor" viewBox="0 0 24 24"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                            </svg>
+                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                                class="font-semibold">Click to upload</span> or drag and drop</p>
                                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG</p>
                                         </div>
-                                        <input id="dropzone-file" type="file" class="hidden" />
+                                        <input id="dropzone-file" type="file" class="hidden"/>
                                     </div>
                                 </div>
                             </div>
@@ -292,8 +306,10 @@
                         >
                             Opslaan
                         </button>
-                        <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
-                            <p v-if="form.recentlySuccessful" class="text-sm text-green-600 dark:text-gray-400">Project succesful opgeslagen.</p>
+                        <Transition enter-from-class="opacity-0" leave-to-class="opacity-0"
+                                    class="transition ease-in-out">
+                            <p v-if="form.recentlySuccessful" class="text-sm text-green-600 dark:text-gray-400">Project
+                                succesful opgeslagen.</p>
                         </Transition>
                     </div>
                 </div>
@@ -309,7 +325,8 @@
                         <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3 sm:col-span-2">
-                                    <label for="location" class="block text-sm font-medium text-gray-700">Project status</label>
+                                    <label for="location" class="block text-sm font-medium text-gray-700">Project
+                                        status</label>
                                     <div class="mt-1 flex rounded-md shadow-sm">
                                         <select
                                             v-model="statusForm.status"
@@ -332,8 +349,11 @@
                                 >
                                     Verander status
                                 </button>
-                                <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
-                                    <p v-if="statusForm.recentlySuccessful" class="text-sm text-green-600 dark:text-gray-400">Status succesful opgeslagen.</p>
+                                <Transition enter-from-class="opacity-0" leave-to-class="opacity-0"
+                                            class="transition ease-in-out">
+                                    <p v-if="statusForm.recentlySuccessful"
+                                       class="text-sm text-green-600 dark:text-gray-400">Status succesful
+                                        opgeslagen.</p>
                                 </Transition>
                             </div>
                         </div>
@@ -372,7 +392,7 @@ export default {
         }
     },
     setup(props) {
-        let values = props.project.data;
+        let values = props.project;
 
         const form = useForm(
             values,
@@ -386,17 +406,17 @@ export default {
     },
     methods: {
         submit() {
-            this.form.patch(route('projects.update', this.project.data.id), {
+            this.form.patch(route('projects.update', this.project), {
                 preserveScroll: (page) => Object.keys(page.props.errors).length === 0,
             });
         },
         changeStatus() {
-            this.statusForm.patch(route('projects.update.status', this.project.data.id), {
+            this.statusForm.patch(route('projects.update.status', this.project), {
                 preserveScroll: true,
             });
         },
         calculateContributions() {
-            if(this.form.total_amount && parseInt(this.form.total_amount) > 0) {
+            if (this.form.total_amount && parseInt(this.form.total_amount) > 0) {
                 this.form.own_contribution = parseInt(this.form.total_amount) * 0.1;
                 this.form.external_contribution = parseInt(this.form.total_amount) * 0.3;
                 this.form.crowdfunding_contribution = parseInt(this.form.total_amount) * 0.6;
