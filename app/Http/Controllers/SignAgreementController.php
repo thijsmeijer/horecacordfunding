@@ -18,7 +18,7 @@ class SignAgreementController extends Controller
 
     public function show(Investment $investment): Response
     {
-        if (! $investment->belongs_to_current_user || $investment->status !== InvestmentStatus::Pending->value) {
+        if (! $investment->belongs_to_current_user || $investment->status !== InvestmentStatus::Pending) {
             abort(404);
         }
 
@@ -29,11 +29,11 @@ class SignAgreementController extends Controller
 
     public function store(Investment $investment): RedirectResponse
     {
-        if (! $investment->belongs_to_current_user || $investment->status !== InvestmentStatus::Pending->value) {
+        if (! $investment->belongs_to_current_user || $investment->status !== InvestmentStatus::Pending) {
             abort(404);
         }
 
-        $this->investmentRepository->setInvestmentStatus($investment, InvestmentStatus::Accepted->value);
+        $this->investmentRepository->setInvestmentStatus($investment, InvestmentStatus::Accepted);
 
         return to_route('projects.show', $investment->project->slug)->with('success', 'Investering succesvol uitgevoerd.');
     }

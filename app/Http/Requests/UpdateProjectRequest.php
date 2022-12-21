@@ -21,8 +21,8 @@ class UpdateProjectRequest extends FormRequest
             'description' => ['required', 'string'],
             'location' => ['required', 'string', 'max:255'],
             'total_amount' => ['required', 'integer', 'min:5000', new MultipleOfHundred],
-            'iban' => [Rule::requiredIf($this->status !== ProjectStatus::Pending->value), 'nullable', 'string', 'max:255'],
-            'iban_name' => [Rule::requiredIf($this->status !== ProjectStatus::Pending->value), 'nullable', 'string', 'max:255'],
+            'iban' => [Rule::requiredIf($this->status !== ProjectStatus::Pending), 'nullable', 'string', 'max:255'],
+            'iban_name' => [Rule::requiredIf($this->status !== ProjectStatus::Pending), 'nullable', 'string', 'max:255'],
         ];
     }
 }
