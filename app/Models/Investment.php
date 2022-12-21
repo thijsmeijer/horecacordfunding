@@ -23,7 +23,7 @@ class Investment extends Model
     ];
 
     protected $casts = [
-        'status' => InvestmentStatus::class
+        'status' => InvestmentStatus::class,
     ];
 
     public function returns(): HasMany

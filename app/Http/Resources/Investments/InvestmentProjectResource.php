@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Investments;
 
-use App\Enums\ProjectStatus;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class InvestmentProjectResource extends JsonResource
@@ -13,7 +12,7 @@ class InvestmentProjectResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'status' => $this->status->value,
-            'translated_status' => trans('app.' . $this->status->value),
+            'translated_status' => trans('app.'.$this->status->value),
         ];
     }
 }

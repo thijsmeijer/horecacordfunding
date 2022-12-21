@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Projects;
 
-use App\Enums\ProjectStatus;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProjectIndexResource extends JsonResource
@@ -23,7 +22,7 @@ class ProjectIndexResource extends JsonResource
             'user' => $this->user->name,
             'status' => $this->status->value,
             'is_pending' => $this->is_pending,
-            'translated_status' => trans('app.' . $this->status->value),
+            'translated_status' => trans('app.'.$this->status->value),
         ];
     }
 }

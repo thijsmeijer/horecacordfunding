@@ -1,7 +1,6 @@
 <?php
 
 use App\Enums\InvestmentStatus;
-use App\Enums\ProjectStatus;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

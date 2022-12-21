@@ -5,7 +5,6 @@ use App\Models\Investment;
 use App\Models\Project;
 use App\Models\User;
 use App\Repositories\InvestmentRepository;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);

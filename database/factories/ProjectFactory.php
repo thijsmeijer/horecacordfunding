@@ -32,13 +32,14 @@ class ProjectFactory extends Factory
     public function funding(): static
     {
         return $this->state([
-            'status' => ProjectStatus::Funding
+            'status' => ProjectStatus::Funding,
         ]);
     }
+
     public function pending(): static
     {
         return $this->state([
-            'status' => ProjectStatus::Pending
+            'status' => ProjectStatus::Pending,
         ]);
     }
 }

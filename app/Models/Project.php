@@ -31,7 +31,7 @@ class Project extends Model
     ];
 
     protected $casts = [
-        'status' => ProjectStatus::class
+        'status' => ProjectStatus::class,
     ];
 
     public function getSlugOptions(): SlugOptions
