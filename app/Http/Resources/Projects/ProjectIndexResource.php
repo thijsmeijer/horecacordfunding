@@ -23,6 +23,7 @@ class ProjectIndexResource extends JsonResource
             'user' => $this->user->name,
             'status' => $this->status->value,
             'is_pending' => $this->is_pending,
+            'translated_status' => trans('app.' . $this->status->value),
         ];
     }
 }

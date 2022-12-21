@@ -10,7 +10,7 @@
                     class="px-2 rounded-full text-sm font-bold block"
                     :class="statusColor[project.status]"
                 >
-                    {{ project.status }}
+                    {{ project.translated_status }}
                 </span>
             </div>
         </template>

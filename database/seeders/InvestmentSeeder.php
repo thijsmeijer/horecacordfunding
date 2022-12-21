@@ -11,12 +11,10 @@ class InvestmentSeeder extends Seeder
 {
     public function run(): void
     {
-        $projects = Project::where('status', '!=', ProjectStatus::Pending->value)->get();
+        $projects = Project::where('status', '!=', ProjectStatus::Pending)->get();
 
         foreach ($projects as $project) {
-            Investment::factory(10)->create([
-                'project_id' => $project->id,
-            ]);
+            Investment::factory(10)->for($project)->create();
         }
     }
 }

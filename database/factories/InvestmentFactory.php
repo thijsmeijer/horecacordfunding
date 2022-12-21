@@ -16,7 +16,7 @@ class InvestmentFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'project_id' => Project::factory(),
+            'project_id' => Project::factory()->funding(),
             'amount' => round(fake()->numberBetween(1000, 2000), -2),
             'status' => InvestmentStatus::Accepted,
             'iban' => fake()->iban('NL'),

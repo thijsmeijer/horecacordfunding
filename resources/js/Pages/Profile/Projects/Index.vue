@@ -109,7 +109,7 @@
                                         class="px-2 rounded-full text-sm font-bold block"
                                         :class="statusColor[project.status]"
                                     >
-                                        {{ project.status }}
+                                        {{ project.translated_status }}
                                     </span>
                                 </div>
                             </div>
@@ -142,10 +142,10 @@ export default {
         return {
             statusColor: {
                 'funding': 'bg-green-500 text-green-100',
-                'afgerond': 'bg-green-100 text-green-600',
-                'geannuleerd': 'bg-red-500 text-red-100',
-                'afwachting': 'bg-yellow-500 text-yellow-100',
-                'aflossing': 'bg-blue-500 text-blue-100',
+                'completed': 'bg-green-100 text-green-600',
+                'cancelled': 'bg-red-500 text-red-100',
+                'pending': 'bg-yellow-500 text-yellow-100',
+                'repayment': 'bg-blue-500 text-blue-100',
             },
         }
     },

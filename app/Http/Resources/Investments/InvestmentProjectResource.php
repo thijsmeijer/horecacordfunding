@@ -13,6 +13,7 @@ class InvestmentProjectResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'status' => $this->status->value,
+            'translated_status' => trans('app.' . $this->status->value),
         ];
     }
 }

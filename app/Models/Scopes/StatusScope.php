@@ -14,7 +14,7 @@ class StatusScope implements Scope
         $builder
             ->where(function ($query) {
                 $query->where('user_id', auth()->id())
-                    ->orWhereNot('status', ProjectStatus::Pending->name);
+                    ->orWhereNot('status', ProjectStatus::Pending);
             });
     }
 }
